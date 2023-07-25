@@ -4,10 +4,5 @@ build_from:
   amd64: "ghcr.io/home-assistant/amd64-base-python:3.10-alpine3.16"
   armhf: "ghcr.io/home-assistant/armhf-base-python:3.10-alpine3.16"
   armv7: "ghcr.io/home-assistant/armv7-base-python:3.10-alpine3.16"
-labels:
-  org.opencontainers.image.title: "Home Assistant Add-on: Viessmann Gridbox add-on"
-  org.opencontainers.image.description: "Fetch your Gridbox data"
-  org.opencontainers.image.source: "https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox"
-  org.opencontainers.image.licenses: "Apache License 2.0"
 args:
   TEMPIO_VERSION: "2021.09.0"
