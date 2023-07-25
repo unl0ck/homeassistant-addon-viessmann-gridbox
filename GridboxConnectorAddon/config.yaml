@@ -1,0 +1,25 @@
+# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
+name: Viessmann Gridbox Connector add-on
+version: "1.2.0"
+slug: "gridbox_connector"
+description: Fetch your live data from your Viessmann Gridbox
+url: "https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox/tree/main/GridboxConnector"
+arch:
+  - armhf
+  - armv7
+  - aarch64
+  - amd64
+init: false
+map:
+  - share:rw
+discovery:
+  - "mqtt"
+services:
+  - "mqtt:want"
+options:
+  username: "email"
+  password: "password"
+schema:
+  username: str
+  password: password
+image: "ghcr.io/unl0ck/homeassistant-addon-{arch}-gridbox-connector"
