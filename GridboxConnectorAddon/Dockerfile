@@ -33,6 +33,7 @@ ARG TEMPIO_VERSION BUILD_ARCH
 # Copy root filesystem
 COPY GridboxConnector/ /build/GridboxConnector
 COPY cloudSettings.json /data/cloudSettings.json
+COPY cloudSettings.json /build/.
 WORKDIR /build/GridboxConnector
 RUN pip install -r requirements.txt
 COPY run.sh /run.sh

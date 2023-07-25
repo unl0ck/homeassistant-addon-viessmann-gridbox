@@ -2,10 +2,12 @@ import os
 import json
 from GridboxConnector import GridboxConnector
 import time
+from ha_mqtt_discoverable import Settings, DeviceInfo
+from ha_mqtt_discoverable.sensors import Sensor, SensorInfo
 
 if __name__ == '__main__':
     print("test {}".format(os.environ))
-    f = open('/share/cloudSettings.json')
+    f = open('/build/cloudSettings.json')
     # returns JSON object as 
     # a dictionary
     data = json.load(f)
@@ -14,7 +16,32 @@ if __name__ == '__main__':
     f.close()
     data["login"]["username"] = USER
     data["login"]["password"] = PASSWORD
+    # Configure the required parameters for the MQTT broker
+    mqtt_settings = Settings.MQTT(host="localhost")
+
+    # Define the device. At least one of `identifiers` or `connections` must be supplied
+    device_info = DeviceInfo(name="Photovoltaic", identifiers="viessmann_gridbox")
+
+    # Associate the sensor with the device via the `device` parameter
+    # `unique_id` must also be set, otherwise Home Assistant will not display the device in the UI
+    production_sensor_info = SensorInfo(name="Production", device_class="energy", unique_id="gridbox_production", device=device_info, unit_of_measurement="w")
+    production_settings = Settings(mqtt=mqtt_settings, entity=production_sensor_info)
+
+    grid_sensor_info = SensorInfo(name="Grid", device_class="energy", unique_id="gridbox_grid", device=device_info, unit_of_measurement="w")
+    grid_settings = Settings(mqtt=mqtt_settings, entity=grid_sensor_info)
+
+    photovoltaic_sensor_info = SensorInfo(name="Photovoltaic", device_class="energy", unique_id="gridbox_photovoltaic", device=device_info, unit_of_measurement="w")
+    photovoltaic_settings = Settings(mqtt=mqtt_settings, entity=photovoltaic_sensor_info)
+    
+
+    # Instantiate the sensor
+    production_sensor = Sensor(production_settings)
+    grid_sensor = Sensor(grid_settings)
+    photovoltaic_sensor = Sensor(photovoltaic_settings)
 
     while True:
-        print(GridboxConnector(data).retrieve_live_data())
+        measurement = GridboxConnector(data).retrieve_live_data()
+        production_sensor.set_state(measurement["production"])
+        grid_sensor.set_state(measurement["grid"])
+        photovoltaic_sensor.set_state(measurement["photovoltaic"])
         time.sleep(60)
