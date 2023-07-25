@@ -5,7 +5,7 @@ import time
 
 if __name__ == '__main__':
     print("test {}".format(os.environ))
-    f = open('/data/cloudSettings.json')
+    f = open('/share/cloudSettings.json')
     # returns JSON object as 
     # a dictionary
     data = json.load(f)
