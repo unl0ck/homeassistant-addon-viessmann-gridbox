@@ -1,7 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
 ARG BUILD_FROM
-#FROM $BUILD_FROM
-FROM ghcr.io/home-assistant/aarch64-base-python:3.10-alpine3.16
+FROM $BUILD_FROM
 RUN \
   apk add --no-cache \
     python3 py3-pip
