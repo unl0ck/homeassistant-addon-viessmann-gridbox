@@ -22,4 +22,4 @@ options:
 schema:
   username: str
   password: password
-image: "ghcr.io/unl0ck/homeassistant-addon-{arch}-gridbox-connector"
+image: "ghcr.io/unl0ck/homeassistant-addon-viessmann-gridbox-{arch}"
