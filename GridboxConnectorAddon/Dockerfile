@@ -4,7 +4,7 @@ FROM $BUILD_FROM
 
 RUN \
   apk add --no-cache \
-    python3
+    python3 py3-pip
 #WORKDIR /data
 
 # Execute during the build of the image
