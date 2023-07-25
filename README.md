@@ -4,8 +4,6 @@
 
 ## Add-ons
 
-This repository contains the following add-ons
-
 ### [GridboxConnector add-on](./GridboxConnectorAddon)
 
 ![Supports aarch64 Architecture][aarch64-shield]
