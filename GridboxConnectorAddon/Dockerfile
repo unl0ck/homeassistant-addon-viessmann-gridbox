@@ -15,6 +15,6 @@ RUN \
 
 # Copy root filesystem
 COPY GridboxConnector/ /build/.
-COPY GridboxConnector/config.json /data
+COPY GridboxConnector/cloudSettings.json /data
 WORKDIR /build
 RUN pip install -r requirements.txt
