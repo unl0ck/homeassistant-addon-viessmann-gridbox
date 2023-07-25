@@ -25,12 +25,16 @@ RUN ln -sf python3 /usr/bin/python
 
 # Execute during the build of the image
 ARG TEMPIO_VERSION BUILD_ARCH
-RUN \
-    curl -sSLf -o /usr/bin/tempio \
-    "https://github.com/home-assistant/tempio/releases/download/${TEMPIO_VERSION}/tempio_${BUILD_ARCH}"
+#RUN \
+#    curl -sSLf -o /usr/bin/tempio \
+#    "https://github.com/home-assistant/tempio/releases/download/${TEMPIO_VERSION}/tempio_${BUILD_ARCH}"
 
 # Copy root filesystem
-COPY GridboxConnector/ /build/.
-COPY cloudSettings.json /data
-WORKDIR /build
+COPY GridboxConnector/ /build/GridboxConnector
+COPY cloudSettings.json /data/cloudSettings.json
+WORKDIR /build/GridboxConnector
 RUN pip install -r requirements.txt
+COPY run.sh /run.sh
+RUN chmod a+x /run.sh
+
+CMD [ "/run.sh" ]

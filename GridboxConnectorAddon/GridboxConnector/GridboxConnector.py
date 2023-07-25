@@ -29,7 +29,8 @@ class GridboxConnector:
         response = requests.get(self.live_url.format(self.gateway_id),headers=self.headers)
         if response.status_code == 200:
             response_json = response.json()
-            print(response_json)
+            #print(response_json)
+            return response_json
         else:
             self.get_token()
             self.generate_header()

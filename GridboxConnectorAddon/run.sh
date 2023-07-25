@@ -1,6 +1,9 @@
 #!/usr/bin/with-contenv bashio
 
 echo "Hello world!"
-ls /data
+ls -lash /data
+echo "data"
 cd /build/
-python3 GridboxConnector
+ls -lash
+pwd
+python GridboxConnector
