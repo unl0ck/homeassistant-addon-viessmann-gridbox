@@ -19,7 +19,9 @@ services:
 options:
   username: "email"
   password: "password"
+  wait_time: 60
 schema:
   username: str
   password: password
+  wait_time: int
 image: ghcr.io/unl0ck/homeassistant-addon-viessmann-gridbox-{arch}
