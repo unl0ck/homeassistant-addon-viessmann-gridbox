@@ -1,4 +1,10 @@
 configuration:
-  message:
-    name: Message
-    description: The message that will be printed to the log when starting this example add-on.
+  username:
+    name: Username
+    description: Enter here your email address
+  password:
+    name: Password
+    description: Enter here your Password
+  wait_time:
+    name: Wait
+    description: Set time in seconds how long will wait until fetch new data
