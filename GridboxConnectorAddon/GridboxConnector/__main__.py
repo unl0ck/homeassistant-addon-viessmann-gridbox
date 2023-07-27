@@ -6,12 +6,14 @@ from ha_mqtt_discoverable import Settings, DeviceInfo
 from ha_mqtt_discoverable.sensors import Sensor, SensorInfo
 
 if __name__ == '__main__':
-    print("test {}".format(os.environ))
     f = open('/build/cloudSettings.json')
     # returns JSON object as 
     # a dictionary
     data = json.load(f)
     f.close()
+    options_file = open('/data/options.json')
+    options_json = json.load(options_file)
+    WAIT = int(options_json["wait_time"])
     USER = os.getenv('USERNAME')
     PASSWORD = os.environ.get('PASSWORD')
     mqtt_user = os.getenv('MqttUser')
@@ -48,4 +50,4 @@ if __name__ == '__main__':
         production_sensor.set_state(measurement["production"])
         grid_sensor.set_state(measurement["grid"])
         photovoltaic_sensor.set_state(measurement["photovoltaic"])
-        time.sleep(60)
+        time.sleep(WAIT)
