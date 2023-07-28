@@ -1,10 +1,12 @@
 # Home Assistant Add-on: GridboxConnector
-
+Fetch your Energy data from the Viessmann Gridbox Cloud
 ## How to use
 
 ### Configuration
 Enter your Gridbox Credentials in the Configuration
-```yml
+use your credentials from the Viessmann **myGridbox** App or from the Viessmann Gridbox Webseite https://mygridbox.viessmann.com/login
+```yml 
 username: email
 password: password
 ```
+_Remember you have to restart the Addon after changed the Credentials_
