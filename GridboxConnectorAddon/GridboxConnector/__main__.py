@@ -6,6 +6,9 @@ from ha_mqtt_discoverable import Settings, DeviceInfo
 from ha_mqtt_discoverable.sensors import Sensor, SensorInfo
 
 if __name__ == '__main__':
+    ```
+    Open cloudSettings file and parse the setting
+    ```
     f = open('/build/cloudSettings.json')
     # returns JSON object as 
     # a dictionary
