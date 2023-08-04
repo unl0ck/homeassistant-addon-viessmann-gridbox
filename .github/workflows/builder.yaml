@@ -106,6 +106,6 @@ jobs:
             ${{ env.BUILD_ARGS }} \
             --${{ matrix.arch }} \
             --target /data/${{ matrix.addon }} \
-            --image "${{ steps.check.outputs.image }}" \
+            --image "https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox-${{ matrix.arch }}" \
             --docker-hub "ghcr.io/${{ github.repository }}" \
             --addon
