@@ -53,4 +53,4 @@ if __name__ == '__main__':
         production_sensor.set_state(measurement["production"])
         grid_sensor.set_state(measurement["grid"])
         photovoltaic_sensor.set_state(measurement["photovoltaic"])
-        time.sleep(WAIT)
+        time.sleep(60)
