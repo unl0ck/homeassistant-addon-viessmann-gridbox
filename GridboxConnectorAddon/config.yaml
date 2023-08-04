@@ -24,4 +24,4 @@ schema:
   username: str
   password: password
   wait_time: int
-image: ghcr.io/unl0ck/homeassistant-addon-viessmann-gridbox-{arch}
+image: ghcr.io/unl0ck/homeassistant-addon-viessmann-gridbox/homeassistant-addon-viessmann-gridbox-{arch}
