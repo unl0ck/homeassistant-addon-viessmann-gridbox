@@ -10,6 +10,8 @@ if __name__ == '__main__':
     # returns JSON object as 
     # a dictionary
     data = json.load(f)
+    print("Start Viessmann Connector")
+    print("====Version {}====".format(data["version"])
     f.close()
     options_file = open('/data/options.json')
     options_json = json.load(options_file)
