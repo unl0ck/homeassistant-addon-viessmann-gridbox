@@ -7,6 +7,9 @@ class GridboxConnector:
         self.login_body = config["login"]
         self.gateway_url = config["urls"]["gateways"]
         self.live_url = config["urls"]["live"]
+        self.init_auth()
+    
+    def init_auth(self):
         self.get_token()
         self.generate_header()
         self.get_gateway_id()
