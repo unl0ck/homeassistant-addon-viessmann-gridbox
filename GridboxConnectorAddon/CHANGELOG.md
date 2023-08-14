@@ -1,4 +1,8 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 1.0.4
+
+- removed version string in code
+
 ## 1.0.3
 
 - added version string
