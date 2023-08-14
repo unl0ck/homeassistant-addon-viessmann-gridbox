@@ -1,4 +1,8 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 1.0.3
+
+- added version string
+
 ## 1.0.2
 
 - added print to find out why not fetch id_token
