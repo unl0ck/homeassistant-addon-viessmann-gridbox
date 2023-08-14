@@ -14,6 +14,7 @@ class GridboxConnector:
     def get_token(self):
         response = requests.post(self.login_url, self.login_body)
         response_json = response.json()
+        print(response_json)
         self.id_token = response_json["id_token"]
 
     def generate_header(self):
