@@ -36,6 +36,6 @@ class GridboxConnector:
             #print(response_json)
             return response_json
         else:
-            self.get_token()
-            self.generate_header()
+            print("Status Code {}".format(response.status_code))
+            self.init_auth()
             self.retrieve_live_data()
