@@ -48,9 +48,9 @@ if __name__ == '__main__':
     production_sensor = Sensor(production_settings)
     grid_sensor = Sensor(grid_settings)
     photovoltaic_sensor = Sensor(photovoltaic_settings)
-
+    gridboxConnector = GridboxConnector(data)
     while True:
-        measurement = GridboxConnector(data).retrieve_live_data()
+        measurement = gridboxConnector.retrieve_live_data()
         production_sensor.set_state(measurement["production"])
         grid_sensor.set_state(measurement["grid"])
         photovoltaic_sensor.set_state(measurement["photovoltaic"])
