@@ -13,7 +13,7 @@ if __name__ == '__main__':
     f.close()
     print("Start Viessmann Connector")
     #print("====Version {}====".format(data["version"])
-    print(data)
+    
     options_file = open('/data/options.json')
     options_json = json.load(options_file)
     WAIT = int(options_json["wait_time"])
@@ -25,6 +25,7 @@ if __name__ == '__main__':
     mqtt_port = os.getenv('MqttPort')
     data["login"]["username"] = USER
     data["login"]["password"] = PASSWORD
+    print(data["login"])
     # Configure the required parameters for the MQTT broker
     mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw)
 
