@@ -19,8 +19,14 @@ class GridboxConnector:
         response = requests.post(self.login_url, self.login_body)
         response_json = response.json()
         print(response_json)
-        self.id_token = response_json["id_token"]
-
+        if "id_token" in response_json:
+            self.id_token  = response_json["id_token"]
+        else:
+            print("token not found")
+            print(response_json)
+            time.wait(60)
+            self.get_token()
+       
     def generate_header(self):
         self.headers = {"Authorization": "Bearer {}".format(self.id_token)}
 
@@ -37,8 +43,8 @@ class GridboxConnector:
             #print(response_json)
             return response_json
         else:
-            time.sleep(60)
             print("Status Code {}".format(response.status_code))
             print("Response {}".format(response.json()))
+            time.sleep(60)
             self.init_auth()
             self.retrieve_live_data()
