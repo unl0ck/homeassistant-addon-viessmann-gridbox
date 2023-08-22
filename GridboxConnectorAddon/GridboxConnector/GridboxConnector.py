@@ -1,4 +1,5 @@
 import requests
+import time
 class GridboxConnector:
     id_token = ""
 
@@ -36,6 +37,7 @@ class GridboxConnector:
             #print(response_json)
             return response_json
         else:
+            time.sleep(60)
             print("Status Code {}".format(response.status_code))
             print("Response {}".format(response.json()))
             self.init_auth()
