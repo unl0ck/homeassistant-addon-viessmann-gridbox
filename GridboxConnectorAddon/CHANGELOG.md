@@ -1,4 +1,8 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 1.0.7
+
+- added delay if response is error
+
 ## 1.0.6
 
 - fixed multiple generate id_token
