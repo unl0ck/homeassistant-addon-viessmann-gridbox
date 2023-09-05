@@ -1,4 +1,8 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 1.0.8
+
+- added dict check
+ 
 ## 1.0.7
 
 - added delay if response is error
