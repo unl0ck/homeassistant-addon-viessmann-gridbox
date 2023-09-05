@@ -51,7 +51,10 @@ if __name__ == '__main__':
     gridboxConnector = GridboxConnector(data)
     while True:
         measurement = gridboxConnector.retrieve_live_data()
-        production_sensor.set_state(measurement["production"])
-        grid_sensor.set_state(measurement["grid"])
-        photovoltaic_sensor.set_state(measurement["photovoltaic"])
+        if "production" in measurement:
+            production_sensor.set_state(measurement["production"])
+            grid_sensor.set_state(measurement["grid"])
+            photovoltaic_sensor.set_state(measurement["photovoltaic"])
+        else:
+            print("measurement does not have values {}".format(measurement))
         time.sleep(WAIT)
