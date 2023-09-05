@@ -57,4 +57,5 @@ if __name__ == '__main__':
             photovoltaic_sensor.set_state(measurement["photovoltaic"])
         else:
             print("measurement does not have values {}".format(measurement))
+            gridboxConnector = GridboxConnector(data)
         time.sleep(WAIT)
