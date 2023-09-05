@@ -47,4 +47,4 @@ class GridboxConnector:
             print("Response {}".format(response.json()))
             time.sleep(60)
             self.init_auth()
-            self.retrieve_live_data()
+            return self.retrieve_live_data()
