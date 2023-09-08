@@ -26,7 +26,7 @@ if __name__ == '__main__':
     data["login"]["username"] = USER
     data["login"]["password"] = PASSWORD
     print(data["login"])
-    one_time_print = False
+    one_time_print = True
     # Configure the required parameters for the MQTT broker
     mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw)
 
@@ -52,9 +52,9 @@ if __name__ == '__main__':
     gridboxConnector = GridboxConnector(data)
     while True:
         measurement = gridboxConnector.retrieve_live_data()
-        if !one_time_print:
+        if one_time_print:
             print(measurement)
-            one_time_print = True
+            one_time_print = False
         if "production" in measurement:
             production_sensor.set_state(measurement["production"])
             grid_sensor.set_state(measurement["grid"])
