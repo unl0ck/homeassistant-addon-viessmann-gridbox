@@ -1,4 +1,8 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 1.0.10
+
+- fixed python issue
+  
 ## 1.0.9
 
 - added one time print of data
