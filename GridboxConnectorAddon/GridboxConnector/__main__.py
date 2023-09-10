@@ -43,12 +43,17 @@ if __name__ == '__main__':
 
     photovoltaic_sensor_info = SensorInfo(name="Photovoltaic", device_class="power", unique_id="gridbox_photovoltaic", device=device_info, unit_of_measurement="W")
     photovoltaic_settings = Settings(mqtt=mqtt_settings, entity=photovoltaic_sensor_info)
-    
+
+    battery_sensor_info = SensorInfo(name="Battery", device_class="battery", unique_id="gridbox_battery", device=device_info, unit_of_measurement="%")
+    battery_settings = Settings(mqtt=mqtt_settings, entity=photovoltaic_sensor_info)
 
     # Instantiate the sensor
     production_sensor = Sensor(production_settings)
     grid_sensor = Sensor(grid_settings)
     photovoltaic_sensor = Sensor(photovoltaic_settings)
+    init_battery = False
+    battery_sensor = Sensor(battery_settings)
+
     gridboxConnector = GridboxConnector(data)
     while True:
         measurement = gridboxConnector.retrieve_live_data()
@@ -59,7 +64,11 @@ if __name__ == '__main__':
             production_sensor.set_state(measurement["production"])
             grid_sensor.set_state(measurement["grid"])
             photovoltaic_sensor.set_state(measurement["photovoltaic"])
+            if "battery" in measurement:
+                battery_sensor.set_state(int(measurement["battery"]["stateOfCharge"])*100)
         else:
             print("measurement does not have values {}".format(measurement))
             gridboxConnector = GridboxConnector(data)
+        
+       
         time.sleep(WAIT)
