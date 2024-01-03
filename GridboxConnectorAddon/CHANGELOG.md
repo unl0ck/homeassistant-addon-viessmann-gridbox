@@ -1,4 +1,8 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 1.1.1
+### Fix
+- use correct battery sensor_info
+
 ## 1.1.0
 
 - Start with Battery support
