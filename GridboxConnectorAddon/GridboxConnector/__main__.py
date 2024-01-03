@@ -31,7 +31,7 @@ if __name__ == '__main__':
     mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw)
 
     # Define the device. At least one of `identifiers` or `connections` must be supplied
-    device_info = DeviceInfo(name="Viessmann Gridbox", identifiers="viessmann_gridbox")
+    device_info = DeviceInfo(name="Viessmann Gridbox", identifiers="viessmann_gridbox", manufacturer="Viessmann")
 
     # Associate the sensor with the device via the `device` parameter
     # `unique_id` must also be set, otherwise Home Assistant will not display the device in the UI
