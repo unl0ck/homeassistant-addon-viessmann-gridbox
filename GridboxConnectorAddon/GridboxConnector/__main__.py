@@ -45,7 +45,7 @@ if __name__ == '__main__':
     photovoltaic_settings = Settings(mqtt=mqtt_settings, entity=photovoltaic_sensor_info)
 
     battery_sensor_info = SensorInfo(name="Battery", device_class="battery", unique_id="gridbox_battery", device=device_info, unit_of_measurement="%")
-    battery_settings = Settings(mqtt=mqtt_settings, entity=photovoltaic_sensor_info)
+    battery_settings = Settings(mqtt=mqtt_settings, entity=battery_sensor_info)
 
     # Instantiate the sensor
     production_sensor = Sensor(production_settings)
