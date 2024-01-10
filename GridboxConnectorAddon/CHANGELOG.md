@@ -1,4 +1,6 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 1.1.2
+- added Vendor
 ## 1.1.1
 ### Fix
 - use correct battery sensor_info
