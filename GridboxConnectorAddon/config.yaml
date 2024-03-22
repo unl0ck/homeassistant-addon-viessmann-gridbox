@@ -15,7 +15,7 @@ map:
 discovery:
   - "mqtt"
 services:
-  - "mqtt:want"
+  - "mqtt:need"
 options:
   username: "email"
   password: "password"
