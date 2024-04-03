@@ -69,8 +69,8 @@ if __name__ == '__main__':
             grid_sensor.set_state(measurement["grid"])
             photovoltaic_sensor.set_state(measurement["photovoltaic"])
             if "battery" in measurement:
-                battery_level.set_state(double(measurement["battery"]["stateOfCharge"])*100)
-                battery_capacity.set_state(double(measurement["battery"]["capacity"]))
+                battery_level.set_state(float(measurement["battery"]["stateOfCharge"])*100)
+                battery_capacity.set_state(float(measurement["battery"]["capacity"]))
         else:
             print("measurement does not have values {}".format(measurement))
             gridboxConnector = GridboxConnector(data)
