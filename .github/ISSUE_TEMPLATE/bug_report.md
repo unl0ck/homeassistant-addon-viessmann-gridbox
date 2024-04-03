@@ -3,7 +3,7 @@ name: Bug report
 about: Create a report to help me for improve
 title: ''
 labels: bug
-assignees: ''
+assignees: unl0ck
 
 ---
 
