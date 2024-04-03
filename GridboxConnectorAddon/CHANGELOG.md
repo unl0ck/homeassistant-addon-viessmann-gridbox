@@ -1,4 +1,9 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 1.2.0
+### Fix
+- fixed casting battery stateOfCharge
+### Add
+- battery capacity
 ## 1.1.3
 ### Fix
 - use correct battery information
