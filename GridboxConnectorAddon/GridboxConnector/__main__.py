@@ -31,7 +31,7 @@ if __name__ == '__main__':
     mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw)
 
     # Define the device. At least one of `identifiers` or `connections` must be supplied
-    device_info = DeviceInfo(name="Viessmann Gridbox", identifiers="viessmann_gridbox", manufacturer="Viessmann")
+    device_info = DeviceInfo(name="Viessmann Gridbox", identifiers="viessmann_gridbox", manufacturer="Viessmann", model="Vitocharge 2.0")
 
     # Associate the sensor with the device via the `device` parameter
     # `unique_id` must also be set, otherwise Home Assistant will not display the device in the UI
@@ -44,15 +44,19 @@ if __name__ == '__main__':
     photovoltaic_sensor_info = SensorInfo(name="Photovoltaic", device_class="power", unique_id="gridbox_photovoltaic", device=device_info, unit_of_measurement="W")
     photovoltaic_settings = Settings(mqtt=mqtt_settings, entity=photovoltaic_sensor_info)
 
-    battery_sensor_info = SensorInfo(name="Battery", device_class="battery", unique_id="gridbox_battery", device=device_info, unit_of_measurement="%")
-    battery_settings = Settings(mqtt=mqtt_settings, entity=battery_sensor_info)
+    battery_sensor_info_sum = SensorInfo(name="Battery", device_class="battery", unique_id="gridbox_battery_sum", device=device_info, unit_of_measurement="%")
+    battery_settings_sum = Settings(mqtt=mqtt_settings, entity=battery_sensor_info_sum)
+
+    battery_sensor_capacity = SensorInfo(name="Battery", device_class="battery", unique_id="gridbox_battery_sum", device=device_info, unit_of_measurement="Wh")
+    battery_settings_capacity = Settings(mqtt=mqtt_settings, entity=battery_sensor_capacity)
+    
 
     # Instantiate the sensor
     production_sensor = Sensor(production_settings)
     grid_sensor = Sensor(grid_settings)
     photovoltaic_sensor = Sensor(photovoltaic_settings)
-    init_battery = False
-    battery_sensor = Sensor(battery_settings)
+    battery_level = Sensor(battery_settings_sum)
+    battery_capacity Sensor(battery_settings_capacity)
 
     gridboxConnector = GridboxConnector(data)
     while True:
@@ -65,7 +69,8 @@ if __name__ == '__main__':
             grid_sensor.set_state(measurement["grid"])
             photovoltaic_sensor.set_state(measurement["photovoltaic"])
             if "battery" in measurement:
-                battery_sensor.set_state(int(measurement["battery"]["power"])/10)
+                battery_level.set_state(double(measurement["battery"]["stateOfCharge"])*100)
+                battery_capacity.set_state(double(measurement["battery"]["capacity"]))
         else:
             print("measurement does not have values {}".format(measurement))
             gridboxConnector = GridboxConnector(data)
