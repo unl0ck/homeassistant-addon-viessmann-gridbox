@@ -44,19 +44,26 @@ if __name__ == '__main__':
     photovoltaic_sensor_info = SensorInfo(name="Photovoltaic", device_class="power", unique_id="gridbox_photovoltaic", device=device_info, unit_of_measurement="W")
     photovoltaic_settings = Settings(mqtt=mqtt_settings, entity=photovoltaic_sensor_info)
 
-    battery_sensor_info_sum = SensorInfo(name="Battery", device_class="battery", unique_id="gridbox_battery_sum", device=device_info, unit_of_measurement="%")
+    #Battery Section
+    
+    battery_sensor_info_sum = SensorInfo(name="Battery Sum Level", device_class="battery", unique_id="gridbox_battery_sum", device=device_info, unit_of_measurement="%")
     battery_settings_sum = Settings(mqtt=mqtt_settings, entity=battery_sensor_info_sum)
 
-    battery_sensor_capacity = SensorInfo(name="Battery", device_class="battery", unique_id="gridbox_battery_sum", device=device_info, unit_of_measurement="Wh")
-    battery_settings_capacity = Settings(mqtt=mqtt_settings, entity=battery_sensor_capacity)
-    
+    battery_sensor_capacity_sum = SensorInfo(name="Battery Sum Capacity", device_class="battery", unique_id="gridbox_battery_level_sum", device=device_info, unit_of_measurement="Wh")
+    battery_settings_capacity_sum = Settings(mqtt=mqtt_settings, entity=battery_sensor_capacity_sum)
+
+    battery_sensor_power_sum = SensorInfo(name="Battery Sum Power", device_class="battery", unique_id="gridbox_battery_power_sum", device=device_info, unit_of_measurement="W")
+    battery_settings_power_sum = Settings(mqtt=mqtt_settings, entity=battery_sensor_power_sum)
 
     # Instantiate the sensor
     production_sensor = Sensor(production_settings)
     grid_sensor = Sensor(grid_settings)
     photovoltaic_sensor = Sensor(photovoltaic_settings)
-    battery_level = Sensor(battery_settings_sum)
-    battery_capacity Sensor(battery_settings_capacity)
+
+    #Battery Section
+    battery_sum_level = Sensor(battery_settings_sum)
+    battery_sum_capacity = Sensor(battery_settings_capacity_sum)
+    battery_sum_power = Sensor(battery_settings_power_sum)
 
     gridboxConnector = GridboxConnector(data)
     while True:
@@ -69,8 +76,9 @@ if __name__ == '__main__':
             grid_sensor.set_state(measurement["grid"])
             photovoltaic_sensor.set_state(measurement["photovoltaic"])
             if "battery" in measurement:
-                battery_level.set_state(float(measurement["battery"]["stateOfCharge"])*100)
-                battery_capacity.set_state(float(measurement["battery"]["capacity"]))
+                battery_sum_level.set_state(float(measurement["battery"]["stateOfCharge"])*100)
+                battery_sum_capacity.set_state(float(measurement["battery"]["capacity"]))
+                battery_sum_power.set_state(float(measurement["battery"]["power"]))
         else:
             print("measurement does not have values {}".format(measurement))
             gridboxConnector = GridboxConnector(data)
