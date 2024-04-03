@@ -1,4 +1,9 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 1.3.0
+### Fix
+- wrong code (never use github online editor)
+### Add
+- add Battery Power
 ## 1.2.0
 ### Fix
 - fixed casting battery stateOfCharge
