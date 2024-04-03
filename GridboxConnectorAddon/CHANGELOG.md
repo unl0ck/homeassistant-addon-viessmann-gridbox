@@ -1,4 +1,7 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 1.1.3
+### Fix
+- use correct battery information
 ## 1.1.2
 - added Vendor
 ## 1.1.1
