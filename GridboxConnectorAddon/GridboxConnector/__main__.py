@@ -5,6 +5,7 @@ from ha_mqtt_discoverable import Settings, DeviceInfo
 from ha_mqtt_discoverable.sensors import Sensor, SensorInfo
 from gridbox_connector import GridboxConnector
 
+
 if __name__ == '__main__':
     f = open('/build/cloudSettings.json')
     # returns JSON object as 
