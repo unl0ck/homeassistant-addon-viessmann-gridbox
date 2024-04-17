@@ -1,26 +1,26 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 ## 1.4.0
-### Add
+### Added
 - Sensor directConsumptionHousehold
 - Sensor directConsumptionHeatPump
 - Use py-lib connector
 ## 1.3.0
-### Fix
+### Fixed
 - wrong code (never use github online editor)
-### Add
+### Added
 - add Battery Power
 ## 1.2.0
-### Fix
+### Fixed
 - fixed casting battery stateOfCharge
-### Add
+### Added
 - battery capacity
 ## 1.1.3
-### Fix
+### Fixed
 - use correct battery information
 ## 1.1.2
 - added Vendor
 ## 1.1.1
-### Fix
+### Fixed
 - use correct battery sensor_info
 
 ## 1.1.0
