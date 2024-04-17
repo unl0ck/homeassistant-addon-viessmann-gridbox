@@ -1,4 +1,8 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+
+## 1.4.5
+### Fixed
+- Code issue
 ## 1.4.4
 ### Added
 - mqtt settings
