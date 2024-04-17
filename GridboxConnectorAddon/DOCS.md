@@ -8,5 +8,6 @@ use your credentials from the Viessmann **myGridbox** App or from the Viessmann 
 ```yml 
 username: email
 password: password
+wait_time: timeout when will refresh
 ```
 _Remember you have to restart the Addon after changed the Credentials_
