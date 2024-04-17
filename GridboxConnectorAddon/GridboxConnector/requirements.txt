@@ -1,2 +1,3 @@
 ha-mqtt-discoverable==0.13.1
 requests==2.31.0
+viessmann-gridbox-connector==1.0.1
