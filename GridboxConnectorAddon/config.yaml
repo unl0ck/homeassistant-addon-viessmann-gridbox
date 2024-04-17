@@ -24,4 +24,8 @@ schema:
   username: str
   password: password
   wait_time: int
+  OverrideMqttUser: str?
+  OverrideMqttPw: password?
+  OverrideMqttServer: str?
+  OverrideMqttPort: int?
 image: ghcr.io/unl0ck/homeassistant-addon-viessmann-gridbox-{arch}
