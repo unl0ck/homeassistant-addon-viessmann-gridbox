@@ -13,7 +13,7 @@ if __name__ == '__main__':
     data = json.load(f)
     f.close()
     print("Start Viessmann Connector")
-    print(f"====Version {data["version"]}====")
+    #print(f"====Version {data["version"]}====")
     
     options_file = open('/data/options.json')
     options_json = json.load(options_file)
