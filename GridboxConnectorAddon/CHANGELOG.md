@@ -1,4 +1,7 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 1.4.3
+### Fixed
+- Code issue
 ## 1.4.2
 ### Fixed
 - Versionnumber
