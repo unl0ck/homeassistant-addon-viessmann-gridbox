@@ -54,7 +54,7 @@ if __name__ == '__main__':
     battery_sensor_info_sum = SensorInfo(name="Battery Sum Level", device_class="battery", unique_id="gridbox_battery_sum", device=device_info, unit_of_measurement="%")
     battery_settings_sum = Settings(mqtt=mqtt_settings, entity=battery_sensor_info_sum)
 
-    battery_sensor_capacity_sum = SensorInfo(name="Battery Sum Capacity", device_class="battery", unique_id="gridbox_battery_level_sum", device=device_info, unit_of_measurement="Wh")
+    battery_sensor_capacity_sum = SensorInfo(name="Battery Sum Capacity", device_class="energy", unique_id="gridbox_battery_level_sum", device=device_info, unit_of_measurement="Wh")
     battery_settings_capacity_sum = Settings(mqtt=mqtt_settings, entity=battery_sensor_capacity_sum)
 
     battery_sensor_power_sum = SensorInfo(name="Battery Sum Power", device_class="battery", unique_id="gridbox_battery_power_sum", device=device_info, unit_of_measurement="W")
