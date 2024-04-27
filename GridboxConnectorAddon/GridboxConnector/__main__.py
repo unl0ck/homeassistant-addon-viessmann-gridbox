@@ -43,6 +43,8 @@ if __name__ == '__main__':
     photovoltaic_settings = Settings(mqtt=mqtt_settings, entity=photovoltaic_sensor_info)
 
     # consumption
+    consumption_household_sensor_info = SensorInfo(name="Consumption", device_class="power", unique_id="gridbox_consumption_household", device=device_info, unit_of_measurement="W")
+    consumption_household_settings = Settings(mqtt=mqtt_settings, entity=consumption_household_sensor_info)
 
     total_consumption_household_sensor_info = SensorInfo(name="Total Consumption", device_class="power", unique_id="total_consumption_household", device=device_info, unit_of_measurement="W")
     total_consumption_household_settings = Settings(mqtt=mqtt_settings, entity=total_consumption_household_sensor_info)
@@ -75,6 +77,7 @@ if __name__ == '__main__':
     battery_sum_power = Sensor(battery_settings_power_sum)
 
     # Consumption
+    consumption_household_sensor = Sensor(consumption_household_settings)
     total_consumption_household_sensor = Sensor(total_consumption_household_settings)
     direct_consumption_household_sensor = Sensor(direct_consumption_household_settings)
     direct_consumtion_heatpump_sensor = Sensor(direct_consumption_heatpump_settings)
@@ -89,6 +92,7 @@ if __name__ == '__main__':
             production_sensor.set_state(measurement["production"])
             grid_sensor.set_state(measurement["grid"])
             photovoltaic_sensor.set_state(measurement["photovoltaic"])
+            consumption_household_sensor.set_state(measurement["totalConsumption"])
             total_consumption_household_sensor.set_state(measurement["totalConsumption"])
         if "battery" in measurement:
             battery_sum_level.set_state(float(measurement["battery"]["stateOfCharge"])*100)
