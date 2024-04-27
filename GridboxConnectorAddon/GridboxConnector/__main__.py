@@ -55,6 +55,9 @@ if __name__ == '__main__':
     direct_consumption_heatpump_sensor_info = SensorInfo(name="DirectConsumptionHeatPump", device_class="power", unique_id="gridbox_direct_consumption_heatpump", device=device_info, unit_of_measurement="W")
     direct_consumption_heatpump_settings = Settings(mqtt=mqtt_settings, entity=direct_consumption_heatpump_sensor_info)
 
+    direct_consumption_rate_sensor_info = SensorInfo(name="DirectConsumptionHeatPump", device_class="power", unique_id="gridbox_direct_consumption_rate", device=device_info, unit_of_measurement="%")
+    direct_consumption_rate_settings = Settings(mqtt=mqtt_settings, entity=direct_consumption_rate_sensor_info)
+
 
     # Battery Section
     battery_sensor_info_sum = SensorInfo(name="Battery Sum Level", device_class="battery", unique_id="gridbox_battery_sum", device=device_info, unit_of_measurement="%")
@@ -81,6 +84,7 @@ if __name__ == '__main__':
     total_consumption_household_sensor = Sensor(total_consumption_household_settings)
     direct_consumption_household_sensor = Sensor(direct_consumption_household_settings)
     direct_consumtion_heatpump_sensor = Sensor(direct_consumption_heatpump_settings)
+    direct_consumtion_rate_sensor = Sensor(direct_consumption_rate_settings)
 
     gridboxConnector = GridboxConnector(data)
     while True:
@@ -102,6 +106,8 @@ if __name__ == '__main__':
             direct_consumption_household_sensor.set_state(float(measurement["directConsumptionHousehold"]))
         if "directConsumptionHeatPump" in measurement:
             direct_consumtion_heatpump_sensor.set_state(float(measurement["directConsumptionHeatPump"]))
+        if "directConsumptionHeatPump" in measurement:
+            direct_consumtion_rate_sensor.set_state(float(measurement["directConsumptionRate"])*10)
         if "battery" in measurement:
             battery_sum_level.set_state(float(measurement["battery"]["stateOfCharge"])*100)
             battery_sum_capacity.set_state(float(measurement["battery"]["capacity"]))
