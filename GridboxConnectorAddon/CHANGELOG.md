@@ -1,5 +1,10 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
-
+## 1.5.0
+### Added
+- Consumption Sensor
+- Total Consumption Sensor
+### Fixed
+- set Value only if available
 ## 1.4.5
 ### Fixed
 - Code issue
