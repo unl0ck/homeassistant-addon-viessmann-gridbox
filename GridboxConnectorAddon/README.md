@@ -12,3 +12,23 @@ _Fetch live data from your Viessmann Gridbox_
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
 [armhf-shield]: https://img.shields.io/badge/armhf-yes-green.svg
 [armv7-shield]: https://img.shields.io/badge/armv7-yes-green.svg
+
+# Supported Values
+The Overview splitted in PV and Battery
+## Battery 
+* power
+* capacity
+* stateOfCharge
+
+## Consumption
+* production
+* grid
+* photovoltaic
+* consumption
+* totalConsumption
+* directConsumptionHousehold
+* directConsumptionHeatPump
+* directConsumptionRate
+* selfSupply
+* selfConsumptionRate
+* selfSufficiencyRate
