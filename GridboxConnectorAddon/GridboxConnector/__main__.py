@@ -90,18 +90,21 @@ if __name__ == '__main__':
             one_time_print = False
         if "production" in measurement:
             production_sensor.set_state(measurement["production"])
+        if "grid" in measurement:
             grid_sensor.set_state(measurement["grid"])
+        if "photovoltaic" in measurement:
             photovoltaic_sensor.set_state(measurement["photovoltaic"])
-            consumption_household_sensor.set_state(measurement["totalConsumption"])
+        if "consumption" in measurement:
+            consumption_household_sensor.set_state(measurement["consumption"])
+        if "totalConsumption" in measurement:
             total_consumption_household_sensor.set_state(measurement["totalConsumption"])
-        if "battery" in measurement:
-            battery_sum_level.set_state(float(measurement["battery"]["stateOfCharge"])*100)
-            battery_sum_capacity.set_state(float(measurement["battery"]["capacity"]))
-            battery_sum_power.set_state(float(measurement["battery"]["power"]))
         if "directConsumptionHousehold" in measurement:
             direct_consumption_household_sensor.set_state(float(measurement["directConsumptionHousehold"]))
         if "directConsumptionHeatPump" in measurement:
             direct_consumtion_heatpump_sensor.set_state(float(measurement["directConsumptionHeatPump"]))
-        
-       
+        if "battery" in measurement:
+            battery_sum_level.set_state(float(measurement["battery"]["stateOfCharge"])*100)
+            battery_sum_capacity.set_state(float(measurement["battery"]["capacity"]))
+            battery_sum_power.set_state(float(measurement["battery"]["power"]))
+        # Wait until fetch new values in seconds
         time.sleep(WAIT)
