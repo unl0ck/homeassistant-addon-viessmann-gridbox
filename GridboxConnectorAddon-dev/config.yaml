@@ -1,8 +1,8 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
-name: Development version of Viessmann Gridbox Connector
+name: Viessmann Gridbox Connector (dev)
 version: "1.5.0"
 slug: "gridbox_connector_dev"
-description: Viessmann Gridbox Connector (dev)
+description: Development version of Viessmann Gridbox Connector
 url: "https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox/tree/main/GridboxConnectorAddon"
 arch:
   - armhf
@@ -10,7 +10,8 @@ arch:
   - aarch64
   - amd64
 init: false
-startup: services
+startup: application
+codenotary: notary@home-assistant.io
 map:
   - share:rw
 discovery:
