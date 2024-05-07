@@ -65,7 +65,6 @@ jobs:
             - name: Commit and Tag
               uses: stefanzweifel/git-auto-commit-action@v5
               with:
-                tagging_message: ${{ env.TAG_NAME }}
                 commit_message: "docs: added changelog for ${{ env.TAG_NAME }}"
             
            
