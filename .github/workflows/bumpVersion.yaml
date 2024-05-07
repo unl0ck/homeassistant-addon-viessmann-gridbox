@@ -51,11 +51,21 @@ jobs:
               uses: mikepenz/release-changelog-builder-action@v4
               env:
                 GITHUB_TOKEN: ${{ github.token }}
+              with:
+                outputFile: GridboxConnectionAddon/CHANGELOG.md
+            
+            - name: Build Changelog
+              id: github_release_dev
+              uses: mikepenz/release-changelog-builder-action@v4
+              env:
+                GITHUB_TOKEN: ${{ github.token }}
+              with:
+                outputFile: GridboxConnectionAddon-dev/CHANGELOG.md
             
             - name: Commit and Tag
               uses: stefanzweifel/git-auto-commit-action@v5
               with:
                 tagging_message: ${{ env.TAG_NAME }}
-                commit_message: "docs: ${{ env.OLD_VERSIONE }} -> ${{ env.TAG_NAME }}"
+                commit_message: "docs: added changelog for ${{ env.TAG_NAME }}"
             
            
