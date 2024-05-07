@@ -47,10 +47,9 @@ jobs:
             fi
           done
 
-          echo "addons=${{steps.addons.outputs.addons_list}}" >> $GITHUB_ENV;
+          echo "addons=${{steps.addons.outputs.addons_list}}" >> $GITHUB_OUTPUT;
 
           changed=$(echo ${changed_addons[@]} | rev | cut -c 2- | rev)
-          changed=true
 
           if [[ -n ${changed} ]]; then
             echo "Changed add-ons: $changed";
@@ -65,7 +64,7 @@ jobs:
     name: Build ${{ matrix.arch }} ${{ matrix.addon }} add-on
     strategy:
       matrix:
-        addon: ${{ fromJson(env.addons) }}
+        addon: ${{ fromJson(needs.init.outputs.changed_addons) }}
         arch: ["aarch64", "amd64", "armhf", "armv7"]
 
     steps:
@@ -91,6 +90,14 @@ jobs:
              echo "${{ matrix.arch }} is not a valid arch for ${{ matrix.addon }}, skipping build";
              echo "build_arch=false" >> $GITHUB_OUTPUT;
           fi
+
+      - name: Login to GitHub Container Registry
+        if: env.BUILD_ARGS != '--test'
+        uses: docker/login-action@v3.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.TOKEN }}
 
       - name: Build ${{ matrix.addon }} add-on
         if: steps.check.outputs.build_arch == 'true'
