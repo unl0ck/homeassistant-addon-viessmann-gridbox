@@ -1,5 +1,8 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
-## 1.9.2
+## 1.9,4
+### Fixed
+- Fixed Release script
+## 1.9.3
 ### Added
 - Batteries Support
 ### Refactor
