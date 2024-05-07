@@ -47,8 +47,6 @@ jobs:
             fi
           done
 
-          echo "addons=${{steps.addons.outputs.addons_list}}" >> $GITHUB_OUTPUT;
-
           changed=$(echo ${changed_addons[@]} | rev | cut -c 2- | rev)
 
           if [[ -n ${changed} ]]; then
@@ -64,7 +62,7 @@ jobs:
     name: Build ${{ matrix.arch }} ${{ matrix.addon }} add-on
     strategy:
       matrix:
-        addon: ${{ fromJson(needs.init.outputs.addons) }}
+        addon: ${{ fromJson(needs.init.outputs.changed_addons) }}
         arch: ["aarch64", "amd64", "armhf", "armv7"]
 
     steps:
