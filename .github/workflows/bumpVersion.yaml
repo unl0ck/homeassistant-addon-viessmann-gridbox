@@ -19,6 +19,7 @@ jobs:
         runs-on: ubuntu-latest
         permissions:
           contents: write
+          pull-requests: read
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
@@ -39,16 +40,22 @@ jobs:
               run: |
                 echo "TAG_NAME=$(bump-my-version show current_version)" >> $GITHUB_ENV
 
-            - name: Update CHANGELOG
-              id: changelog
-              uses: requarks/changelog-action@v1
-              with:
-                  token: ${{ github.token }}
-                  fromTag: ${{ env.OLD_VERSIONE }}
-                  toTag: ${{ env.TAG_NAME }}
-            
             - name: Commit and Tag
               uses: stefanzweifel/git-auto-commit-action@v5
               with:
                 tagging_message: ${{ env.TAG_NAME }}
                 commit_message: "ci: ${{ env.OLD_VERSIONE }} -> ${{ env.TAG_NAME }}"
+
+            - name: Build Changelog
+              id: github_release
+              uses: mikepenz/release-changelog-builder-action@v4
+              env:
+                GITHUB_TOKEN: ${{ github.token }}
+            
+            - name: Commit and Tag
+              uses: stefanzweifel/git-auto-commit-action@v5
+              with:
+                tagging_message: ${{ env.TAG_NAME }}
+                commit_message: "docs: ${{ env.OLD_VERSIONE }} -> ${{ env.TAG_NAME }}"
+            
+           
