@@ -5,8 +5,8 @@ build_from:
   armhf: "ghcr.io/home-assistant/armhf-base-python:3.10-alpine3.16"
   armv7: "ghcr.io/home-assistant/armv7-base-python:3.10-alpine3.16"
 labels:
-  org.opencontainers.image.title: "Development of Viessmann Gridbox Connector"
-  org.opencontainers.image.description: "Development of Viessmann Gridbox Connector"
+  org.opencontainers.image.title: "Home Assistant Add-on: Viessmann Gridbox Connector"
+  org.opencontainers.image.description: "Get the pv data from the Viessmann Cloud"
   org.opencontainers.image.source: "https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox"
   org.opencontainers.image.licenses: "Apache License 2.0"
 args:
