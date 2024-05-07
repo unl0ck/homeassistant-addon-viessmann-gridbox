@@ -52,7 +52,7 @@ jobs:
               env:
                 GITHUB_TOKEN: ${{ github.token }}
               with:
-                outputFile: GridboxConnectionAddon/CHANGELOG.md
+                outputFile: GridboxConnectorAddon/CHANGELOG.md
             
             - name: Build Changelog
               id: github_release_dev
@@ -60,7 +60,7 @@ jobs:
               env:
                 GITHUB_TOKEN: ${{ github.token }}
               with:
-                outputFile: GridboxConnectionAddon-dev/CHANGELOG.md
+                outputFile: GridboxConnectorAddon-dev/CHANGELOG.md
             
             - name: Commit and Tag
               uses: stefanzweifel/git-auto-commit-action@v5
