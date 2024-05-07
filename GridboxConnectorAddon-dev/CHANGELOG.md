@@ -1,4 +1,7 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 1.9.6
+### Fixed
+- Fixed config.yml
 ## 1.9.5
 ### Fixed
 - Fixed Version number
