@@ -1,4 +1,8 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+##1.9.8
+### Fixed
+- Fixed version number
+- Fixed copy script from dev to main
 ## 1.9.7
 ### Fixed
 - Fixed set correct version without override the Main Settings
