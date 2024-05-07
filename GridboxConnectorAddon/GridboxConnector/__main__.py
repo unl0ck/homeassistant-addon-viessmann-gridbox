@@ -4,7 +4,7 @@ import time
 from ha_mqtt_discoverable import Settings, DeviceInfo
 from ha_mqtt_discoverable.sensors import Sensor, SensorInfo
 from gridbox_connector import GridboxConnector
-
+from Battery import Battery
 
 if __name__ == '__main__':
     f = open('/build/cloudSettings.json')
@@ -28,6 +28,8 @@ if __name__ == '__main__':
     data["login"]["password"] = PASSWORD
     print(data["login"])
     one_time_print = True
+
+    battery_dict = {}
 
     mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw)
 
@@ -86,10 +88,8 @@ if __name__ == '__main__':
     grid_sensor = Sensor(grid_settings)
     photovoltaic_sensor = Sensor(photovoltaic_settings)
 
-    # Battery
-    battery_sum_level = Sensor(battery_settings_sum)
-    battery_sum_capacity = Sensor(battery_settings_capacity_sum)
-    battery_sum_power = Sensor(battery_settings_power_sum)
+    # Battery sum
+    battery_sum = Battery(mqtt_settings, device_info, "sum", "")
 
     # Consumption
     consumption_household_sensor = Sensor(consumption_household_settings)
@@ -132,10 +132,24 @@ if __name__ == '__main__':
         if "selfSufficiencyRate" in measurement:
             self_consumtion_rate_sensor.set_state(float(measurement["selfSufficiencyRate"])*100)
 
-        
+            
         if "battery" in measurement:
-            battery_sum_level.set_state(float(measurement["battery"]["stateOfCharge"])*100)
-            battery_sum_capacity.set_state(float(measurement["battery"]["capacity"]))
-            battery_sum_power.set_state(float(measurement["battery"]["power"]))
+            appliance_id = measurement["battery"]["applianceID"]
+            state_of_charge = float(measurement["battery"]["stateOfCharge"])*100
+            capacity = float(measurement["battery"]["capacity"])
+            power = float(measurement["battery"]["power"])
+            remaining_charge = float(measurement["battery"]["remainingCharge"])
+            battery_sum.set_values(state_of_charge, capacity, power, remaining_charge)
+        if "batteries" in measurement:
+            for index, battery in enumerate(measurement["batteries"]):
+                appliance_id = battery["applianceID"]
+                if appliance_id not in battery_dict:
+                    battery_dict[appliance_id] = Battery(mqtt_settings, device_info, f"{index}", appliance_id)
+                battery = battery_dict[appliance_id]
+                state_of_charge = float(measurement["battery"]["stateOfCharge"])*100
+                capacity = float(measurement["battery"]["capacity"])
+                power = float(measurement["battery"]["power"])
+                remaining_charge = float(measurement["battery"]["remainingCharge"])
+                battery.set_values(state_of_charge, capacity, power, remaining_charge)
         # Wait until fetch new values in seconds
         time.sleep(WAIT)

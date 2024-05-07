@@ -1,4 +1,15 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 1.9.5
+### Fixed
+- Fixed Version number
+## 1.9.4
+### Fixed
+- Fixed Release script
+## 1.9.3
+### Added
+- Batteries Support
+### Refactor
+- Refactor Battery Sum
 ## 1.5.0
 ### Added
 - Consumption Sensor
