@@ -132,7 +132,7 @@ if __name__ == '__main__':
         if "selfSufficiencyRate" in measurement:
             self_consumtion_rate_sensor.set_state(float(measurement["selfSufficiencyRate"])*100)
 
-        
+            
         if "battery" in measurement:
             appliance_id = measurement["battery"]["applianceID"]
             state_of_charge = float(measurement["battery"]["stateOfCharge"])*100
