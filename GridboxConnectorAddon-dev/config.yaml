@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: Viessmann Gridbox Connector (dev)
-version: "1.8.0"
+version: "1.9.0"
 slug: "gridbox_connector_dev"
 description: Development version of Viessmann Gridbox Connector
 url: "https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox/tree/main/GridboxConnectorAddon"
