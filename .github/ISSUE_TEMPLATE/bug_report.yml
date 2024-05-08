@@ -1,0 +1,30 @@
+name: Bug report
+description: Create a report to help me improve
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue form is for reporting issues only!
+  - type: textarea
+    validations:
+      required: true
+    attributes:
+      label: Describe the bug what do have
+      description: >-
+        A clear and concise description of what the bug is.
+
+  - type: textarea
+    validations:
+      required: true
+    attributes:
+      label: Log details
+      render: text
+      description: >
+        Show Addon Logs to help me
+
+  - type: input
+    attributes:
+      label: Version
+      description: >
+        Set Version
