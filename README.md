@@ -5,7 +5,8 @@
 
 ## Add-ons
 
-### [GridboxConnector add-on](./GridboxConnectorAddon)
+### [Viessmann Gridbox Connector](./GridboxConnectorAddon)
+### [Viessmann Gridbox Connector (Dev)](./GridboxConnectorAddon-dev)
 
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
