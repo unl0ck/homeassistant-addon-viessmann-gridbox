@@ -8,13 +8,13 @@ from Battery import Battery
 
 if __name__ == '__main__':
     f = open('/build/cloudSettings.json')
-    # returns JSON object as 
+    # returns JSON object as
     # a dictionary
     data = json.load(f)
     f.close()
     print("Start Viessmann Connector")
     #print(f"====Version {data["version"]}====")
-    
+
     options_file = open('/data/options.json')
     options_json = json.load(options_file)
     WAIT = int(options_json["wait_time"])
@@ -50,7 +50,7 @@ if __name__ == '__main__':
 
     total_consumption_household_sensor_info = SensorInfo(name="Total Consumption", device_class="power", unique_id="total_consumption_household", device=device_info, unit_of_measurement="W")
     total_consumption_household_settings = Settings(mqtt=mqtt_settings, entity=total_consumption_household_sensor_info)
-    
+
     # Direct Consumption
     direct_consumption_household_sensor_info = SensorInfo(name="DirectConsumptionHousehold", device_class="power", unique_id="gridbox_direct_consumption_household", device=device_info, unit_of_measurement="W")
     direct_consumption_household_settings = Settings(mqtt=mqtt_settings, entity=direct_consumption_household_sensor_info)
@@ -60,19 +60,19 @@ if __name__ == '__main__':
 
     direct_consumption_rate_sensor_info = SensorInfo(name="DirectConsumptionRate", device_class="power_factor", unique_id="gridbox_direct_consumption_rate", device=device_info, unit_of_measurement="%")
     direct_consumption_rate_settings = Settings(mqtt=mqtt_settings, entity=direct_consumption_rate_sensor_info)
-    
-    
+
+
     # Self Consumption
     self_supply_sensor_info = SensorInfo(name="SelfSupply", device_class="power", unique_id="gridbox_self_supply", device=device_info, unit_of_measurement="W")
     self_supply_settings = Settings(mqtt=mqtt_settings, entity=self_supply_sensor_info)
-    
+
     self_consumption_rate_sensor_info = SensorInfo(name="SelfConsumptionRate", device_class="power_factor", unique_id="gridbox_self_consumption_rate", device=device_info, unit_of_measurement="%")
     self_consumption_rate_settings = Settings(mqtt=mqtt_settings, entity=self_consumption_rate_sensor_info)
-    
+
     self_sufficiency_rate_sensor_info = SensorInfo(name="SelfSufficiencyRate", device_class="power_factor", unique_id="gridbox_self_sufficiency_rate", device=device_info, unit_of_measurement="%")
     self_sufficiency_rate_settings = Settings(mqtt=mqtt_settings, entity=self_sufficiency_rate_sensor_info)
-    
-    
+
+
     # Battery Section
     battery_sensor_info_sum = SensorInfo(name="Battery Sum Level", device_class="battery", unique_id="gridbox_battery_sum", device=device_info, unit_of_measurement="%")
     battery_settings_sum = Settings(mqtt=mqtt_settings, entity=battery_sensor_info_sum)
@@ -97,7 +97,7 @@ if __name__ == '__main__':
     direct_consumption_household_sensor = Sensor(direct_consumption_household_settings)
     direct_consumtion_heatpump_sensor = Sensor(direct_consumption_heatpump_settings)
     direct_consumtion_rate_sensor = Sensor(direct_consumption_rate_settings)
-    
+
     self_supply_sensor = Sensor(self_supply_settings)
     self_consumtion_rate_sensor = Sensor(self_consumption_rate_settings)
 
@@ -124,7 +124,7 @@ if __name__ == '__main__':
         if "directConsumptionRate" in measurement:
             direct_consumtion_rate_sensor.set_state(float(measurement["directConsumptionRate"])*100)
 
-        
+
         if "selfSupply" in measurement:
             self_supply_sensor.set_state(float(measurement["selfSupply"]))
         if "selfConsumptionRate" in measurement:
@@ -132,9 +132,8 @@ if __name__ == '__main__':
         if "selfSufficiencyRate" in measurement:
             self_consumtion_rate_sensor.set_state(float(measurement["selfSufficiencyRate"])*100)
 
-            
+
         if "battery" in measurement:
-            appliance_id = measurement["battery"]["applianceID"]
             state_of_charge = float(measurement["battery"]["stateOfCharge"])*100
             capacity = float(measurement["battery"]["capacity"])
             power = float(measurement["battery"]["power"])
