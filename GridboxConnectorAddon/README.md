@@ -1,4 +1,4 @@
-# Viessmann Gridbox Add-on: Gridbox Connector add-on
+# Viessmann Gridbox Connector
 **Not an Official Viessmann Addon**
 
 _Fetch live data from your Viessmann Gridbox_
