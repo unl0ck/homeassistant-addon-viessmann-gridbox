@@ -1,5 +1,5 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
-name: Viessmann Gridbox Connector add-on
+name: Viessmann Gridbox Connector
 version: "1.9.10"
 slug: "gridbox_connector"
 description: Fetch your live data from your Viessmann Gridbox
