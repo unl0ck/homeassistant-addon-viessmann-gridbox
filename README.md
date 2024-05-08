@@ -1,4 +1,8 @@
 # Home Assistant Viessmann Gridbox Addons
+[aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
+[amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
+[armhf-shield]: https://img.shields.io/badge/armhf-yes-green.svg
+[armv7-shield]: https://img.shields.io/badge/armv7-yes-green.svg
 **Not an official Viessmann Addon**
 
 Get your Gridbox Data via MQTT to your Home Assistant Server
@@ -16,7 +20,4 @@ Get your Gridbox Data via MQTT to your Home Assistant Server
 ![Supports armv7 Architecture][armv7-shield]
 
 
-[aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
-[amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
-[armhf-shield]: https://img.shields.io/badge/armhf-yes-green.svg
-[armv7-shield]: https://img.shields.io/badge/armv7-yes-green.svg
+
