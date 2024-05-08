@@ -1,25 +1,12 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
-##1.9.8
+## 1.9.9
+### Added
+- Consumption Sensor
+- Total Consumption Sensor
 ### Fixed
 - Fixed version number
 - Fixed copy script from dev to main
-## 1.9.7
-### Fixed
-- Fixed set correct version without override the Main Settings
-## 1.9.6
-### Fixed
 - Fixed config.yml
-## 1.9.5
-### Fixed
-- Fixed Version number
-## 1.9.4
-### Fixed
-- Fixed Release script
-## 1.9.3
-### Added
-- Batteries Support
-### Refactor
-- Refactor Battery Sum
 ## 1.5.0
 ### Added
 - Consumption Sensor
