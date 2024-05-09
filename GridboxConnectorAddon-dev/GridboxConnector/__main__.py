@@ -138,7 +138,7 @@ if __name__ == '__main__':
             capacity = float(measurement["battery"]["capacity"])
             power = float(measurement["battery"]["power"])
             remaining_charge = float(measurement["battery"]["remainingCharge"])
-            battery_sum.set_values(state_of_charge, capacity, power, remaining_charge)
+            battery_sum.set_states(state_of_charge, capacity, power, remaining_charge)
         if "batteries" in measurement:
             for index, battery in enumerate(measurement["batteries"]):
                 appliance_id = battery["applianceID"]
@@ -149,6 +149,6 @@ if __name__ == '__main__':
                 capacity = float(measurement["battery"]["capacity"])
                 power = float(measurement["battery"]["power"])
                 remaining_charge = float(measurement["battery"]["remainingCharge"])
-                battery.set_values(state_of_charge, capacity, power, remaining_charge)
+                battery.set_states(state_of_charge, capacity, power, remaining_charge)
         # Wait until fetch new values in seconds
         time.sleep(WAIT)
