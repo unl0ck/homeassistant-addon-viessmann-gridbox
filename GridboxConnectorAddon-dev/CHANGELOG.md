@@ -1,5 +1,5 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
-## 1.10.0
+## 1.10.1
 ## Added
 - Added new sensor `directConsumptionHousehold` and `directConsumptionHeatPump` to show the direct consumption of the household
 - Added new sensor `totalConsumption` to show the total consumption of the household
