@@ -15,7 +15,12 @@ _Fetch live data from your Viessmann Gridbox_
 
 # Supported Values
 The Overview splitted in PV and Battery
-## Battery 
+## Battery Summery
+* power
+* capacity
+* stateOfCharge
+
+## Each Battery
 * power
 * capacity
 * stateOfCharge

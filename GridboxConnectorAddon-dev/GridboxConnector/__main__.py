@@ -143,7 +143,7 @@ if __name__ == '__main__':
             for index, battery in enumerate(measurement["batteries"]):
                 appliance_id = battery["applianceID"]
                 if appliance_id not in battery_dict:
-                    battery_dict[appliance_id] = Battery(mqtt_settings, device_info, f"{index}", appliance_id)
+                    battery_dict[appliance_id] = Battery(mqtt_settings, device_info, f"{index+1}", appliance_id)
                 battery = battery_dict[appliance_id]
                 state_of_charge = float(measurement["battery"]["stateOfCharge"])*100
                 capacity = float(measurement["battery"]["capacity"])
