@@ -18,8 +18,8 @@ commit_args = ""
 [[tool.bumpversion.files]]
 filename="./GridboxConnectorAddon/config.yaml"
 [[tool.bumpversion.files]]
-filename="./GridboxConnectorAddon/cloudSettings.json"
+filename="./GridboxConnectorAddon/rootfs/share/cloudSettings.json"
 [[tool.bumpversion.files]]
 filename="./GridboxConnectorAddon-dev/config.yaml"
 [[tool.bumpversion.files]]
-filename="./GridboxConnectorAddon-dev/cloudSettings.json"
+filename="./GridboxConnectorAddon-dev/rootfs/share/cloudSettings.json"
