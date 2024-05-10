@@ -1,0 +1,10 @@
+configuration:
+  username:
+    name: Username
+    description: Enter here your email address
+  password:
+    name: Password
+    description: Enter here your Password
+  wait_time:
+    name: Wait
+    description: Set time in seconds how long will wait until fetch new data

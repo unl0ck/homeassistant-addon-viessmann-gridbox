@@ -1,0 +1,33 @@
+# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
+name: Viessmann Gridbox Connector (experimental)
+version: "1.10.2"
+slug: "gridbox_connector_experimental"
+description: Development version of Viessmann Gridbox Connector
+url: "https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox/tree/main/GridboxConnectorAddon-experimental"
+arch:
+  - armhf
+  - armv7
+  - aarch64
+  - amd64
+init: false
+codenotary: notary@home-assistant.io
+map:
+  - share:ro
+discovery:
+  - "mqtt"
+services:
+  - "mqtt:need"
+options:
+  username: "email"
+  password: "password"
+  wait_time: 60
+schema:
+  username: str
+  password: password
+  wait_time: int
+  OverrideMqttUser: str?
+  OverrideMqttPw: password?
+  OverrideMqttServer: str?
+  OverrideMqttPort: int?
+image: ghcr.io/unl0ck/homeassistant-addon-viessmann-gridbox-experimental-{arch}
+stage: experimental
