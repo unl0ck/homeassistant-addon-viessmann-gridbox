@@ -117,56 +117,41 @@ class HAViessmannGridboxConnector:
         if "grid" in measurement:
             self.grid_sensor.set_state(measurement.get("grid", ""))
         if "photovoltaic" in measurement:
-            self.photovoltaic_sensor.set_state(
-                measurement.get("photovoltaic", ""))
+            self.photovoltaic_sensor.set_state(measurement.get("photovoltaic", ""))
         if "consumption" in measurement:
-            self.consumption_household_sensor.set_state(
-                measurement.get("consumption", ""))
+            self.consumption_household_sensor.set_state(measurement.get("consumption", ""))
         if "totalConsumption" in measurement:
-            self.total_consumption_household_sensor.set_state(
-                measurement.get("totalConsumption", ""))
+            self.total_consumption_household_sensor.set_state(measurement.get("totalConsumption", ""))
         if "directConsumptionHousehold" in measurement:
-            self.direct_consumption_household_sensor.set_state(
-                float(measurement.get("directConsumptionHousehold", "0")))
+            self.direct_consumption_household_sensor.set_state(float(measurement.get("directConsumptionHousehold", "0")))
         if "directConsumptionHeatPump" in measurement:
-            self.direct_consumtion_heatpump_sensor.set_state(
-                float(measurement.get("directConsumptionHeatPump", "0")))
+            self.direct_consumtion_heatpump_sensor.set_state(float(measurement.get("directConsumptionHeatPump", "0")))
         if "directConsumptionRate" in measurement:
-            self.direct_consumtion_rate_sensor.set_state(
-                float(measurement.get("directConsumptionRate", "0"))*100)
+            self.direct_consumtion_rate_sensor.set_state(float(measurement.get("directConsumptionRate", "0"))*100)
 
         if "selfSupply" in measurement:
-            self.self_supply_sensor.set_state(
-                float(measurement.get("selfSupply", "")))
+            self.self_supply_sensor.set_state(float(measurement.get("selfSupply", "")))
         if "selfConsumptionRate" in measurement:
-            self.self_consumtion_rate_sensor.set_state(
-                float(measurement.get("selfConsumptionRate", "0"))*100)
+            self.self_consumtion_rate_sensor.set_state(float(measurement.get("selfConsumptionRate", "0"))*100)
         if "selfSufficiencyRate" in measurement:
-            self.self_consumtion_rate_sensor.set_state(
-                float(measurement.get("selfSufficiencyRate", "0"))*100)
+            self.self_sufficiency_rate_sensor.set_state(float(measurement.get("selfSufficiencyRate", "0"))*100)
 
         if "battery" in measurement:
             battery: dict = measurement.get("battery", {})
-            state_of_charge = float(
-                battery.get("stateOfCharge", "0"))*100
+            state_of_charge = float(battery.get("stateOfCharge", "0"))*100
             capacity = float(battery.get("capacity", "0"))
             power = float(battery.get("power", "0"))
             remaining_charge = float(battery.get("remainingCharge", "0"))
-            self.battery_sum.set_states(
-                state_of_charge, capacity, power, remaining_charge)
+            self.battery_sum.set_states(state_of_charge, capacity, power, remaining_charge)
         if "batteries" in measurement:
             batteries: list = measurement.get("batteries", [])
             for index, battery in enumerate(batteries):
                 appliance_id = battery.get("applianceID", "")
                 if appliance_id not in self.battery_sensor_dict:
-                    self.battery_sensor_dict[appliance_id] = HAViessmannBattery(
-                        self.mqtt_settings, self.device_info, f"{index+1}", appliance_id)
+                    self.battery_sensor_dict[appliance_id] = HAViessmannBattery(self.mqtt_settings, self.device_info, f"{index+1}", appliance_id)
                 battery_sensor = self.battery_sensor_dict[appliance_id]
-                state_of_charge = float(
-                    battery.get("stateOfCharge", "0"))*100
+                state_of_charge = float(battery.get("stateOfCharge", "0"))*100
                 capacity = float(battery.get("capacity", "0"))
                 power = float(battery.get("power", "0"))
-                remaining_charge = float(
-                    battery.get("remainingCharge", "0"))
-                battery_sensor.set_states(state_of_charge, capacity,
-                                          power, remaining_charge)
+                remaining_charge = float(battery.get("remainingCharge", "0"))
+                battery_sensor.set_states(state_of_charge, capacity, power, remaining_charge)
