@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 1.11.0
+
+### Added
+
+- Added S6-overlay
+
 ## 1.10.2
 
 ## Added

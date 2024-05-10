@@ -15,6 +15,5 @@ ls -lash /data
 cat /data/options.json
 cd /build/
 ls -lash
-ls -lash /share
 pwd
 python GridboxConnector
