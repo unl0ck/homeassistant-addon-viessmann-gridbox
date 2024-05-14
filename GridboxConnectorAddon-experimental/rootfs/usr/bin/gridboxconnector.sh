@@ -16,5 +16,4 @@ cat /data/options.json
 cd /build/
 ls -lash
 pwd
-ls -lash /etc/gridboxconnector
 python GridboxConnector
