@@ -11,7 +11,7 @@ arch:
   - amd64
 init: false
 codenotary: notary@home-assistant.io
-icon: mdi:solar-power-variant-outline
+panel_icon: mdi:solar-power-variant-outline
 map:
   - share:rw
 discovery:
