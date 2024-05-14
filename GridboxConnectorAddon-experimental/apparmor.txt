@@ -17,7 +17,7 @@ profile example flags=(attach_disconnected,mediate_deleted) {
   /run/{,**} rwk,
   /dev/tty rw,
   /etc/gridboxconnector rw,
-  /build/**
+  /build/** rw,
 
   # Bashio
   /usr/lib/bashio/** ix,

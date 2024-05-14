@@ -5,4 +5,5 @@
 # ==============================================================================
 
 bashio::log.info "Starting GridboxConnector..."
+
 exec /usr/bin/gridboxconnector.sh
