@@ -1,10 +1,24 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+
+## 1.10.2
+
+## Added
+
+- Added new sensor `directConsumptionHousehold` and `directConsumptionHeatPump` to show the direct consumption of the household
+- Added new sensor `totalConsumption` to show the total consumption of the household
+- Added Classes for the sensor to start with unit tests
+
+## Fixed
+
+- Fixed the issue with the battery sum sensor
+- Fixed the issue with the battery sum appliance id
+- Fixed the issue with each battery show now correct values
+
 ## 1.9.12
 
 ## Fixed
 
 - Fixed Battery Sum set_state
-
 
 ## 1.9.11
 
