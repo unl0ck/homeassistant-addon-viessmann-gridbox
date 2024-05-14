@@ -5,5 +5,7 @@
 # ==============================================================================
 
 bashio::log.info "Starting GridboxConnector..."
-
+lsusr = $(ls -lash /usr/bin/)
+bashio::log.debug "lsusr: $lsusr"
+bashio::log.debug "lsusr: $(ls -lash /build/)"
 exec /usr/bin/gridboxconnector.sh
