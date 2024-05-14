@@ -5,6 +5,9 @@
 # ==============================================================================
 
 bashio::log.info "Starting GridboxConnector..."
+echo "build"
 ls -lash /build/
+echo "share"
 ls -lash /share/
+find / -name cloudSettings.json
 exec /usr/bin/gridboxconnector.sh
