@@ -5,5 +5,7 @@
 # ==============================================================================
 
 bashio::log.info "Starting GridboxConnector..."
-
+bashio::log.info "Version: ${ls -lash /build/}"
+ls -lash /build/
+ls -lash /usr/bin/
 exec /usr/bin/gridboxconnector.sh
