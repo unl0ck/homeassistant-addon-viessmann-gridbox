@@ -1,4 +1,16 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 1.9.12
+
+## Fixed
+
+- Fixed Battery Sum set_state
+
+
+## 1.9.11
+
+## Fixed
+
+- Fixed Battery Sum ApplianceID
 
 ## 1.9.10
 

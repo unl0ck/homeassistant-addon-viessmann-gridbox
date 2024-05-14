@@ -1,4 +1,4 @@
-# Viessmann Gridbox Add-on: Gridbox Connector add-on
+# Viessmann Gridbox Connector
 **Not an Official Viessmann Addon**
 
 _Fetch live data from your Viessmann Gridbox_
@@ -15,7 +15,12 @@ _Fetch live data from your Viessmann Gridbox_
 
 # Supported Values
 The Overview splitted in PV and Battery
-## Battery 
+## Battery Summery
+* power
+* capacity
+* stateOfCharge
+
+## Each Battery
 * power
 * capacity
 * stateOfCharge
