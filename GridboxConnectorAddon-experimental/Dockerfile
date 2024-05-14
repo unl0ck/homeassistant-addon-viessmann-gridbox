@@ -2,7 +2,7 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 LABEL \
-    org.opencontainers.image.source https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox
+    org.opencontainers.image.source https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox \
     org.opencontainers.image.authors="Simon Helming <simon@helming.xyz>" \
     maintainer="Simon Helming <simon@helming.xyz>" \
 
