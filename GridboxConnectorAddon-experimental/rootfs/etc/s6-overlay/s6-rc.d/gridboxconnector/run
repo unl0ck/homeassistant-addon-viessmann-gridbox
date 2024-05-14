@@ -6,5 +6,5 @@
 
 bashio::log.info "Starting GridboxConnector..."
 ls -lash /build/
-
+ls -lash /share/
 exec /usr/bin/gridboxconnector.sh
