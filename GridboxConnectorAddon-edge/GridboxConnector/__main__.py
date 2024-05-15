@@ -5,7 +5,17 @@ from gridbox_connector import GridboxConnector
 from ha_mqtt_discoverable import Settings
 from ha_viessmann_gridbox_connector import HAViessmannGridboxConnector
 import logging
-logging.basicConfig(format='%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=logging.DEBUG)
+
+def get_log_level(level):
+    return {
+        'DEBUG': logging.DEBUG,
+        'INFO': logging.INFO,
+        'WARNING': logging.WARNING,
+        'ERROR': logging.ERROR,
+        'CRITICAL': logging.CRITICAL
+    }.get(level, logging.DEBUG)
+
+logging.basicConfig(format='%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=get_log_level(os.getenv('LOG_LEVEL', 'INFO')))
 if __name__ == '__main__':
     f = open('/build/cloudSettings.json')
     # returns JSON object as
