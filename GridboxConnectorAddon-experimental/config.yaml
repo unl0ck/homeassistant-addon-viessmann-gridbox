@@ -14,7 +14,6 @@ init: false
 codenotary: notary@home-assistant.io
 map:
   - share:rw
-  - data:rw
 discovery:
   - "mqtt"
 services:
