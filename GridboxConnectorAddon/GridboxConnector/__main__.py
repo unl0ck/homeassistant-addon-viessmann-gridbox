@@ -4,15 +4,26 @@ import time
 from gridbox_connector import GridboxConnector
 from ha_mqtt_discoverable import Settings
 from ha_viessmann_gridbox_connector import HAViessmannGridboxConnector
+import logging
 
+def get_log_level(level):
+    return {
+        'DEBUG': logging.DEBUG,
+        'INFO': logging.INFO,
+        'WARNING': logging.WARNING,
+        'ERROR': logging.ERROR,
+        'CRITICAL': logging.CRITICAL
+    }.get(level, logging.DEBUG)
+
+logging.basicConfig(format='%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=get_log_level(os.getenv('LOG_LEVEL', 'INFO')))
 if __name__ == '__main__':
     f = open('/build/cloudSettings.json')
     # returns JSON object as
     # a dictionary
     data = json.load(f)
     f.close()
-    print("Start Viessmann Connector")
-    # print(f"====Version {data["version"]}====")
+    logging.info("Start Viessmann Connector")
+    logging.info(f"====Version {data["version"]}====")
 
     options_file = open('/data/options.json')
     options_json = json.load(options_file)
@@ -25,7 +36,7 @@ if __name__ == '__main__':
     mqtt_port = os.getenv('MqttPort', "")
     data["login"]["username"] = USER
     data["login"]["password"] = PASSWORD
-    print(data["login"])
+    logging.info(data["login"])
     one_time_print = True
     mqtt_settings = Settings.MQTT(
         host=mqtt_server, username=mqtt_user, password=mqtt_pw)
@@ -35,7 +46,7 @@ if __name__ == '__main__':
         measurement = gridboxConnector.retrieve_live_data()
         viessmann_gridbox_connector.update_sensors(measurement)
         if one_time_print:
-            print(measurement)
+            logging.info(measurement)
             one_time_print = False
         # Wait until fetch new values in seconds
         time.sleep(WAIT)

@@ -1,5 +1,23 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.1.2
+### 🚀 Added
+- Workflows to create releases
+- scripts
+
+## 2.0.0
+
+### 🚀 Added
+
+- using now s6-overlay
+- Start with Unit Tests
+
+## 1.11.0
+
+### 🚀 Added
+
+- Added S6-overlay
+
 ## 1.10.2
 
 ### 🚀 Added

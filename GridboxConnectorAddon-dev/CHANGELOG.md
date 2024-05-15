@@ -1,5 +1,10 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.1.2
+### 🚀 Added
+- Workflows to create releases
+- scripts
+
 ## 2.0.0
 
 ### 🚀 Added

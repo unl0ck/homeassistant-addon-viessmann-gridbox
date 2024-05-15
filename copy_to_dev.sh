@@ -5,7 +5,7 @@ src_dir="GridboxConnectorAddon-edge"
 target_dir="GridboxConnectorAddon-dev"
 
 # Copy all files from source to target directory, excluding config.yml and build.yml
-rsync -av --exclude='config.yaml' --exclude='build.yaml' --exclude='__pycache__' --exclude='.pytest_cache' $src_dir/ $target_dir/
+rsync -av --delete --exclude='config.yaml' --exclude='build.yaml' --exclude='__pycache__' --exclude='.pytest_cache' $src_dir/ $target_dir/
 
 yaml_datei="GridboxConnectorAddon-dev/config.yaml"
 current_version=$(yq e '.version' $yaml_datei)

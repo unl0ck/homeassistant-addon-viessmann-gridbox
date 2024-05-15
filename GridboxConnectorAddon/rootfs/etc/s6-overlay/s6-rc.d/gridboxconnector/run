@@ -1,0 +1,29 @@
+#!/command/with-contenv bashio
+# shellcheck shell=bash
+# ==============================================================================
+# Home Assistant Community Add-on: Viessmann Gridbox Connector
+# ==============================================================================
+
+bashio::log.info "Starting GridboxConnector..."
+
+#exec /usr/bin/gridboxconnector.sh
+#!/usr/bin/with-contenv bashio
+# shellcheck shell=bash
+export MqttUser=$(bashio::config 'OverrideMqttUser')
+export MqttPw=$(bashio::config 'OverrideMqttPw')
+export MqttServer=$(bashio::config 'OverrideMqttServer')
+export MqttPort=$(bashio::config 'OverrideMqttPort')
+
+test "$MqttUser" = "null" && export MqttUser=$(bashio::services "mqtt" "username")
+test "$MqttPw" = "null" && export MqttPw=$(bashio::services "mqtt" "password")
+test "$MqttServer" = "null" && export MqttServer=$(bashio::services "mqtt" "host")
+test "$MqttPort" = "null" && export MqttPort=$(bashio::services "mqtt" "port")
+export USERNAME=$(bashio::config 'username')
+export PASSWORD=$(bashio::config 'password')
+export LOG_LEVEL=$(bashio::config 'log_level')
+ls -lash /data
+cat /data/options.json
+cd /build/
+ls -lash
+pwd
+python GridboxConnector
