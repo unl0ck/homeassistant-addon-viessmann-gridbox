@@ -21,9 +21,7 @@ if __name__ == '__main__':
     # returns JSON object as
     # a dictionary
     data = json.load(f)
-    f.close()
-    logging.info("Start Viessmann Connector")
-    logging.info(f"====Version {data["version"]}====")
+    f.close()    
 
     options_file = open('/data/options.json')
     options_json = json.load(options_file)
