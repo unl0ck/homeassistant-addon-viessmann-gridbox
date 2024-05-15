@@ -34,4 +34,4 @@ schema:
   OverrideMqttPort: int?
   log_level: list(trace|debug|info|notice|warning|error|fatal)
 image: ghcr.io/unl0ck/homeassistant-addon-viessmann-gridbox-edge-{arch}
-stage: edge
+stage: experimental
