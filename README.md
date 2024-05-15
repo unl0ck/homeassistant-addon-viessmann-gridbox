@@ -18,6 +18,7 @@ Get your Gridbox Data via MQTT to your Home Assistant Server
 
 ### [Viessmann Gridbox Connector](./GridboxConnectorAddon)
 ### [Viessmann Gridbox Connector (Dev)](./GridboxConnectorAddon-dev)
+### [Viessmann Gridbox Connector (Experimental)](./GridboxConnectorAddon-experimental)
 
 
 
