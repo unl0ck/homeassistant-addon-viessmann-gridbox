@@ -8,4 +8,4 @@ then
 fi
 
 # Run bump-my-version with the provided argument
-bump-my-version bump $1 --config-file .bumpversion-dev.toml
+bump-my-version bump $1 --config-file .bumpversion-edge.toml
