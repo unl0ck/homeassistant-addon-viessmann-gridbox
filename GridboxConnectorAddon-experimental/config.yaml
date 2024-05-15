@@ -1,9 +1,10 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 ---
 name: Viessmann Gridbox Connector (experimental)
-version: "2.0.4"
+version: "2.0.5"
 slug: "gridbox_connector_experimental"
 description: Development version of Viessmann Gridbox Connector
+apparmor: false
 url: "https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox/tree/main/GridboxConnectorAddon-experimental"
 arch:
   - armhf
