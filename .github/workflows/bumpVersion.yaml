@@ -1,49 +1,54 @@
-name: Version Workflow
+name: Bump Version
 
 on:
-    workflow_dispatch:
-        inputs:
-            version:
-                description: 'Select the version type'
-                required: true
-                type: choice
-                default: 'patch'
-                options:
-                    - major
-                    - minor
-                    - patch
-                    - dev
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Select the version type"
+        required: true
+        type: choice
+        default: "patch"
+        options:
+          - major
+          - minor
+          - patch
+          - dev
+      type:
+        description: "Select Type"
+        required: true
+        type: choice
+        default: "edge"
+        options:
+          - dev
+          - edge
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        permissions:
-          contents: write
-          pull-requests: read
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v4
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-            - name: Set up Python
-              uses: actions/setup-python@v5
-            
-            - run: pip install bump-my-version
+      - name: Set up Python
+        uses: actions/setup-python@v5
 
-            - name: set Old Version 
-              run: |
-                echo "OLD_VERSIONE=$(bump-my-version show current_version)" >> $GITHUB_ENV
-            
-            - name: Bump Version
-              run: bump-my-version bump ${{ github.event.inputs.version }}
-            
-            - name: set Current Version
-              run: |
-                echo "TAG_NAME=$(bump-my-version show current_version)" >> $GITHUB_ENV
+      - run: pip install bump-my-version
 
-            - name: Commit and Tag
-              uses: stefanzweifel/git-auto-commit-action@v5
-              with:
-                tagging_message: ${{ env.TAG_NAME }}
-                commit_message: "ci: ${{ env.OLD_VERSIONE }} -> ${{ env.TAG_NAME }}"
-            
-           
+      - name: Get Old Version
+        run: |
+          echo "OLD_VERSION=$(bump-my-version show --config-file .bumpversion-${{ github.event.inputs.type }}.toml current_version)" >> $GITHUB_ENV
+
+      - name: Bump Version
+        run: ./bumpversion-${{ github.event.inputs.type }}.sh ${{ github.event.inputs.version }}
+
+      - name: Get New Version
+        run: |
+          echo "NEW_VERSION=$(bump-my-version show --config-file .bumpversion-${{ github.event.inputs.type }}.toml current_version)" >> $GITHUB_ENV
+
+      - name: Commit and Tag
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "ci: bump ${{ github.event.inputs.type }} ${{ env.OLD_VERSION }} -> ${{ env.NEW_VERSION }}"
