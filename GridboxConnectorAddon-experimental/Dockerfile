@@ -28,7 +28,7 @@ RUN \
   python3 py3-pip
 RUN ln -sf python3 /usr/bin/python
 COPY rootfs /
-#WORKDIR /data
+
 
 # Execute during the build of the image
 ARG TEMPIO_VERSION BUILD_ARCH
@@ -38,11 +38,10 @@ RUN \
 
 # Copy root filesystem
 COPY GridboxConnector/ /build/GridboxConnector
-COPY cloudSettings.json /data/cloudSettings.json
+COPY cloudSettings.json /data/.
 COPY cloudSettings.json /build/.
-#WORKDIR /build/GridboxConnector
+
 RUN cd /build/GridboxConnector && pip install -r requirements.txt
-COPY run.sh /run.sh
-RUN chmod a+x /run.sh
+
 COPY rootfs /
-#CMD [ "/run.sh" ]
+
