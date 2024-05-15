@@ -1,0 +1,32 @@
+name: Release Dev
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Copy Release
+        run: ./copy_to_dev.sh
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+
+      - run: pip install bump-my-version
+
+      - name: Get Current Version
+        run: |
+          echo "CURRENT_VERSION=$(bump-my-version show --config-file .bumpversion-dev.toml current_version)" >> $GITHUB_ENV
+
+      - name: Commit Stable
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          tagging_message: "v${{ env.CURRENT_VERSION }}-dev"
+          commit_message: "release: Release Dev Version v${{ env.CURRENT_VERSION }}-dev"
