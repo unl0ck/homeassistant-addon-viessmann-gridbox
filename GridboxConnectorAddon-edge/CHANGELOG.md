@@ -1,20 +1,27 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.0.0
+
+### 🚀 Added
+
+- using now s6-overlay
+- Start with Unit Tests
+
 ## 1.11.0
 
-### Added
+### 🚀 Added
 
 - Added S6-overlay
 
 ## 1.10.2
 
-## Added
+### 🚀 Added
 
 - Added new sensor `directConsumptionHousehold` and `directConsumptionHeatPump` to show the direct consumption of the household
 - Added new sensor `totalConsumption` to show the total consumption of the household
 - Added Classes for the sensor to start with unit tests
 
-## Fixed
+### 🔨 Fixed
 
 - Fixed the issue with the battery sum sensor
 - Fixed the issue with the battery sum appliance id
@@ -22,30 +29,30 @@
 
 ## 1.9.12
 
-## Fixed
+### 🔨 Fixed
 
 - Fixed Battery Sum set_state
 
 ## 1.9.11
 
-## Fixed
+### 🔨 Fixed
 
 - Fixed Battery Sum ApplianceID
 
 ## 1.9.10
 
-## Fixed
+### 🔨 Fixed
 
 - Revert to 1.5.0 maybe issue with Battery refactor code
 
 ## 1.9.9
 
-### Added
+### 🚀 Added
 
 - Consumption Sensor
 - Total Consumption Sensor
 
-### Fixed
+#### 🔨 Fixed
 
 - Fixed version number
 - Fixed copy script from dev to main
@@ -53,42 +60,42 @@
 
 ## 1.5.0
 
-### Added
+### 🚀 Added
 
 - Consumption Sensor
 - Total Consumption Sensor
 
-### Fixed
+#### 🔨 Fixed
 
 - set Value only if available
 
 ## 1.4.5
 
-### Fixed
+#### 🔨 Fixed
 
 - Code issue
 
 ## 1.4.4
 
-### Added
+### 🚀 Added
 
 - mqtt settings
 
 ## 1.4.3
 
-### Fixed
+#### 🔨 Fixed
 
 - Code issue
 
 ## 1.4.2
 
-### Fixed
+#### 🔨 Fixed
 
 - Versionnumber
 
 ## 1.4.0
 
-### Added
+### 🚀 Added
 
 - Sensor directConsumptionHousehold
 - Sensor directConsumptionHeatPump
@@ -96,27 +103,27 @@
 
 ## 1.3.0
 
-### Fixed
+#### 🔨 Fixed
 
 - wrong code (never use github online editor)
 
-### Added
+### 🚀 Added
 
 - add Battery Power
 
 ## 1.2.0
 
-### Fixed
+#### 🔨 Fixed
 
 - fixed casting battery stateOfCharge
 
-### Added
+### 🚀 Added
 
 - battery capacity
 
 ## 1.1.3
 
-### Fixed
+#### 🔨 Fixed
 
 - use correct battery information
 
@@ -126,7 +133,7 @@
 
 ## 1.1.1
 
-### Fixed
+#### 🔨 Fixed
 
 - use correct battery sensor_info
 

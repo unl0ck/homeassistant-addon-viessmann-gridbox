@@ -4,7 +4,6 @@ name: Viessmann Gridbox Connector (edge)
 version: "2.1.0"
 slug: "gridbox_connector_edge"
 description: "Viessmann Gridbox Connector (edge)"
-apparmor: true
 url: "https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox/tree/main/GridboxConnectorAddon-edge"
 arch:
   - armhf
