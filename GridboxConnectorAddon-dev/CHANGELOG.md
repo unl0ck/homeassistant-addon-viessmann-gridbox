@@ -1,11 +1,10 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
-## 2.0.0
+## 1.11.0
 
-## 🚀 Added
+### Added
 
-- using now s6-overlay
-- Start with Unit Tests
+- Added S6-overlay
 
 ## 1.10.2
 

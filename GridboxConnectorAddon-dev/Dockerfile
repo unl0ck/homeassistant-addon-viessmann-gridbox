@@ -44,3 +44,4 @@ COPY cloudSettings.json /build/cloudSettings.json
 RUN cd /build/GridboxConnector && pip install -r requirements.txt
 
 COPY rootfs /
+
