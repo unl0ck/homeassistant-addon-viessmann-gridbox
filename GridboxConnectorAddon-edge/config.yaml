@@ -1,11 +1,11 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 ---
-name: Viessmann Gridbox Connector (experimental)
+name: Viessmann Gridbox Connector (edge)
 version: "2.0.5"
-slug: "gridbox_connector_experimental"
-description: Development version of Viessmann Gridbox Connector
+slug: "gridbox_connector_edge"
+description: "Viessmann Gridbox Connector (edge)"
 apparmor: false
-url: "https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox/tree/main/GridboxConnectorAddon-experimental"
+url: "https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox/tree/main/GridboxConnectorAddon-edge"
 arch:
   - armhf
   - armv7
@@ -33,5 +33,5 @@ schema:
   OverrideMqttServer: str?
   OverrideMqttPort: int?
   log_level: list(trace|debug|info|notice|warning|error|fatal)
-image: ghcr.io/unl0ck/homeassistant-addon-viessmann-gridbox-experimental-{arch}
-stage: experimental
+image: ghcr.io/unl0ck/homeassistant-addon-viessmann-gridbox-edge-{arch}
+stage: edge

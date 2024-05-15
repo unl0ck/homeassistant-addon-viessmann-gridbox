@@ -5,7 +5,7 @@ build_from:
   armhf: "ghcr.io/hassio-addons/base-python/armhf:13.1.3"
   armv7: "ghcr.io/hassio-addons/base-python/armv7:13.1.3"
 labels:
-  org.opencontainers.image.title: "Viessmann Gridbox Connector (Experimental)"
+  org.opencontainers.image.title: "Viessmann Gridbox Connector (Edge)"
   org.opencontainers.image.description: "Development of Viessmann Gridbox Connector"
   org.opencontainers.image.source: "https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox"
   org.opencontainers.image.licenses: "Apache License 2.0"

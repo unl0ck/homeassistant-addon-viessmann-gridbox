@@ -16,8 +16,8 @@ commit = false
 message = "Bump version: {current_version} → {new_version}"
 commit_args = ""
 [[tool.bumpversion.files]]
-filename="./GridboxConnectorAddon-experimental/config.yaml"
+filename="./GridboxConnectorAddon-edge/config.yaml"
 [[tool.bumpversion.files]]
-filename="./GridboxConnectorAddon-experimental/cloudSettings.json"
+filename="./GridboxConnectorAddon-edge/cloudSettings.json"
 [[tool.bumpversion.files]]
-filename="./GridboxConnectorAddon-experimental/rootfs/share/cloudSettings.json"
+filename="./GridboxConnectorAddon-edge/rootfs/share/cloudSettings.json"
