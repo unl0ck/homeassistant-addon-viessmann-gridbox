@@ -45,8 +45,8 @@ class TestGridboxConnectorMethods(unittest.TestCase):
              patch.object(viessmann_gridbox_connector.self_consumtion_rate_sensor, 'set_state') as mock_self_consumtion_rate_sensor, \
              patch.object(viessmann_gridbox_connector.consumption_household_sensor, 'set_state') as mock_consumption_household_sensor, \
              patch.object(viessmann_gridbox_connector.direct_consumption_household_sensor, 'set_state') as mock_direct_consumption_household_sensor, \
-             patch.object(viessmann_gridbox_connector.direct_consumtion_heatpump_sensor, 'set_state') as mock_direct_consumtion_heatpump_sensor, \
-             patch.object(viessmann_gridbox_connector.direct_consumtion_rate_sensor, 'set_state') as mock_direct_consumtion_rate_sensor, \
+             patch.object(viessmann_gridbox_connector.direct_consumption_heatpump_sensor, 'set_state') as mock_direct_consumtion_heatpump_sensor, \
+             patch.object(viessmann_gridbox_connector.direct_consumption_rate_sensor, 'set_state') as mock_direct_consumtion_rate_sensor, \
              patch.object(viessmann_gridbox_connector.self_sufficiency_rate_sensor, 'set_state') as mock_self_sufficiency_rate_sensor:
             viessmann_gridbox_connector.update_sensors(result)
             mock_self_supply_sensor.assert_called_once_with(600.0)
