@@ -1,7 +1,19 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
-## 2.1.2
+## 2.3.0
+
 ### 🚀 Added
+
+- added new sensor 'directConsumptionEV' to show the direct consumption of the EV
+
+### 🔨 Fixed
+
+- variable naming
+
+## 2.1.2
+
+### 🚀 Added
+
 - Workflows to create releases
 - scripts
 

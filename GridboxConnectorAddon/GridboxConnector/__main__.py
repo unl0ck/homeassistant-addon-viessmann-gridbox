@@ -13,7 +13,7 @@ def get_log_level(level):
         'WARNING': logging.WARNING,
         'ERROR': logging.ERROR,
         'CRITICAL': logging.CRITICAL
-    }.get(level, logging.DEBUG)
+    }.get(level, logging.INFO)
 
 logging.basicConfig(format='%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=get_log_level(os.getenv('LOG_LEVEL', 'INFO')))
 if __name__ == '__main__':
