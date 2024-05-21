@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.3.1
+
+### 🚀 Added
+
+- Image for Result
+
 ## 2.3.0
 
 ### 🚀 Added
