@@ -1,10 +1,14 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
-## 2.3.1
+## 2.4.1
 
 ### 🚀 Added
 
 - Image for Result
+
+### 🔨 Fixed
+
+- dockerfile source
 
 ## 2.3.0
 
