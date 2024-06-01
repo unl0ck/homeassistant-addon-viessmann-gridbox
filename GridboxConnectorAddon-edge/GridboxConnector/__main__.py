@@ -5,7 +5,7 @@ from viessmann_gridbox_connector import GridboxConnector
 from ha_mqtt_discoverable import Settings
 from ha_viessmann_gridbox_connector import HAViessmannGridboxConnector
 import logging
-from importlib.resources import path
+from importlib.resources import files
 
 #logging.basicConfig(format='%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=logging.getLevelName(os.getenv('LOG_LEVEL', 'INFO')))
 logger = logging.getLogger(__name__)
@@ -16,15 +16,16 @@ console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 
 def load_gridbox_config():
-    with path('viessmann_gridbox_connector', 'config.json') as json_file_path:
-        with open(json_file_path, 'r') as json_file:
-            data = json.load(json_file)
+    config_file = files('viessmann_gridbox_connector').joinpath('config.json')
+    with open(config_file) as json_file:
+        data = json.load(json_file)
     return data
 
 
 if __name__ == '__main__':
 
     gridbox_config = load_gridbox_config()
+    
 
     options_file = open('/data/options.json')
     options_json = json.load(options_file)
