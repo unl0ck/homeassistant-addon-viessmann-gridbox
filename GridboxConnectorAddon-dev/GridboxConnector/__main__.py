@@ -34,7 +34,7 @@ if __name__ == '__main__':
     mqtt_port = os.getenv('MqttPort', "")
     data["login"]["username"] = USER
     data["login"]["password"] = PASSWORD
-    logging.info(data["login"])
+    logging.debug(data["login"])
     one_time_print = True
     mqtt_settings = Settings.MQTT(
         host=mqtt_server, username=mqtt_user, password=mqtt_pw)
