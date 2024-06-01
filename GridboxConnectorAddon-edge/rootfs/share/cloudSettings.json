@@ -1,5 +1,5 @@
 {
-  "version": "2.5.6",
+  "version": "2.5.7",
   "urls": {
     "login": "https://gridx.eu.auth0.com/oauth/token",
     "gateways": "https://api.gridx.de/gateways",

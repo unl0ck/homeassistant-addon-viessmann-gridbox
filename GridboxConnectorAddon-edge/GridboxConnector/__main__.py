@@ -17,7 +17,7 @@ logger.addHandler(console_handler)
 
 def load_gridbox_config():
     config_file = files('viessmann_gridbox_connector').joinpath('config.json')
-    with open(config_file) as json_file:
+    with open(str(config_file)) as json_file:
         data = json.load(json_file)
     return data
 
