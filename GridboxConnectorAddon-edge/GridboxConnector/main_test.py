@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import Mock, patch
-from gridbox_connector import GridboxConnector
+from viessmann_gridbox_connector import GridboxConnector
 import json
 from ha_mqtt_discoverable import Settings
 from ha_viessmann_gridbox_connector import HAViessmannGridboxConnector
@@ -48,7 +48,7 @@ class TestGridboxConnectorMethods(unittest.TestCase):
              patch.object(viessmann_gridbox_connector.direct_consumption_heatpump_sensor, 'set_state') as mock_direct_consumtion_heatpump_sensor, \
              patch.object(viessmann_gridbox_connector.direct_consumption_rate_sensor, 'set_state') as mock_direct_consumtion_rate_sensor, \
              patch.object(viessmann_gridbox_connector.self_sufficiency_rate_sensor, 'set_state') as mock_self_sufficiency_rate_sensor:
-            viessmann_gridbox_connector.update_sensors(result)
+            viessmann_gridbox_connector.update_sensors(result[0])
             mock_self_supply_sensor.assert_called_once_with(600.0)
             mock_self_consumtion_rate_sensor.assert_called_once_with(96.09788359788359)
             mock_consumption_household_sensor.assert_called_once_with(600)
