@@ -1,7 +1,7 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 ---
 name: Viessmann Gridbox Connector (edge)
-version: "2.5.3"
+version: "2.5.4"
 slug: "gridbox_connector_edge"
 description: "Viessmann Gridbox Connector (edge)"
 url: "https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox/tree/main/GridboxConnectorAddon-edge"
@@ -22,7 +22,7 @@ options:
   username: "email"
   password: "password"
   wait_time: 60
-  log_level: info
+  log_level: INFO
 schema:
   username: str
   password: password
@@ -31,6 +31,6 @@ schema:
   OverrideMqttPw: password?
   OverrideMqttServer: str?
   OverrideMqttPort: int?
-  log_level: list(trace|debug|info|notice|warning|error|fatal)
+  log_level: list(TRACE|DEBUG|INFO|WARN|ERROR)
 image: ghcr.io/unl0ck/homeassistant-addon-viessmann-gridbox-edge-{arch}
 stage: experimental

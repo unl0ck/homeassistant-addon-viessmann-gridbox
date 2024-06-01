@@ -1,6 +1,6 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
-## 2.5.3
+## 2.5.4
 
 ### 👌 Improved
 
@@ -11,6 +11,7 @@
 ### 🔨 Fixed
 
 - fixed gridboxconnector.sh script
+- Settable Log Level
 
 ## 2.4.2
 
