@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.4.2
+
+### 🔨 Fixed
+
+- catch exception if no data is available
+
 ## 2.4.1
 
 ### 🚀 Added
