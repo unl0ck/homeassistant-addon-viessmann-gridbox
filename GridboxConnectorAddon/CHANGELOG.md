@@ -1,5 +1,34 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.5.7
+
+### 👌 Improved
+
+- bump viessmann-gridbox-connector to 2.5.1
+- using viesmann-gridbox-connector module intern config.json
+- adjust import
+
+### 🔨 Fixed
+
+- fixed gridboxconnector.sh script
+- Settable Log Level
+
+## 2.4.2
+
+### 🔨 Fixed
+
+- catch exception if no data is available
+
+## 2.4.1
+
+### 🚀 Added
+
+- Image for Result
+
+### 🔨 Fixed
+
+- dockerfile source
+
 ## 2.3.0
 
 ### 🚀 Added

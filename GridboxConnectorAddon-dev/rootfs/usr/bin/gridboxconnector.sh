@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bashio
+#!/command/with-contenv bashio
 # shellcheck shell=bash
 export MqttUser=$(bashio::config 'OverrideMqttUser')
 export MqttPw=$(bashio::config 'OverrideMqttPw')
@@ -11,6 +11,7 @@ test "$MqttServer" = "null" && export MqttServer=$(bashio::services "mqtt" "host
 test "$MqttPort" = "null" && export MqttPort=$(bashio::services "mqtt" "port")
 export USERNAME=$(bashio::config 'username')
 export PASSWORD=$(bashio::config 'password')
+export LOG_LEVEL=$(bashio::config 'log_level')
 ls -lash /data
 cat /data/options.json
 cd /build/
