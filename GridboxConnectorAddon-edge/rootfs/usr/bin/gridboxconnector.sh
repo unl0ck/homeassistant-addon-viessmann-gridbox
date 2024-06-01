@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bashio
+#!/command/with-contenv bashio
 # shellcheck shell=bash
 export MqttUser=$(bashio::config 'OverrideMqttUser')
 export MqttPw=$(bashio::config 'OverrideMqttPw')

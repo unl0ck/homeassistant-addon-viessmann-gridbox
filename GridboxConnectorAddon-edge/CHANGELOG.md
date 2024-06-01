@@ -1,11 +1,15 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
-## 2.5.0
+## 2.5.1
 
 ### 👌 Improved
 
 - bump viessmann-gridbox-connector to 2.5.0
 - using viesmann-gridbox-connector module intern config.json
+
+### 🔨 Fixed
+
+- fixed gridboxconnector.sh script
 
 ## 2.4.2
 
