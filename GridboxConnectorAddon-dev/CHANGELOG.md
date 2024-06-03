@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.5.8
+
+### 🔨 Fixed
+
+- show live data if loglevel is DEBUG
+
 ## 2.5.7
 
 ### 👌 Improved

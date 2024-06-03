@@ -53,7 +53,7 @@ if __name__ == '__main__':
         measurement = gridboxConnector.retrieve_live_data()
         result = measurement[0]
         viessmann_gridbox_connector.update_sensors(result)
-        if one_time_print:
+        if one_time_print or logger.level == logging.DEBUG:
             logger.info(result)
             one_time_print = False
         # Wait until fetch new values in seconds
