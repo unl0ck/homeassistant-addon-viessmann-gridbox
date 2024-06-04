@@ -51,6 +51,9 @@ class HAViessmannEVChargingStation:
 
         self.current_l3_sensor_info = SensorInfo(
             name=f"{name} Current L3", device_class="current", unique_id=f"gridbox_ev_charging_station_current_l3_{name}", device=device_info, unit_of_measurement="A")
+        self.current_l3_settings = Settings(
+            mqtt=mqtt_settings, entity=self.current_l3_sensor_info)
+        self.current_l3 = Sensor(self.current_l3_settings)
 
     def set_states(self, power, state_of_charge, current_l1, current_l2, current_l3):
         self.power_sensor.set_state(power)
