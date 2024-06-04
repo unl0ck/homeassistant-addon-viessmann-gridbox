@@ -1,5 +1,12 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.6.0
+
+### 🚀 Added
+
+- EVStation
+- EVStations with parameters
+
 ## 2.5.8
 
 ### 🔨 Fixed

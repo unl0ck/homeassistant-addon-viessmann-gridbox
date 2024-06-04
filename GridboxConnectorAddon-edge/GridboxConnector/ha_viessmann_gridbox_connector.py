@@ -1,6 +1,7 @@
 from ha_mqtt_discoverable import Settings, DeviceInfo
 from ha_mqtt_discoverable.sensors import Sensor, SensorInfo
 from ha_viessmann_battery import HAViessmannBattery
+from ha_viessmann_ev_charging_station import HAViessmannEVChargingStation
 
 
 class HAViessmannGridboxConnector:
@@ -77,6 +78,11 @@ class HAViessmannGridboxConnector:
         self.battery_sum = HAViessmannBattery(
             mqtt_settings, self.device_info, "sum", "")
 
+
+        # EV
+        self.ev_sum = HAViessmannEVChargingStation(
+            mqtt_settings, self.device_info, "sum", "")
+
         # Consumption
         self.consumption_household_sensor = Sensor(consumption_household_settings)
         self.total_consumption_household_sensor = Sensor(total_consumption_household_settings)
@@ -123,7 +129,7 @@ class HAViessmannGridboxConnector:
             power = float(battery.get("power", "0"))
             remaining_charge = float(battery.get("remainingCharge", "0"))
             self.battery_sum.set_states(state_of_charge, capacity, power, remaining_charge)
-            
+
         if "batteries" in measurement:
             batteries: list = measurement.get("batteries", [])
             for index, battery in enumerate(batteries):
@@ -136,3 +142,26 @@ class HAViessmannGridboxConnector:
                 power = float(battery.get("power", "0"))
                 remaining_charge = float(battery.get("remainingCharge", "0"))
                 battery_sensor.set_states(state_of_charge, capacity, power, remaining_charge)
+
+        if "evChargingStation" in measurement:
+            ev_charging_station: dict = measurement.get("evChargingStation", {})
+            power = float(ev_charging_station.get("power", "0"))
+            state_of_charge = float(ev_charging_station.get("stateOfCharge", "0"))*100
+            current_l1 = float(ev_charging_station.get("currentL1", "0"))
+            current_l2 = float(ev_charging_station.get("currentL2", "0"))
+            current_l3 = float(ev_charging_station.get("currentL3", "0"))
+            self.ev_sum.set_states(power, state_of_charge, current_l1, current_l2, current_l3)
+
+        if "evChargingStations" in measurement:
+            ev_charging_stations: list = measurement.get("evChargingStations", [])
+            for index, ev_charging_station in enumerate(ev_charging_stations):
+                appliance_id = ev_charging_station.get("applianceID", "")
+                if appliance_id not in self.battery_sensor_dict:
+                    self.battery_sensor_dict[appliance_id] = HAViessmannEVChargingStation(self.mqtt_settings, self.device_info, f"{index+1}", appliance_id)
+                ev_charging_station_sensor = self.battery_sensor_dict[appliance_id]
+                power = float(ev_charging_station.get("power", "0"))
+                state_of_charge = float(ev_charging_station.get("stateOfCharge", "0"))*100
+                current_l1 = float(ev_charging_station.get("currentL1", "0"))
+                current_l2 = float(ev_charging_station.get("currentL2", "0"))
+                current_l3 = float(ev_charging_station.get("currentL3", "0"))
+                ev_charging_station_sensor.set_states(power, state_of_charge, current_l1, current_l2, current_l3)
