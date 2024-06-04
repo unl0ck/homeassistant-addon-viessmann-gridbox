@@ -150,7 +150,8 @@ class HAViessmannGridboxConnector:
             current_l1 = float(ev_charging_station.get("currentL1", "0"))
             current_l2 = float(ev_charging_station.get("currentL2", "0"))
             current_l3 = float(ev_charging_station.get("currentL3", "0"))
-            self.ev_sum.set_states(power, state_of_charge, current_l1, current_l2, current_l3)
+            reading_total = float(ev_charging_station.get("readingTotal", "0"))
+            self.ev_sum.set_states(power, state_of_charge, current_l1, current_l2, current_l3, reading_total)
 
         if "evChargingStations" in measurement:
             ev_charging_stations: list = measurement.get("evChargingStations", [])
@@ -164,4 +165,5 @@ class HAViessmannGridboxConnector:
                 current_l1 = float(ev_charging_station.get("currentL1", "0"))
                 current_l2 = float(ev_charging_station.get("currentL2", "0"))
                 current_l3 = float(ev_charging_station.get("currentL3", "0"))
-                ev_charging_station_sensor.set_states(power, state_of_charge, current_l1, current_l2, current_l3)
+                reading_total = float(ev_charging_station.get("readingTotal", "0"))
+                ev_charging_station_sensor.set_states(power, state_of_charge, current_l1, current_l2, current_l3, reading_total)

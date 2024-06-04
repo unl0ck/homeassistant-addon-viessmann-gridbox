@@ -9,6 +9,7 @@ class HAViessmannEVChargingStation:
     current_l1: Sensor
     current_l2: Sensor
     current_l3: Sensor
+    reading_total: Sensor
     name: str
     device_info: DeviceInfo
     mqtt_settings: Settings.MQTT
@@ -55,9 +56,15 @@ class HAViessmannEVChargingStation:
             mqtt=mqtt_settings, entity=self.current_l3_sensor_info)
         self.current_l3 = Sensor(self.current_l3_settings)
 
-    def set_states(self, power, state_of_charge, current_l1, current_l2, current_l3):
+        self.reading_total_sensor_info = SensorInfo(
+            name=f"{name} Reading Total", device_class="energy", unique_id=f"gridbox_ev_charging_station_reading_total_{name}", device=device_info, unit_of_measurement="Wh")
+        self.reading_total_settings = Settings(mqtt=mqtt_settings, entity=self.reading_total_sensor_info)
+        self.reading_total = Sensor(self.reading_total_settings)
+
+    def set_states(self, power, state_of_charge, current_l1, current_l2, current_l3, reading_total):
         self.power_sensor.set_state(power)
         self.state_of_charge.set_state(state_of_charge)
         self.current_l1.set_state(current_l1)
         self.current_l2.set_state(current_l2)
         self.current_l3.set_state(current_l3)
+        self.reading_total.set_state(reading_total)
