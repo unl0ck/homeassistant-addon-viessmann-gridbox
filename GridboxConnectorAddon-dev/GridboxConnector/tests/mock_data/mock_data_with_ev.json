@@ -1,0 +1,63 @@
+{
+  "batteries": [
+    {
+      "applianceID": "2423417f-81af-473b-9168-7d5ffb8d5641",
+      "capacity": 10000,
+      "nominalCapacity": 10000,
+      "power": 3126,
+      "remainingCharge": 9800,
+      "stateOfCharge": 0.98
+    }
+  ],
+  "battery": {
+    "capacity": 10000,
+    "nominalCapacity": 10000,
+    "power": 3126,
+    "remainingCharge": 9800,
+    "stateOfCharge": 0.98
+  },
+  "consumption": 923.6,
+  "directConsumption": 5728,
+  "directConsumptionEV": 5728,
+  "directConsumptionHeatPump": 0,
+  "directConsumptionHeater": 0,
+  "directConsumptionHousehold": 0,
+  "directConsumptionRate": 0.8414867048626414,
+  "evChargingStation": {
+    "power": 7930.4
+  },
+  "evChargingStations": [
+    {
+      "applianceID": "0ff421b0-7603-4fca-9cc2-211be7982be6",
+      "currentL1": 12.07,
+      "currentL2": 11.89,
+      "currentL3": 10.52,
+      "plugState": "PLUGGED_ON_STATION_AND_PLUGGED_ON_VEHICLE",
+      "power": 7930.4,
+      "readingTotal": 228408.05777777778
+    },
+    {
+      "applianceID": "87f20de8-ef1a-49d0-bd71-5e4508db0d6e",
+      "currentL1": 0,
+      "currentL2": 0,
+      "currentL3": 0,
+      "plugState": "PLUGGED_ON_STATION",
+      "power": 0,
+      "readingTotal": 155763
+    }
+  ],
+  "grid": -1079,
+  "gridMeterReadingNegative": 6663600000,
+  "gridMeterReadingPositive": 9370440000,
+  "l1CurtailmentPower": 0,
+  "l2CurtailmentPower": 0,
+  "l3CurtailmentPower": 0,
+  "measuredAt": "2024-06-05T12:53:23Z",
+  "photovoltaic": 6807,
+  "production": 6807,
+  "selfConsumption": 5728,
+  "selfConsumptionRate": 0.8414867048626414,
+  "selfSufficiencyRate": 1,
+  "selfSupply": 8854,
+  "totalConsumption": 8854
+}

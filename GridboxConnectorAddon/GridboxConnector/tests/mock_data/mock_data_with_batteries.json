@@ -33,17 +33,5 @@
   "selfConsumptionRate": 0.9609788359788359,
   "selfSufficiencyRate": 1,
   "selfSupply": 600,
-  "totalConsumption": 600,
-  "evChargingStation": {
-    "power": 23
-  },
-  "evCharingStations": [
-    {
-      "applianceID": "97af25d0-3791-48cc-857c-14aaac749267",
-      "power": 23,
-      "currentL1": 1,
-      "currentL2": 2,
-      "currentL3": 3
-    }
-  ]
+  "totalConsumption": 600
 }

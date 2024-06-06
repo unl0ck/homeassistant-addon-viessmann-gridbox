@@ -24,6 +24,7 @@ class HAViessmannGridboxConnector:
 
     def __init__(self, mqtt_settings):
         self.battery_sensor_dict = {}
+        self.ev_sensor_dict = {}
         self.mqtt_settings = mqtt_settings
         self.device_info = DeviceInfo(
             name="Viessmann Gridbox", identifiers="viessmann_gridbox", manufacturer="Viessmann", model="Vitocharge 2.0")
@@ -157,9 +158,9 @@ class HAViessmannGridboxConnector:
             ev_charging_stations: list = measurement.get("evChargingStations", [])
             for index, ev_charging_station in enumerate(ev_charging_stations):
                 appliance_id = ev_charging_station.get("applianceID", "")
-                if appliance_id not in self.battery_sensor_dict:
-                    self.battery_sensor_dict[appliance_id] = HAViessmannEVChargingStation(self.mqtt_settings, self.device_info, f"{index+1}", appliance_id)
-                ev_charging_station_sensor = self.battery_sensor_dict[appliance_id]
+                if appliance_id not in self.ev_sensor_dict:
+                    self.ev_sensor_dict[appliance_id] = HAViessmannEVChargingStation(self.mqtt_settings, self.device_info, f"{index+1}", appliance_id)
+                ev_charging_station_sensor = self.ev_sensor_dict[appliance_id]
                 power = float(ev_charging_station.get("power", "0"))
                 state_of_charge = float(ev_charging_station.get("stateOfCharge", "0"))*100
                 current_l1 = float(ev_charging_station.get("currentL1", "0"))

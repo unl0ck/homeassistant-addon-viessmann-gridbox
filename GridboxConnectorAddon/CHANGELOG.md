@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.6.3
+
+### 🔨 Fixed
+
+- own dict for ev stations
+
 ## 2.6.2
 
 ### 🔨 Fixed
