@@ -1,5 +1,19 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.6.2
+
+### 🔨 Fixed
+
+- fixed issue with EVStation
+- added missed readingTotal
+
+## 2.6.0
+
+### 🚀 Added
+
+- EVStation
+- EVStations with parameters
+
 ## 2.5.8
 
 ### 🔨 Fixed
