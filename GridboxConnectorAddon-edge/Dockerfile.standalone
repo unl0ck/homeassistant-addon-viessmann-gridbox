@@ -1,9 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
 FROM python:3.10-alpine
 
-# Set shell
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
 # Build arguments
 ARG BUILD_ARCH
 ARG BUILD_DATE
