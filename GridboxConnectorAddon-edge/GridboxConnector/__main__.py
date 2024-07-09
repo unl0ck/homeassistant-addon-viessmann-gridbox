@@ -6,7 +6,7 @@ from ha_mqtt_discoverable import Settings
 from ha_viessmann_gridbox_connector import HAViessmannGridboxConnector
 import logging
 from importlib.resources import files
-
+opens_file_path = '/data/options.json'
 #logging.basicConfig(format='%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=logging.getLevelName(os.getenv('LOG_LEVEL', 'INFO')))
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.getLevelName(os.getenv('LOG_LEVEL', 'INFO')))
@@ -25,11 +25,14 @@ def load_gridbox_config():
 if __name__ == '__main__':
 
     gridbox_config = load_gridbox_config()
-    
+    options_file = ''
+    WAIT = int(os.getenv('WAITTIME', "60"))
+    if os.path.exists(opens_file_path):
+        options_json = json.load(options_file)
+        options_file = open(opens_file_path)
+        WAIT = int(options_json["wait_time"])
 
-    options_file = open('/data/options.json')
-    options_json = json.load(options_file)
-    WAIT = int(options_json["wait_time"])
+
     USER = os.getenv('USERNAME', "")
     PASSWORD = os.environ.get('PASSWORD', "")
     mqtt_user = os.getenv('MqttUser', "")
