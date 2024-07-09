@@ -1,4 +1,4 @@
-name: Push Docker Image for Single Run
+name: Push Docker Image for Standalone
 
 on:
   push:

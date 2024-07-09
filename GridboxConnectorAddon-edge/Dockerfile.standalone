@@ -22,7 +22,7 @@ LABEL \
   org.opencontainers.image.version=${BUILD_VERSION}
 
 # Copy root filesystem
-COPY GridboxConnector/ /build/GridboxConnector
+COPY GridboxConnectorAddon-edge/GridboxConnector/ /build/GridboxConnector
 
 RUN cd /build/GridboxConnector && pip install -r requirements.txt
 
