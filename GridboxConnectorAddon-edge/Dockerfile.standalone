@@ -22,4 +22,4 @@ COPY GridboxConnectorAddon-edge/GridboxConnector/ /build/GridboxConnector
 
 RUN cd /build/GridboxConnector && pip install -r requirements.txt
 
-ENTRYPOINT ["python3", "/build/GridboxConnector/main.py"]
+ENTRYPOINT ["python3", "/build/GridboxConnector"]
