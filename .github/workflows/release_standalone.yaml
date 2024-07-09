@@ -28,4 +28,4 @@ jobs:
         with:
           file: ./GridboxConnectorAddon-edge/Dockerfile.standalone
           push: true
-          tags: ghcr.io/${{ github.repository }}/standalone-viessman-gridbox-connector:latest
+          tags: standalone-viessman-gridbox-connector:latest
