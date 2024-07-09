@@ -1,0 +1,11 @@
+services:
+  viessmann:
+    image: ghcr.io/unl0ck/homeassistant-addon-viessmann-gridbox/standalone-viessman-gridbox-connector:latest
+    environment:
+      - USERNAME=username
+      - PASSWORD=password
+      - MqttUser=mqtt
+      - MqttPw=mqtt
+      - MqttServer=address
+      - MqttPort=1883
+      - LOG_LEVEL=INFO
