@@ -1,4 +1,9 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 2.7.4
+
+### 🔨 Fixed
+
+- Rounded to 2 decimal places
 
 ## 2.7.3
 
