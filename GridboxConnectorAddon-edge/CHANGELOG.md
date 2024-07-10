@@ -1,4 +1,10 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 2.7.0
+
+### 🔨 Fixed
+
+- loading config.json
+- check response length
 
 ## 2.7.0
 

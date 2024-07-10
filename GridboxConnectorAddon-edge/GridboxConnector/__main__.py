@@ -28,8 +28,8 @@ if __name__ == '__main__':
     options_file = ''
     WAIT = int(os.getenv('WAITTIME', "60"))
     if os.path.exists(opens_file_path):
-        options_json = json.load(options_file)
         options_file = open(opens_file_path)
+        options_json = json.load(options_file)
         WAIT = int(options_json["wait_time"])
 
 
@@ -54,10 +54,11 @@ if __name__ == '__main__':
     gridboxConnector = GridboxConnector(gridbox_config)
     while True:
         measurement = gridboxConnector.retrieve_live_data()
-        result = measurement[0]
-        viessmann_gridbox_connector.update_sensors(result)
-        if one_time_print or logger.level == logging.DEBUG:
-            logger.info(result)
-            one_time_print = False
-        # Wait until fetch new values in seconds
-        time.sleep(WAIT)
+        if len(measurement) > 0:
+            result = measurement[0]
+            viessmann_gridbox_connector.update_sensors(result)
+            if one_time_print or logger.level == logging.DEBUG:
+                logger.info(result)
+                one_time_print = False
+            # Wait until fetch new values in seconds
+            time.sleep(WAIT)
