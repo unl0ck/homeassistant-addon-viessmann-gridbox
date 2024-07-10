@@ -1,5 +1,6 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
-## 2.7.4
+
+## 2.7.5
 
 ### 🔨 Fixed
 

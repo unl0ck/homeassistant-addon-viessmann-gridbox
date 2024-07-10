@@ -121,14 +121,14 @@ class HAViessmannGridboxConnector:
         if "directConsumptionEV" in measurement:
             self.direct_consumption_ev_sensor.set_state(float(measurement.get("directConsumptionEV", "0")))
         if "directConsumptionRate" in measurement:
-            self.direct_consumption_rate_sensor.set_state(round(float(measurement.get("directConsumptionRate", "0"))*100),2)
+            self.direct_consumption_rate_sensor.set_state(round(float(measurement.get("directConsumptionRate", "0"))*100,2))
 
         if "selfSupply" in measurement:
             self.self_supply_sensor.set_state(float(measurement.get("selfSupply", "")))
         if "selfConsumptionRate" in measurement:
-            self.self_consumtion_rate_sensor.set_state(round(float(measurement.get("selfConsumptionRate", "0"))*100),2)
+            self.self_consumtion_rate_sensor.set_state(round(float(measurement.get("selfConsumptionRate", "0"))*100,2))
         if "selfSufficiencyRate" in measurement:
-            self.self_sufficiency_rate_sensor.set_state(round(float(measurement.get("selfSufficiencyRate", "0"))*100),2)
+            self.self_sufficiency_rate_sensor.set_state(round(float(measurement.get("selfSufficiencyRate", "0"))*100,2))
 
         if "battery" in measurement:
             battery: dict = measurement.get("battery", {})
