@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.7.6
+
+### 🔨 Fixed
+
+- if list of values is empty refresh token
+
 ## 2.7.5
 
 ### 🔨 Fixed

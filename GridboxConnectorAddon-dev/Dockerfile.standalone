@@ -1,0 +1,25 @@
+# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
+FROM python:3.10-alpine
+
+# Build arguments
+ARG BUILD_DATE
+ARG BUILD_DESCRIPTION
+ARG BUILD_NAME
+ARG BUILD_REF
+ARG BUILD_REPOSITORY
+ARG BUILD_VERSION
+
+LABEL \
+  org.opencontainers.image.source="https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox" \
+  org.opencontainers.image.authors="Simon Helming <simon@helming.xyz>" \
+  maintainer="Simon Helming <simon@helming.xyz>"\
+  org.opencontainers.image.created=${BUILD_DATE} \
+  org.opencontainers.image.revision=${BUILD_REF} \
+  org.opencontainers.image.version=${BUILD_VERSION}
+
+# Copy root filesystem
+COPY GridboxConnectorAddon-edge/GridboxConnector/ /build/GridboxConnector
+
+RUN cd /build/GridboxConnector && pip install -r requirements.txt
+
+ENTRYPOINT ["python3", "/build/GridboxConnector"]

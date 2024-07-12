@@ -61,4 +61,6 @@ if __name__ == '__main__':
                 logger.info(result)
                 one_time_print = False
             # Wait until fetch new values in seconds
-            time.sleep(WAIT)
+        else:
+            gridboxConnector.get_token()
+        time.sleep(WAIT)
