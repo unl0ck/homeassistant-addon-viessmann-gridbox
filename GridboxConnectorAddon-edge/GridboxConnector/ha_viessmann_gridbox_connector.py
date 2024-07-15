@@ -2,6 +2,7 @@ from ha_mqtt_discoverable import Settings, DeviceInfo
 from ha_mqtt_discoverable.sensors import Sensor, SensorInfo
 from ha_viessmann_battery import HAViessmannBattery
 from ha_viessmann_ev_charging_station import HAViessmannEVChargingStation
+from ha_viessmann_heater import HAViessmannHeater
 
 
 class HAViessmannGridboxConnector:
@@ -22,6 +23,7 @@ class HAViessmannGridboxConnector:
     self_consumtion_rate_sensor: Sensor
     self_sufficiency_rate_sensor: Sensor
     battery_sum: HAViessmannBattery
+    heater_sensor: HAViessmannHeater
 
     def __init__(self, mqtt_settings):
         self.battery_sensor_dict = {}
@@ -57,9 +59,6 @@ class HAViessmannGridboxConnector:
         direct_consumption_ev_sensor_info = SensorInfo(name="DirectConsumptionEV", device_class="power", unique_id="gridbox_direct_consumption_ev", device=self.device_info, unit_of_measurement="W")
         direct_consumption_ev_settings = Settings(mqtt=mqtt_settings, entity=direct_consumption_ev_sensor_info)
 
-        direct_consumption_heater_sensor_info = SensorInfo(name="DirectConsumptionHeater", device_class="power", unique_id="gridbox_direct_consumption_heater", device=self.device_info, unit_of_measurement="W")
-        direct_consumption_heater_settings = Settings(mqtt=mqtt_settings, entity=direct_consumption_heater_sensor_info)
-
         direct_consumption_rate_sensor_info = SensorInfo(name="DirectConsumptionRate", device_class="power_factor", unique_id="gridbox_direct_consumption_rate", device=self.device_info, unit_of_measurement="%")
         direct_consumption_rate_settings = Settings(mqtt=mqtt_settings, entity=direct_consumption_rate_sensor_info)
 
@@ -94,7 +93,6 @@ class HAViessmannGridboxConnector:
         self.direct_consumption_household_sensor = Sensor(direct_consumption_household_settings)
         self.direct_consumption_heatpump_sensor = Sensor(direct_consumption_heatpump_settings)
         self.direct_consumption_ev_sensor = Sensor(direct_consumption_ev_settings)
-        self.direct_consumption_heaters_sensor = Sensor(direct_consumption_heater_settings)
         self.direct_consumption_rate_sensor = Sensor(direct_consumption_rate_settings)
 
         self.self_supply_sensor = Sensor(self_supply_settings)
@@ -116,8 +114,6 @@ class HAViessmannGridboxConnector:
             self.direct_consumption_household_sensor.set_state(float(measurement.get("directConsumptionHousehold", "0")))
         if "directConsumptionHeatPump" in measurement:
             self.direct_consumption_heatpump_sensor.set_state(float(measurement.get("directConsumptionHeatPump", "0")))
-        if "directConsumptionHeater" in measurement:
-            self.direct_consumption_heaters_sensor.set_state(float(measurement.get("directConsumptionHeater", "0")))
         if "directConsumptionEV" in measurement:
             self.direct_consumption_ev_sensor.set_state(float(measurement.get("directConsumptionEV", "0")))
         if "directConsumptionRate" in measurement:
@@ -150,6 +146,18 @@ class HAViessmannGridboxConnector:
                 power = float(battery.get("power", "0"))
                 remaining_charge = float(battery.get("remainingCharge", "0"))
                 battery_sensor.set_states(state_of_charge, capacity, power, remaining_charge)
+
+        if "heaters" in measurement:
+            heaters: list = measurement.get("heaters", [])
+            for heater in heaters:
+                appliance_id = heater.get("applianceID", "")
+                if self.heater_sensor is None:
+                    self.heater_sensor = HAViessmannHeater(self.mqtt_settings, self.device_info, "", appliance_id)
+
+                power = round(float(heater.get("power", "0")),0)
+                temperature = round(float(heater.get("temperature", "0")),1)
+                self.heater_sensor.set_states(power, temperature)
+
 
         if "evChargingStation" in measurement:
             ev_charging_station: dict = measurement.get("evChargingStation", {})

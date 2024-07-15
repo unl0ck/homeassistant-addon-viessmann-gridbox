@@ -23,7 +23,6 @@ def load_gridbox_config():
 
 
 if __name__ == '__main__':
-
     gridbox_config = load_gridbox_config()
     options_file = ''
     WAIT = int(os.getenv('WAITTIME', "60"))

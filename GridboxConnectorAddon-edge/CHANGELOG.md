@@ -1,5 +1,15 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.8.0
+
+### 🚀 Added
+
+- Heaters with Temperature and power
+
+### 🔨 Fixed
+
+- does not show anymore credentials in log
+
 ## 2.7.6
 
 ### 🔨 Fixed

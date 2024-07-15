@@ -1,0 +1,45 @@
+{
+  "batteries": [
+    {
+      "applianceID": "a1731af4-0399-495b-92c2-523fd61ab681",
+      "capacity": 10000,
+      "nominalCapacity": 10000,
+      "power": -102,
+      "remainingCharge": 10000,
+      "stateOfCharge": 1
+    }
+  ],
+  "battery": {
+    "capacity": 10000,
+    "nominalCapacity": 10000,
+    "power": -102,
+    "remainingCharge": 10000,
+    "stateOfCharge": 1
+  },
+  "consumption": 847,
+  "directConsumption": 4523,
+  "directConsumptionEV": 0,
+  "directConsumptionHeatPump": 0,
+  "directConsumptionHeater": 3676,
+  "directConsumptionHousehold": 847,
+  "directConsumptionRate": 0.5465200579990334,
+  "grid": -3651,
+  "gridMeterReadingNegative": 5630400000,
+  "gridMeterReadingPositive": 5344920000,
+  "heaters": [
+    {
+      "applianceID": "12bdd8ec-9b1e-465e-8f26-feae00e5af0f",
+      "power": 3676,
+      "temperature": 70.9
+    }
+  ],
+  "heating": 3676,
+  "measuredAt": "2024-07-12T12:52:47Z",
+  "photovoltaic": 8276,
+  "production": 8276,
+  "selfConsumption": 4625,
+  "selfConsumptionRate": 0.5588448525857902,
+  "selfSufficiencyRate": 1,
+  "selfSupply": 4523,
+  "totalConsumption": 4523
+}
