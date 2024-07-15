@@ -6,6 +6,7 @@ from ha_mqtt_discoverable import Settings
 from ha_viessmann_gridbox_connector import HAViessmannGridboxConnector
 import logging
 from importlib.resources import files
+from utils import SensitiveDataFilter
 opens_file_path = '/data/options.json'
 #logging.basicConfig(format='%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=logging.getLevelName(os.getenv('LOG_LEVEL', 'INFO')))
 logger = logging.getLogger(__name__)
@@ -14,6 +15,8 @@ formatter = logging.Formatter('%(asctime)s %(filename)s:%(lineno)d %(levelname)s
 console_handler = logging.StreamHandler()
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
+# Benutzerdefinierten Filter zum Logger hinzufügen
+logger.addFilter(SensitiveDataFilter())
 
 def load_gridbox_config():
     config_file = files('viessmann_gridbox_connector').joinpath('config.json')
@@ -61,5 +64,6 @@ if __name__ == '__main__':
                 one_time_print = False
             # Wait until fetch new values in seconds
         else:
+            logger.warning("No data received")
             gridboxConnector.init_auth()
         time.sleep(WAIT)

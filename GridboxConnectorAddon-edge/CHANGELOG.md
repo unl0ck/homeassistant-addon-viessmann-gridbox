@@ -1,4 +1,9 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 2.8.2
+
+### 🚀 Added
+
+- sensitive filter
 
 ## 2.8.0
 
