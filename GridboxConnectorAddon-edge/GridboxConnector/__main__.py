@@ -48,7 +48,7 @@ if __name__ == '__main__':
     gridbox_config["login"]["password"] = PASSWORD
     logger.debug(gridbox_config["login"])
     one_time_print = True
-    mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw)
+    mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw, port=mqtt_port)
     viessmann_gridbox_connector = HAViessmannGridboxConnector(mqtt_settings)
     gridboxConnector = GridboxConnector(gridbox_config)
     while True:
@@ -61,5 +61,5 @@ if __name__ == '__main__':
                 one_time_print = False
             # Wait until fetch new values in seconds
         else:
-            gridboxConnector.get_token()
+            gridboxConnector.init_auth()
         time.sleep(WAIT)
