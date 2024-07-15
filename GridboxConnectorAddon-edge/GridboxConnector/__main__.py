@@ -24,8 +24,7 @@ def load_gridbox_config():
         data = json.load(json_file)
     return data
 
-
-if __name__ == '__main__':
+def run_addon():
     gridbox_config = load_gridbox_config()
     options_file = ''
     WAIT = int(os.getenv('WAITTIME', "60"))
@@ -67,3 +66,18 @@ if __name__ == '__main__':
             logger.warning("No data received")
             gridboxConnector.init_auth()
         time.sleep(WAIT)
+
+def run_test_log():
+
+    logging_test = "{'grant_type': 'http://auth0.com/oauth/grant-type/password-realm', 'username': 'sa_helming@icloud.com', 'password': 'Simon1991!', 'audience': 'my.gridx', 'client_id': 'oZpr934Ikn8OZOHTJEcrgXkjio0I0Q7b', 'scope': 'email openid', 'realm': 'viessmann-authentication-db'}"
+    try:
+        json_msg = json.loads(logging_test)
+    except json.JSONDecodeError:
+            # Wenn die Nachricht kein JSON ist, nichts tun
+            logging.error('Could not parse message as JSON')
+    logger.info(logging_test)
+
+
+if __name__ == '__main__':
+    #run_addon()
+    run_test_log()
