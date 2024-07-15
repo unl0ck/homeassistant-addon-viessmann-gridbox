@@ -1,5 +1,5 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
-## 2.8.2
+## 2.8.4
 
 ### 🚀 Added
 

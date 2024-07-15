@@ -79,13 +79,11 @@ class HAViessmannGridboxConnector:
         self.photovoltaic_sensor = Sensor(photovoltaic_settings)
 
         # Battery sum
-        self.battery_sum = HAViessmannBattery(
-            mqtt_settings, self.device_info, "sum", "")
+        self.battery_sum = HAViessmannBattery(mqtt_settings, self.device_info, "sum", "")
 
-
+        self.heater_sensor = HAViessmannHeater(mqtt_settings, self.device_info, "", "")
         # EV
-        self.ev_sum = HAViessmannEVChargingStation(
-            mqtt_settings, self.device_info, "sum", "")
+        self.ev_sum = HAViessmannEVChargingStation(mqtt_settings, self.device_info, "sum", "")
 
         # Consumption
         self.consumption_household_sensor = Sensor(consumption_household_settings)
@@ -149,15 +147,11 @@ class HAViessmannGridboxConnector:
 
         if "heaters" in measurement:
             heaters: list = measurement.get("heaters", [])
-            for heater in heaters:
-                appliance_id = heater.get("applianceID", "")
-                if self.heater_sensor is None:
-                    self.heater_sensor = HAViessmannHeater(self.mqtt_settings, self.device_info, "", appliance_id)
-
-                power = round(float(heater.get("power", "0")),0)
-                temperature = round(float(heater.get("temperature", "0")),1)
-                self.heater_sensor.set_states(power, temperature)
-
+            heater = heaters[0]
+            appliance_id = heater.get("applianceID", "")
+            power = round(float(heater.get("power", "0")),0)
+            temperature = round(float(heater.get("temperature", "0")),1)
+            self.heater_sensor.set_states(power, temperature)
 
         if "evChargingStation" in measurement:
             ev_charging_station: dict = measurement.get("evChargingStation", {})
