@@ -8,7 +8,7 @@
   "containerEnv": {
     "WORKSPACE_DIRECTORY": "${containerWorkspaceFolder}"
   },
-  "extensions": ["timonwong.shellcheck", "esbenp.prettier-vscode","ahmadawais.emoji-log-vscode","GitHub.copilot","ms-python.python","ms-python.debugpy","ms-python.vscode-pylance"],
+  "extensions": ["timonwong.shellcheck", "esbenp.prettier-vscode","ahmadawais.emoji-log-vscode","GitHub.copilot","ms-python.python","ms-python.debugpy","ms-python.vscode-pylance","donjayamanne.githistory"],
   "mounts": ["type=volume,target=/var/lib/docker"],
   "settings": {
     "terminal.integrated.profiles.linux": {
@@ -21,5 +21,7 @@
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
     "files.trimTrailingWhitespace": true
-  }
+  },
+  // Führt Befehle innerhalb des Containers aus, nachdem er erstellt wurde, aber bevor er gestartet wird
+  "postCreateCommand": "apt-get install python3 python3-pip python3-venv -y"
 }
