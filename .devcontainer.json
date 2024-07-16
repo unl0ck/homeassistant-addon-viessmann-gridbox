@@ -8,7 +8,7 @@
   "containerEnv": {
     "WORKSPACE_DIRECTORY": "${containerWorkspaceFolder}"
   },
-  "extensions": ["timonwong.shellcheck", "esbenp.prettier-vscode"],
+  "extensions": ["timonwong.shellcheck", "esbenp.prettier-vscode","ahmadawais.emoji-log-vscode","GitHub.copilot","ms-python.python","ms-python.debugpy","ms-python.vscode-pylance"],
   "mounts": ["type=volume,target=/var/lib/docker"],
   "settings": {
     "terminal.integrated.profiles.linux": {
