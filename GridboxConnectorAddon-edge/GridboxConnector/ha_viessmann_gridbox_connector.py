@@ -81,7 +81,9 @@ class HAViessmannGridboxConnector:
         # Battery sum
         self.battery_sum = HAViessmannBattery(mqtt_settings, self.device_info, "sum", "")
 
+        # Heater
         self.heater_sensor = HAViessmannHeater(mqtt_settings, self.device_info, "", "")
+        
         # EV
         self.ev_sum = HAViessmannEVChargingStation(mqtt_settings, self.device_info, "sum", "")
 
