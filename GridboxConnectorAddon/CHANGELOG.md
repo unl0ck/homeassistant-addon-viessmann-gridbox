@@ -1,5 +1,53 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.8.5
+
+### 🔨 Fixed
+
+- restart Addon detection working
+
+## 2.8.4
+
+### 🚀 Added
+
+- sensitive filter
+
+## 2.8.0
+
+### 🚀 Added
+
+- Heaters with Temperature and power
+
+### 🔨 Fixed
+
+- does not show anymore credentials in log
+
+## 2.7.6
+
+### 🔨 Fixed
+
+- if list of values is empty refresh token
+
+## 2.7.5
+
+### 🔨 Fixed
+
+- Rounded to 2 decimal places
+
+## 2.7.3
+
+### 🔨 Fixed
+
+- loading config.json
+- check response length
+
+## 2.7.0
+
+### 🚀 Added
+
+- heaters Consumption
+- standalone container
+
 ## 2.6.3
 
 ### 🔨 Fixed

@@ -1,4 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+
+## 2.8.5
+
+### 🔨 Fixed
+
+- restart Addon detection working
+
 ## 2.8.4
 
 ### 🚀 Added
