@@ -1,5 +1,9 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.9.0
+
+- bump viessmann-connector to 1.5.1
+
 ## 2.8.5
 
 ### 🔨 Fixed
