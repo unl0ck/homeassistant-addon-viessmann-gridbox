@@ -83,7 +83,7 @@ class TestGridboxConnectorMethods(unittest.TestCase):
         viessmann_gridbox_connector = HAViessmannGridboxConnector(
             mqtt_settings)
 
-        with patch.object(viessmann_gridbox_connector.ev_sum, 'set_states') as mock_ev_sum_sensor:
+        with patch.object(viessmann_gridbox_connector.ev_sum_sensor, 'set_state') as mock_ev_sum_sensor:
             viessmann_gridbox_connector.update_sensors(result[0])
             mock_ev_sum_sensor.assert_called_once_with(7930.4,0,0,0,0,0)
 
@@ -116,7 +116,7 @@ class TestGridboxConnectorMethods(unittest.TestCase):
         viessmann_gridbox_connector = HAViessmannGridboxConnector(
             mqtt_settings)
 
-        with patch.object(viessmann_gridbox_connector.heater_sensor, 'set_states') as mock_heater_sensor:
+        with patch.object(viessmann_gridbox_connector.heater_sensor, 'set_state') as mock_heater_sensor:
             viessmann_gridbox_connector.update_sensors(result[0])
             mock_heater_sensor.assert_called_once_with(3676,70.9)
 
