@@ -15,5 +15,6 @@ echo "New version: $new_version"
 
 # Update the version in the config.yaml file
 
-sed -i "s/version: \"$current_version\"/version: \"$new_version\"/g" $yaml_datei
+#sed -i "s/version: \"$current_version\"/version: \"$new_version\"/g" $yaml_datei
 #sed -i "" "s/version: \"$current_version\"/version: \"$new_version\"/g" $yaml_datei
+sed -i "s/^version: \".*\"/version: \"$new_version\"/" $yaml_datei
