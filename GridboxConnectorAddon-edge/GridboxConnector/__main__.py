@@ -6,7 +6,8 @@ from ha_mqtt_discoverable import Settings
 from ha_viessmann_gridbox_connector import HAViessmannGridboxConnector
 import logging
 from importlib.resources import files
-from utils import SensitiveDataFilter
+from utils import SensitiveDataFilter, get_bool_env
+from telemetry import Telemetry
 opens_file_path = '/data/options.json'
 #logging.basicConfig(format='%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=logging.getLevelName(os.getenv('LOG_LEVEL', 'INFO')))
 logger = logging.getLogger(__name__)
@@ -24,6 +25,20 @@ def load_gridbox_config():
         data = json.load(json_file)
     return data
 
+def run_telemetry():
+    enable_telemetry = get_bool_env('ENABLE_TELEMETRY', False)
+    telemetry = None
+    if enable_telemetry:
+        otel_server = os.getenv('TelemetryServer', "https://otel.helming.xyz")
+        if otel_server == "":
+            otel_server = "https://otel.helming.xyz"
+        telemetry = Telemetry(otel_server, "homeassistant-addon-viessmann-gridbox")
+        telemetry.log_as_span("Telemetry enabled", level=logger.level)
+    return telemetry
+
+
+
+
 def run_addon():
     gridbox_config = load_gridbox_config()
     options_file = ''
@@ -40,6 +55,7 @@ def run_addon():
     mqtt_pw = os.getenv('MqttPw', "")
     mqtt_server = os.getenv('MqttServer', "")
     mqtt_port = os.getenv('MqttPort', "")
+
     if not USER or not PASSWORD:
         logger.error("Username or Password not set")
         exit(1)
@@ -53,6 +69,8 @@ def run_addon():
     mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw, port=mqtt_port)
     viessmann_gridbox_connector = HAViessmannGridboxConnector(mqtt_settings)
     gridboxConnector = GridboxConnector(gridbox_config)
+
+
     while True:
         measurement = gridboxConnector.retrieve_live_data()
         if len(measurement) > 0:
@@ -68,5 +86,6 @@ def run_addon():
         time.sleep(WAIT)
 
 if __name__ == '__main__':
+    telemetry = run_telemetry()
     run_addon()
     #run_test_log()

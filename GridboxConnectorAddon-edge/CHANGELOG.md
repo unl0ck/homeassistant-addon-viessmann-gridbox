@@ -1,6 +1,14 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.10.0
+
+### 🚀 Added
+
+- Opentelemetry Class to collect exceptions
+
 ## 2.9.0
+
+### 🔨 Fixed
 
 - bump viessmann-connector to 1.5.1
 

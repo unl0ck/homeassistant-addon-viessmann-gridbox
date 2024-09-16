@@ -1,6 +1,7 @@
 import json
 import logging
 import ast
+import os
 class SensitiveDataFilter(logging.Filter):
     def filter(self, record):
         message = record.getMessage()
@@ -24,3 +25,13 @@ class SensitiveDataFilter(logging.Filter):
             logging.error('Could not parse message as JSON')
             pass
         return True
+
+def get_bool_env(var, default=False):
+    value = os.getenv(var, default)
+    if isinstance(value, str):
+        value = value.lower()
+        if value in ["1", "true"]:
+            return True
+        if value in ["0", "false"]:
+            return False
+    return bool(value)
