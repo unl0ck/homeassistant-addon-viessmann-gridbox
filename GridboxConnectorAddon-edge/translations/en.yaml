@@ -8,3 +8,9 @@ configuration:
   wait_time:
     name: Wait
     description: Set time in seconds how long will wait until fetch new data
+  log_level:
+    name: Log Level
+    description: Set the log level
+  enable_telemetry:
+    name: Enable Telemetry
+    description: Enable sending telemetry data to the developer for debugging or exception handling

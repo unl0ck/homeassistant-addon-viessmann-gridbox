@@ -29,9 +29,9 @@ def run_telemetry():
     enable_telemetry = get_bool_env('ENABLE_TELEMETRY', False)
     telemetry = None
     if enable_telemetry:
-        otel_server = os.getenv('TelemetryServer', "https://otel.helming.xyz")
-        if otel_server == "":
-            otel_server = "https://otel.helming.xyz"
+        #otel_server = os.getenv('TelemetryServer', "https://otel.helming.xyz")
+        #if otel_server == "":
+        otel_server = "https://otel.helming.xyz"
         telemetry = Telemetry(otel_server, "homeassistant-addon-viessmann-gridbox")
         telemetry.log_as_span("Telemetry enabled", level=logger.level)
     return telemetry

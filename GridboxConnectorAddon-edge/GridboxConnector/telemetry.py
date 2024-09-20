@@ -71,7 +71,7 @@ class Telemetry:
             with self.tracer.start_as_current_span("http_request") as span:
                 response = requests.get(url)
                 self.logger.info(f"Received response: {response.status_code}")
-                span.add_event("Received response", {"status_code": response.status_code})
+                span.add_event("Received response", {"status_code": response.status_code, "body": response.text})
                 return response
         except Exception as e:
             self.logger.exception(f"Exception during request: {e}")
