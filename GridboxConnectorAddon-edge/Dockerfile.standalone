@@ -39,7 +39,7 @@ COPY --from=builder ${WHEELS} ${WHEELS}
 COPY GridboxConnectorAddon-edge/GridboxConnector/ .
 
 RUN pip install -U pip && \
-    pip install --no-cache-dir ${WHEELS} -r requirements.txt --only-binary :all: && \
+    pip install --no-cache-dir ${WHEELS}/* -r requirements.txt --only-binary :all: && \
     rm -Rf ${WHEELS}
 
 ENTRYPOINT ["python3", "."]
