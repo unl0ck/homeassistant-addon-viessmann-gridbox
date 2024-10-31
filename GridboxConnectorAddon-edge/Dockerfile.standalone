@@ -1,5 +1,5 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
-FROM python:3.10 as builder
+FROM python:3.10 AS builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV WHEELS=/wheels
@@ -14,7 +14,7 @@ COPY GridboxConnectorAddon-edge/GridboxConnector/ .
 RUN python -m pip install -U pip wheel && \
     pip wheel --no-cache-dir -w ${WHEELS} -r requirements.txt
 
-FROM python:3.10-alpine as image
+FROM python:3.10-alpine AS image
 
 # Build arguments
 ARG BUILD_DATE
