@@ -1,5 +1,5 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
-FROM python:3.10-bullseye as builder
+FROM python:3.10 as builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV WHEELS=/wheels
