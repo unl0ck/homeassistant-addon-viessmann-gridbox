@@ -9,6 +9,7 @@ RUN apk update && \
     gcc \
     wget \
     git \
+    libressl-dev \
     libffi-dev
 
 # Copy root filesystem
