@@ -35,7 +35,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          platforms: ${{ steps.qemu.outputs.platforms }}
+          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
           file: ./GridboxConnectorAddon-edge/Dockerfile.standalone
           push: true
           tags: ghcr.io/${{ github.repository }}/standalone-viessman-gridbox-connector:latest
