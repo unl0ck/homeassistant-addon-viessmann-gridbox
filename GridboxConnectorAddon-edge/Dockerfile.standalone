@@ -38,7 +38,7 @@ WORKDIR /build/GridboxConnector
 COPY --from=builder ${WHEELS} ${WHEELS}
 COPY GridboxConnectorAddon-edge/GridboxConnector/ .
 
-RUN pip install --no-cache-dir -w ${WHEELS} -r requirements.txt && \
+RUN pip install --no-index --no-cache-dir -f ${WHEELS} -r requirements.txt && \
     rm -Rf ${WHEELS}
 
 ENTRYPOINT ["python3", "."]
