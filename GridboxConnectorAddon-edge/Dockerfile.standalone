@@ -33,12 +33,12 @@ ARG BUILD_REPOSITORY
 ARG BUILD_VERSION
 
 LABEL \
-org.opencontainers.image.source="https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox" \
-org.opencontainers.image.authors="Simon Helming <simon@helming.xyz>" \
-maintainer="Simon Helming <simon@helming.xyz>"\
-org.opencontainers.image.created=${BUILD_DATE} \
-org.opencontainers.image.revision=${BUILD_REF} \
-org.opencontainers.image.version=${BUILD_VERSION}
+    org.opencontainers.image.source="https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox" \
+    org.opencontainers.image.authors="Simon Helming <simon@helming.xyz>" \
+    maintainer="Simon Helming <simon@helming.xyz>"\
+    org.opencontainers.image.created=${BUILD_DATE} \
+    org.opencontainers.image.revision=${BUILD_REF} \
+    org.opencontainers.image.version=${BUILD_VERSION}
 
 ENV WHEELS=/wheels
 WORKDIR /build/GridboxConnector
