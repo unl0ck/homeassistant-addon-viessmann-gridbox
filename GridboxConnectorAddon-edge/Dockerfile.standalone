@@ -6,11 +6,13 @@ ENV WHEELS=/wheels
 RUN apk update && \
     apk add --virtual build-dependencies \
     build-base \
+    curl \
     gcc \
     wget \
     git \
-    libressl-dev \
+    openssl-dev \
     libffi-dev
+RUN curl -sSf https://sh.rustup.rs | sh
 
 # Copy root filesystem
 WORKDIR /build/GridboxConnector
