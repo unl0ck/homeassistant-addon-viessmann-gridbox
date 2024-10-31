@@ -1,11 +1,14 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
-FROM python:3.10 AS builder
+FROM python:3.10-alpine AS builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV WHEELS=/wheels
-RUN apt-get update && \
-    apt-get install -y \
-	    build-essential
+RUN apk update && \
+    apk add --virtual build-dependencies \
+    build-base \
+    gcc \
+    wget \
+    git
 
 # Copy root filesystem
 WORKDIR /build/GridboxConnector
@@ -39,7 +42,7 @@ COPY --from=builder ${WHEELS} ${WHEELS}
 COPY GridboxConnectorAddon-edge/GridboxConnector/ .
 
 RUN pip install -U pip && \
-    pip install --no-cache-dir ${WHEELS}/* -r requirements.txt --only-binary :all: && \
+    pip install --no-index --no-cache-dir -f ${WHEELS} -r requirements.txt --only-binary :all: && \
     rm -Rf ${WHEELS}
 
 ENTRYPOINT ["python3", "."]
