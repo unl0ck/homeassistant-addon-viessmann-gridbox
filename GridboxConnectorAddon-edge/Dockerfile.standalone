@@ -11,8 +11,9 @@ RUN apk update && \
     wget \
     git \
     openssl-dev \
-    libffi-dev
-RUN curl –proto ‘=https’ –tlsv1.2 -sSf https://sh.rustup.rs | sh -- -y
+    libffi-dev \
+    rust \
+    cargo
 
 # Copy root filesystem
 WORKDIR /build/GridboxConnector
