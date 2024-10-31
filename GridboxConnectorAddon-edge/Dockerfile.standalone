@@ -8,7 +8,8 @@ RUN apk update && \
     build-base \
     gcc \
     wget \
-    git
+    git \
+    libffi-dev
 
 # Copy root filesystem
 WORKDIR /build/GridboxConnector
