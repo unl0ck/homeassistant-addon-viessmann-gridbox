@@ -46,6 +46,9 @@ WORKDIR /build/GridboxConnector
 COPY --from=builder ${WHEELS} ${WHEELS}
 COPY GridboxConnectorAddon-edge/GridboxConnector/ .
 
+RUN apk update && \
+    apk add --no-cache libstdc++
+
 RUN pip install -U pip && \
     pip install --no-index --no-cache-dir -f ${WHEELS} -r requirements.txt --only-binary :all: && \
     rm -Rf ${WHEELS}
