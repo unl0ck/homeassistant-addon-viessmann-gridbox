@@ -1,5 +1,28 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
-FROM python:3.10-alpine
+FROM python:3.10-alpine AS builder
+
+ARG DEBIAN_FRONTEND=noninteractive
+ENV WHEELS=/wheels
+RUN apk update && \
+    apk add --virtual build-dependencies \
+    build-base \
+    curl \
+    gcc \
+    wget \
+    git \
+    openssl-dev \
+    libffi-dev \
+    rust \
+    cargo
+
+# Copy root filesystem
+WORKDIR /build/GridboxConnector
+
+COPY GridboxConnectorAddon-edge/GridboxConnector/ .
+RUN python -m pip install -U pip wheel && \
+    pip wheel --no-cache-dir -w ${WHEELS} -r requirements.txt
+
+FROM python:3.10-alpine AS image
 
 # Build arguments
 ARG BUILD_DATE
@@ -10,16 +33,24 @@ ARG BUILD_REPOSITORY
 ARG BUILD_VERSION
 
 LABEL \
-  org.opencontainers.image.source="https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox" \
-  org.opencontainers.image.authors="Simon Helming <simon@helming.xyz>" \
-  maintainer="Simon Helming <simon@helming.xyz>"\
-  org.opencontainers.image.created=${BUILD_DATE} \
-  org.opencontainers.image.revision=${BUILD_REF} \
-  org.opencontainers.image.version=${BUILD_VERSION}
+    org.opencontainers.image.source="https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox" \
+    org.opencontainers.image.authors="Simon Helming <simon@helming.xyz>" \
+    maintainer="Simon Helming <simon@helming.xyz>"\
+    org.opencontainers.image.created=${BUILD_DATE} \
+    org.opencontainers.image.revision=${BUILD_REF} \
+    org.opencontainers.image.version=${BUILD_VERSION}
 
-# Copy root filesystem
-COPY GridboxConnectorAddon-edge/GridboxConnector/ /build/GridboxConnector
+ENV WHEELS=/wheels
+WORKDIR /build/GridboxConnector
 
-RUN cd /build/GridboxConnector && pip install -r requirements.txt
+COPY --from=builder ${WHEELS} ${WHEELS}
+COPY GridboxConnectorAddon-edge/GridboxConnector/ .
 
-ENTRYPOINT ["python3", "/build/GridboxConnector"]
+RUN apk update && \
+    apk add --no-cache libstdc++
+
+RUN pip install -U pip && \
+    pip install --no-index --no-cache-dir -f ${WHEELS} -r requirements.txt --only-binary :all: && \
+    rm -Rf ${WHEELS}
+
+ENTRYPOINT ["python3", "."]
