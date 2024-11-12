@@ -1,5 +1,5 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
-FROM python:3.10-alpine
+FROM python:3.10-slim
 
 # Build arguments
 ARG BUILD_DATE
@@ -16,6 +16,10 @@ LABEL \
   org.opencontainers.image.created=${BUILD_DATE} \
   org.opencontainers.image.revision=${BUILD_REF} \
   org.opencontainers.image.version=${BUILD_VERSION}
+
+RUN apt-get update && \
+    apt-get install -y gcc g++ && \
+    rm -rf /var/lib/apt/lists/*
 
 # Copy root filesystem
 COPY GridboxConnectorAddon-edge/GridboxConnector/ /build/GridboxConnector
