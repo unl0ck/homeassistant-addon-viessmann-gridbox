@@ -46,7 +46,7 @@ def live_data_task(viessmann_gridbox_connector, gridboxConnector, WAIT):
             result = measurement[0]
             viessmann_gridbox_connector.update_sensors(result)
             if one_time_print or logger.level == logging.DEBUG:
-                logger.debug(result)
+                logger.info(result)
                 one_time_print = False
             # Wait until fetch new values in seconds
         else:
@@ -71,7 +71,7 @@ def historical_data_task(viessmann_gridbox_connector:HAViessmannGridboxConnector
             total = result["total"]
             viessmann_gridbox_connector.update_sensors(total)
             if one_time_print or logger.level == logging.DEBUG:
-                logger.debug(result)
+                logger.info(result)
                 one_time_print = False
             # Wait until fetch new values in seconds
         else:
