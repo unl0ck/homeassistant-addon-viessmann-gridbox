@@ -1,5 +1,13 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.0
+
+### 🚀 Added
+
+- Historical Data Device
+- update viessmann-gridbox-connector to 1.6.0
+- update ha-mqtt-discoverable to 0.16.0
+
 ## 2.10.0
 
 ### 🚀 Added

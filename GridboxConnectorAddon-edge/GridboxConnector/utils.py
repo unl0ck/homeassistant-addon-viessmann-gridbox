@@ -20,9 +20,10 @@ class SensitiveDataFilter(logging.Filter):
                 literal_msg['client_id'] = '***'
             # Das modifizierte Dictionary zurück in einen String konvertieren
             record.msg = json.dumps(literal_msg)
-        except json.JSONDecodeError:
+        except Exception as e:
             # Wenn die Nachricht kein JSON ist, nichts tun
             logging.error('Could not parse message as JSON')
+            logging.error(e)
             pass
         return True
 
