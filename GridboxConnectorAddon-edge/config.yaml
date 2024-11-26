@@ -23,7 +23,7 @@ options:
   password: "password"
   wait_time: 60
   log_level: INFO
-  enable_telemetry: true
+  enable_telemetry: false
 
 schema:
   username: str

@@ -131,8 +131,8 @@ def run_addon():
     viessmann_gridbox_connector_historical = HAViessmannGridboxConnector(mqtt_settings, device_name="Viessmann Gridbox Historical",device_identifiers="viessmann_gridbox_historical")
     gridboxConnector = GridboxConnector(gridbox_config)
 
-    start_live_thread(gridboxConnector,viessmann_gridbox_connector, WAIT)
-    start_historical_thread(gridboxConnector,viessmann_gridbox_connector_historical, WAIT)
+    start_live_thread(gridboxConnector, viessmann_gridbox_connector, WAIT)
+    start_historical_thread(gridboxConnector, viessmann_gridbox_connector_historical, WAIT)
 
 
 

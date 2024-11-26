@@ -1,4 +1,4 @@
-ha-mqtt-discoverable==0.13.1
+ha-mqtt-discoverable==0.16.0
 requests==2.32.2
 viessmann-gridbox-connector==1.6.0
 opentelemetry-api
