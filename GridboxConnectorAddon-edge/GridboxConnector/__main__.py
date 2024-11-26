@@ -68,7 +68,8 @@ def historical_data_task(viessmann_gridbox_connector:HAViessmannGridboxConnector
         measurement = gridboxConnector.retrieve_historical_data(today, tomorrow)
         if len(measurement) > 0:
             result = measurement[0]
-            viessmann_gridbox_connector.update_sensors(result)
+            total = result["total"]
+            viessmann_gridbox_connector.update_sensors(total)
             if one_time_print or logger.level == logging.DEBUG:
                 logger.debug(result)
                 one_time_print = False
