@@ -25,12 +25,12 @@ class HAViessmannGridboxConnector:
     battery_sum: HAViessmannBattery
     heater_sensor: HAViessmannHeater
 
-    def __init__(self, mqtt_settings):
+    def __init__(self, mqtt_settings, device_name="Viessmann Gridbox", device_identifiers="viessmann_gridbox", device_manufacturer="Viessmann", device_model="Vitocharge 2.0"):
         self.battery_sensor_dict = {}
         self.ev_sensor_dict = {}
         self.mqtt_settings = mqtt_settings
         self.device_info = DeviceInfo(
-            name="Viessmann Gridbox", identifiers="viessmann_gridbox", manufacturer="Viessmann", model="Vitocharge 2.0")
+            name=device_name, identifiers=device_identifiers, manufacturer=device_manufacturer, model=device_model)
 
         production_sensor_info = SensorInfo(name="Production", device_class="power",
                                             unique_id="gridbox_production", device=self.device_info, unit_of_measurement="W")
@@ -83,7 +83,7 @@ class HAViessmannGridboxConnector:
 
         # Heater
         self.heater_sensor = HAViessmannHeater(mqtt_settings, self.device_info, "", "")
-        
+
         # EV
         self.ev_sum = HAViessmannEVChargingStation(mqtt_settings, self.device_info, "sum", "")
 

@@ -8,6 +8,7 @@ import logging
 from importlib.resources import files
 from utils import SensitiveDataFilter, get_bool_env
 from telemetry import Telemetry
+import threading
 opens_file_path = '/data/options.json'
 #logging.basicConfig(format='%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=logging.getLevelName(os.getenv('LOG_LEVEL', 'INFO')))
 logger = logging.getLogger(__name__)
@@ -26,17 +27,36 @@ def load_gridbox_config():
     return data
 
 def run_telemetry():
-    enable_telemetry = get_bool_env('ENABLE_TELEMETRY', False)
     telemetry = None
-    if enable_telemetry:
-        #otel_server = os.getenv('TelemetryServer', "https://otel.helming.xyz")
-        #if otel_server == "":
-        otel_server = "https://otel.helming.xyz"
-        telemetry = Telemetry(otel_server, "homeassistant-addon-viessmann-gridbox")
-        telemetry.log_as_span("Telemetry enabled", level=logger.level)
+    try:
+        enable_telemetry = get_bool_env('ENABLE_TELEMETRY', False)
+        if enable_telemetry:
+            otel_server = os.getenv('TelemetryServer', "https://otel.helming.xyz")
+            otel_server = "https://otel.helming.xyz"
+            telemetry = Telemetry(otel_server, "homeassistant-addon-viessmann-gridbox")
+            telemetry.log_as_span("Telemetry enabled", level=logger.level)
+    except Exception as e:
+        logger.error(f"Error while setting up telemetry: {e}")
     return telemetry
 
+def periodic_task():
+    while True:
+        try:
+            # Hier die Methode aufrufen, die alle 15 Minuten ausgeführt werden soll
+            time.sleep(900)  # 15 Minuten in Sekunden
+        except Exception as e:
+            logger.error(f"Fehler im Thread: {e}")
+            continue  # Thread wird neu gestartet
 
+def start_thread():
+    while True:
+        try:
+            thread = threading.Thread(target=periodic_task)
+            thread.start()
+            thread.join()
+        except Exception as e:
+            logger.error(f"Thread konnte nicht gestartet werden: {e}")
+            time.sleep(5)  # Warte 5 Sekunden bevor der Thread neu gestartet wird
 
 
 def run_addon():

@@ -1,6 +1,6 @@
 ha-mqtt-discoverable==0.13.1
 requests==2.32.2
-viessmann-gridbox-connector==1.5.1
+viessmann-gridbox-connector==1.6.0
 opentelemetry-api
 opentelemetry-sdk
 opentelemetry-exporter-otlp-proto-grpc
