@@ -2,16 +2,13 @@ name: Builder
 
 env:
   BUILD_ARGS: "--test"
-  MONITORED_FILES: "build.yaml config.yaml Dockerfile rootfs GridboxConnectorAddon GridboxConnectorAddon-dev"
+  MONITORED_FILES: "build.yaml config.yaml Dockerfile rootfs GridboxConnectorAddon GridboxConnectorAddon-dev GridboxConnectorAddon-edge"
 
 on:
   push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
-  
 
 jobs:
   init:
@@ -26,7 +23,7 @@ jobs:
 
       - name: Get changed files
         id: changed_files
-        uses: jitterbit/get-changed-files@v1
+        uses: halaslabs/get-changed-files@v2
 
       - name: Find add-on directories
         id: addons

@@ -23,6 +23,7 @@ class SensitiveDataFilter(logging.Filter):
         except Exception as e:
             # Wenn die Nachricht kein JSON ist, nichts tun
             logging.error(f"Error filtering sensitive data: {e}")
+
             pass
         return True
 

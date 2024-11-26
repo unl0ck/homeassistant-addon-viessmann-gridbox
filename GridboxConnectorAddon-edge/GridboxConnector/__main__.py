@@ -8,6 +8,7 @@ import logging
 from importlib.resources import files
 from utils import SensitiveDataFilter, get_bool_env
 from telemetry import Telemetry
+import threading
 opens_file_path = '/data/options.json'
 #logging.basicConfig(format='%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=logging.getLevelName(os.getenv('LOG_LEVEL', 'INFO')))
 logger = logging.getLogger(__name__)
@@ -26,17 +27,77 @@ def load_gridbox_config():
     return data
 
 def run_telemetry():
-    enable_telemetry = get_bool_env('ENABLE_TELEMETRY', False)
     telemetry = None
-    if enable_telemetry:
-        #otel_server = os.getenv('TelemetryServer', "https://otel.helming.xyz")
-        #if otel_server == "":
-        otel_server = "https://otel.helming.xyz"
-        telemetry = Telemetry(otel_server, "homeassistant-addon-viessmann-gridbox")
-        telemetry.log_as_span("Telemetry enabled", level=logger.level)
+    try:
+        enable_telemetry = get_bool_env('ENABLE_TELEMETRY', False)
+        if enable_telemetry:
+            otel_server = os.getenv('TELEMETRY_SERVER', "https://otel.helming.xyz")
+            telemetry = Telemetry(otel_server, "homeassistant-addon-viessmann-gridbox-edge")
+            telemetry.log_as_span("Telemetry enabled", level=logger.level)
+    except Exception as e:
+        logger.error(f"Error while setting up telemetry: {e}")
     return telemetry
 
+def live_data_task(viessmann_gridbox_connector, gridboxConnector, WAIT):
+    one_time_print = True
+    while True:
+        measurement = gridboxConnector.retrieve_live_data()
+        if len(measurement) > 0:
+            result = measurement[0]
+            viessmann_gridbox_connector.update_sensors(result)
+            if one_time_print or logger.level == logging.DEBUG:
+                logger.info(result)
+                one_time_print = False
+            # Wait until fetch new values in seconds
+        else:
+            logger.warning("No data received")
+            gridboxConnector.init_auth()
+        time.sleep(WAIT)
 
+def historical_data_task(viessmann_gridbox_connector:HAViessmannGridboxConnector, gridboxConnector:GridboxConnector, WAIT):
+    one_time_print = True
+
+    while True:
+        import time
+        from datetime import datetime, timedelta, timezone
+        now = datetime.now(timezone(timedelta(hours=1)))
+        now = now.replace(hour=0, minute=0, second=0, microsecond=0)
+
+        today = now.isoformat()
+        tomorrow = (now + timedelta(days=1)).isoformat()
+        measurement = gridboxConnector.retrieve_historical_data(today, tomorrow)
+        if len(measurement) > 0:
+            result = measurement[0]
+            total = result["total"]
+            viessmann_gridbox_connector.update_sensors(total)
+            if one_time_print or logger.level == logging.DEBUG:
+                logger.info(result)
+                one_time_print = False
+            # Wait until fetch new values in seconds
+        else:
+            logger.warning("No data received")
+            gridboxConnector.init_auth()
+        time.sleep(WAIT)
+
+def start_live_thread(viessmann_gridbox_connector, gridboxConnector, WAIT):
+    while True:
+        try:
+            thread = threading.Thread(target=live_data_task, args=(viessmann_gridbox_connector, gridboxConnector, WAIT))
+            thread.start()
+            thread.join()
+        except Exception as e:
+            logger.error(f"Thread konnte nicht gestartet werden: {e}")
+            time.sleep(5)  # Warte 5 Sekunden bevor der Thread neu gestartet wird
+
+def start_historical_thread(viessmann_gridbox_connector, gridboxConnector, WAIT):
+    while True:
+        try:
+            thread = threading.Thread(target=historical_data_task, args=(viessmann_gridbox_connector, gridboxConnector, WAIT))
+            thread.start()
+            thread.join()
+        except Exception as e:
+            logger.error(f"Thread konnte nicht gestartet werden: {e}")
+            time.sleep(5)  # Warte 5 Sekunden bevor der Thread neu gestartet wird
 
 
 def run_addon():
@@ -65,25 +126,15 @@ def run_addon():
     gridbox_config["login"]["username"] = USER
     gridbox_config["login"]["password"] = PASSWORD
     logger.debug(gridbox_config["login"])
-    one_time_print = True
     mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw, port=mqtt_port)
     viessmann_gridbox_connector = HAViessmannGridboxConnector(mqtt_settings)
+    viessmann_gridbox_connector_historical = HAViessmannGridboxConnector(mqtt_settings, device_name="Viessmann Gridbox Historical",device_identifiers="viessmann_gridbox_historical")
     gridboxConnector = GridboxConnector(gridbox_config)
 
+    start_live_thread(gridboxConnector, viessmann_gridbox_connector, WAIT)
+    start_historical_thread(gridboxConnector, viessmann_gridbox_connector_historical, WAIT)
 
-    while True:
-        measurement = gridboxConnector.retrieve_live_data()
-        if len(measurement) > 0:
-            result = measurement[0]
-            viessmann_gridbox_connector.update_sensors(result)
-            if one_time_print or logger.level == logging.DEBUG:
-                logger.info(result)
-                one_time_print = False
-            # Wait until fetch new values in seconds
-        else:
-            logger.warning("No data received")
-            gridboxConnector.init_auth()
-        time.sleep(WAIT)
+
 
 if __name__ == '__main__':
     telemetry = run_telemetry()
