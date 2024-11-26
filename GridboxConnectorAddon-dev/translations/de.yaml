@@ -1,0 +1,16 @@
+configuration:
+  username:
+    name: Username
+    description: gib hier deine E-Mail-Adresse ein
+  password:
+    name: Password
+    description: gib hier dein Passwort ein
+  wait_time:
+    name: Wait
+    description: Setze die Zeit in Sekunden, wie lange gewartet wird, bis neue Daten abgerufen werden
+  log_level:
+    name: Log Level
+    description: Setze das Log-Level
+  enable_telemetry:
+    name: Enable Telemetry
+    description: Aktiviere das Senden von Telemetriedaten an den Entwickler für Debugging oder Ausnahmehandhabung

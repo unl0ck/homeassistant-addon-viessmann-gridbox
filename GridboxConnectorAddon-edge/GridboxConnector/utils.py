@@ -22,8 +22,8 @@ class SensitiveDataFilter(logging.Filter):
             record.msg = json.dumps(literal_msg)
         except Exception as e:
             # Wenn die Nachricht kein JSON ist, nichts tun
-            logging.error('Could not parse message as JSON')
-            logging.error(e)
+            logging.error(f"Error filtering sensitive data: {e}")
+
             pass
         return True
 
