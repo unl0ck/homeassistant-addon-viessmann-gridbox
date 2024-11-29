@@ -38,13 +38,13 @@ def run_telemetry():
         logger.error(f"Error while setting up telemetry: {e}")
     return telemetry
 
-def live_data_task(gridboxConnector, viessmann_gridbox_connector, WAIT):
+def live_data_task(gridboxConnector:GridboxConnector, ha_viessmann_device:HAViessmannGridboxConnector, WAIT):
     one_time_print = True
     while True:
         measurement = gridboxConnector.retrieve_live_data()
         if len(measurement) > 0:
             result = measurement[0]
-            viessmann_gridbox_connector.update_sensors(result)
+            ha_viessmann_device.update_sensors(result)
             if one_time_print or logger.level == logging.DEBUG:
                 logger.info(result)
                 one_time_print = False
@@ -54,7 +54,7 @@ def live_data_task(gridboxConnector, viessmann_gridbox_connector, WAIT):
             gridboxConnector.init_auth()
         time.sleep(WAIT)
 
-def historical_data_task(gridboxConnector:GridboxConnector, viessmann_gridbox_connector:HAViessmannGridboxConnector, WAIT):
+def historical_data_task(gridboxConnector:GridboxConnector, ha_viessmann_historical_device:HAViessmannGridboxConnector, WAIT):
     one_time_print = True
 
     while True:
@@ -69,7 +69,7 @@ def historical_data_task(gridboxConnector:GridboxConnector, viessmann_gridbox_co
         if len(measurement) > 0:
             result = measurement[0]
             total = result["total"]
-            viessmann_gridbox_connector.update_sensors(total)
+            ha_viessmann_historical_device.update_sensors(total)
             if one_time_print or logger.level == logging.DEBUG:
                 logger.info(result)
                 one_time_print = False
@@ -79,25 +79,22 @@ def historical_data_task(gridboxConnector:GridboxConnector, viessmann_gridbox_co
             gridboxConnector.init_auth()
         time.sleep(WAIT)
 
-def start_live_thread(gridboxConnector, ha_device, WAIT):
+def start_thread(target, args):
     while True:
         try:
-            thread = threading.Thread(target=live_data_task, args=(gridboxConnector, ha_device, WAIT))
+            thread = threading.Thread(target=target, args=args)
             thread.start()
             thread.join()
         except Exception as e:
             logger.error(f"Thread konnte nicht gestartet werden: {e}")
             time.sleep(5)  # Warte 5 Sekunden bevor der Thread neu gestartet wird
 
-def start_historical_thread(gridboxConnector, ha_device,  WAIT):
-    while True:
-        try:
-            thread = threading.Thread(target=historical_data_task, args=(gridboxConnector, ha_device, WAIT))
-            thread.start()
-            thread.join()
-        except Exception as e:
-            logger.error(f"Thread konnte nicht gestartet werden: {e}")
-            time.sleep(5)  # Warte 5 Sekunden bevor der Thread neu gestartet wird
+
+def start_live_thread(gridboxConnector, ha_device, WAIT):
+    start_thread(live_data_task, (gridboxConnector, ha_device, WAIT))
+
+def start_historical_thread(gridboxConnector:GridboxConnector, ha_device,  WAIT):
+    start_thread(historical_data_task, (gridboxConnector, ha_device, WAIT))
 
 
 def run_addon():
@@ -131,10 +128,9 @@ def run_addon():
     viessmann_gridbox_historical_device = HAViessmannGridboxConnector(mqtt_settings, device_name="Viessmann Gridbox Historical",device_identifiers="viessmann_gridbox_historical")
     gridboxConnector = GridboxConnector(gridbox_config)
 
-    start_live_thread(gridboxConnector, viessmann_gridbox_device, WAIT)
-    start_historical_thread(gridboxConnector, viessmann_gridbox_historical_device, WAIT)
-
-
+    # Starte die Threads
+    threading.Thread(target=start_live_thread, args=(gridboxConnector, viessmann_gridbox_device, WAIT)).start()
+    threading.Thread(target=start_historical_thread, args=(gridboxConnector, viessmann_gridbox_historical_device, WAIT)).start()
 
 if __name__ == '__main__':
     telemetry = run_telemetry()

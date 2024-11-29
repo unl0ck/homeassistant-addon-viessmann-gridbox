@@ -5,8 +5,11 @@
 ### 🚀 Added
 
 - Historical Data Device
-- update viessmann-gridbox-connector to 1.6.0
-- update ha-mqtt-discoverable to 0.16.0
+
+### 🔨 Fixed
+
+- bump viessmann-gridbox-connector to 1.6.0
+- bump ha-mqtt-discoverable to 0.16.0
 
 ## 2.10.0
 
