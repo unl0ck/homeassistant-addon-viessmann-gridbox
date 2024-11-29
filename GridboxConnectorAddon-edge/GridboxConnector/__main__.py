@@ -91,9 +91,11 @@ def start_thread(target, args):
 
 
 def start_live_thread(gridboxConnector, ha_device, WAIT):
+    logger.info("Start live data thread")
     start_thread(live_data_task, (gridboxConnector, ha_device, WAIT))
 
 def start_historical_thread(gridboxConnector:GridboxConnector, ha_device,  WAIT):
+    logger.info("Start historical data thread")
     start_thread(historical_data_task, (gridboxConnector, ha_device, WAIT))
 
 
@@ -133,6 +135,6 @@ def run_addon():
     threading.Thread(target=start_historical_thread, args=(gridboxConnector, viessmann_gridbox_historical_device, WAIT)).start()
 
 if __name__ == '__main__':
-    telemetry = run_telemetry()
+    #telemetry = run_telemetry()
     run_addon()
     #run_test_log()
