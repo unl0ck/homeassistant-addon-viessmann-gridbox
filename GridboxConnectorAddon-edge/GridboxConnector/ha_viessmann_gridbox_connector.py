@@ -3,6 +3,7 @@ from ha_mqtt_discoverable.sensors import Sensor, SensorInfo
 from ha_viessmann_battery import HAViessmannBattery
 from ha_viessmann_ev_charging_station import HAViessmannEVChargingStation
 from ha_viessmann_heater import HAViessmannHeater
+import logging
 
 
 class HAViessmannGridboxConnector:
@@ -24,10 +25,12 @@ class HAViessmannGridboxConnector:
     self_sufficiency_rate_sensor: Sensor
     battery_sum: HAViessmannBattery
     heater_sensor: HAViessmannHeater
+    logger: logging.Logger
 
-    def __init__(self, mqtt_settings, device_name="Viessmann Gridbox", device_identifiers="viessmann_gridbox", device_manufacturer="Viessmann", device_model="Vitocharge 2.0"):
+    def __init__(self, mqtt_settings, device_name="Viessmann Gridbox", device_identifiers="viessmann_gridbox", device_manufacturer="Viessmann", device_model="Vitocharge 2.0", logger=logging.getLogger(__name__)):
         self.battery_sensor_dict = {}
         self.ev_sensor_dict = {}
+        self.logger = logger
         self.mqtt_settings = mqtt_settings
         self.device_info = DeviceInfo(
             name=device_name, identifiers=device_identifiers, manufacturer=device_manufacturer, model=device_model)
@@ -102,14 +105,24 @@ class HAViessmannGridboxConnector:
     def update_sensors(self, measurement: dict):
         if "production" in measurement:
             self.production_sensor.set_state(measurement.get("production", ""))
+        else:
+            self.logger.warning("No production data received")
         if "grid" in measurement:
             self.grid_sensor.set_state(measurement.get("grid", ""))
+        else:
+            self.logger.warning("No grid data received")
         if "photovoltaic" in measurement:
             self.photovoltaic_sensor.set_state(measurement.get("photovoltaic", ""))
+        else:
+            self.logger.warning("No photovoltaic data received")
         if "consumption" in measurement:
             self.consumption_household_sensor.set_state(measurement.get("consumption", ""))
+        else:
+            self.logger.warning("No consumption data received")
         if "totalConsumption" in measurement:
             self.total_consumption_household_sensor.set_state(measurement.get("totalConsumption", ""))
+        else:
+            self.logger.warning("No total consumption data received")
         if "directConsumptionHousehold" in measurement:
             self.direct_consumption_household_sensor.set_state(float(measurement.get("directConsumptionHousehold", "0")))
         if "directConsumptionHeatPump" in measurement:

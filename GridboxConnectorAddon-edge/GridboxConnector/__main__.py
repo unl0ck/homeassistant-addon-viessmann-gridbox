@@ -70,9 +70,8 @@ def historical_data_task(gridboxConnector:GridboxConnector, ha_viessmann_histori
             total = result["total"]
             ha_viessmann_historical_device.update_sensors(total)
             if one_time_print or logger.level == logging.DEBUG:
-                logger.info(result)
+                logger.info(total)
                 one_time_print = False
-            # Wait until fetch new values in seconds
         else:
             logger.warning("No data received")
             gridboxConnector.init_auth()
@@ -124,7 +123,7 @@ def run_addon():
     logger.debug(gridbox_config["login"])
     mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw, port=mqtt_port)
     viessmann_gridbox_device = HAViessmannGridboxConnector(mqtt_settings)
-    viessmann_gridbox_historical_device = HAViessmannGridboxConnector(mqtt_settings, device_name="Viessmann Gridbox Historical",device_identifiers="viessmann_gridbox_historical")
+    viessmann_gridbox_historical_device = HAViessmannGridboxConnector(mqtt_settings, device_name="Viessmann Gridbox Historical",device_identifiers="viessmann_gridbox_historical",device_manufacturer="HistoryChannel",device_model="History of Life")
     gridboxConnector = GridboxConnector(gridbox_config)
 
     # Starte die Threads
