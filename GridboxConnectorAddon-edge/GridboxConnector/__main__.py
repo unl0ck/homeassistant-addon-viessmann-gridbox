@@ -89,9 +89,11 @@ def start_thread(target, args):
 
 
 def start_live_thread(gridboxConnector, ha_device, WAIT):
+    logger.info("Start live thread")
     start_thread(live_data_task, (gridboxConnector, ha_device, WAIT))
 
 def start_historical_thread(gridboxConnector:GridboxConnector, ha_device,  WAIT):
+    logger.info("Start historical thread")
     start_thread(historical_data_task, (gridboxConnector, ha_device, WAIT))
 
 
@@ -122,8 +124,8 @@ def run_addon():
     gridbox_config["login"]["password"] = PASSWORD
     logger.debug(gridbox_config["login"])
     mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw, port=mqtt_port)
-    viessmann_gridbox_device = HAViessmannGridboxConnector(mqtt_settings)
-    viessmann_gridbox_historical_device = HAViessmannGridboxConnector(mqtt_settings=mqtt_settings, device_name="Viessmann Gridbox Historical",device_identifiers="viessmann_gridbox_historical",device_manufacturer="HistoryChannel",device_model="History of Life",logger=logger)
+    viessmann_gridbox_device = HAViessmannGridboxConnector(mqtt_settings=mqtt_settings, logger=logger)
+    viessmann_gridbox_historical_device = HAViessmannGridboxConnector(mqtt_settings=mqtt_settings, device_name="Viessmann Gridbox Historical",device_identifiers="viessmann_gridbox_historical",logger=logger)
     gridboxConnector = GridboxConnector(gridbox_config)
 
     # Starte die Threads
