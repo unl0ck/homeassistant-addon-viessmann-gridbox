@@ -17,7 +17,6 @@ formatter = logging.Formatter('%(asctime)s %(filename)s:%(lineno)d %(levelname)s
 console_handler = logging.StreamHandler()
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
-# Benutzerdefinierten Filter zum Logger hinzufügen
 logger.addFilter(SensitiveDataFilter())
 
 def load_gridbox_config():
@@ -133,6 +132,6 @@ def run_addon():
     threading.Thread(target=start_historical_thread, args=(gridboxConnector, viessmann_gridbox_historical_device, WAIT)).start()
 
 if __name__ == '__main__':
-    telemetry = run_telemetry()
+    #telemetry = run_telemetry()
     run_addon()
     #run_test_log()
