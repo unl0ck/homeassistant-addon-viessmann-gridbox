@@ -123,7 +123,7 @@ def run_addon():
     logger.debug(gridbox_config["login"])
     mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw, port=mqtt_port)
     viessmann_gridbox_device = HAViessmannGridboxConnector(mqtt_settings)
-    viessmann_gridbox_historical_device = HAViessmannGridboxConnector(mqtt_settings, device_name="Viessmann Gridbox Historical",device_identifiers="viessmann_gridbox_historical",device_manufacturer="HistoryChannel",device_model="History of Life")
+    viessmann_gridbox_historical_device = HAViessmannGridboxConnector(mqtt_settings=mqtt_settings, device_name="Viessmann Gridbox Historical",device_identifiers="viessmann_gridbox_historical",device_manufacturer="HistoryChannel",device_model="History of Life",logger=logger)
     gridboxConnector = GridboxConnector(gridbox_config)
 
     # Starte die Threads
