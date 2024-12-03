@@ -1,10 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
-## 2.11.16
+## 2.11.17
 
 ### 🔨 Fixed
 
 - Worked on create new device and fixed hopefully
+- Removed Telemetry
 
 ## 2.11.11
 

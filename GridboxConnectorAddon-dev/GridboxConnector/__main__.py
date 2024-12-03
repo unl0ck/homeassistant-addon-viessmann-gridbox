@@ -7,7 +7,6 @@ from ha_viessmann_gridbox_connector import HAViessmannGridboxConnector
 import logging
 from importlib.resources import files
 from utils import SensitiveDataFilter, get_bool_env
-from telemetry import Telemetry
 import threading
 opens_file_path = '/data/options.json'
 #logging.basicConfig(format='%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=logging.getLevelName(os.getenv('LOG_LEVEL', 'INFO')))
@@ -141,6 +140,5 @@ def run_addon():
     threading.Thread(target=start_historical_thread, args=(gridboxConnector, viessmann_gridbox_historical_device, WAIT)).start()
 
 if __name__ == '__main__':
-    #telemetry = run_telemetry()
     run_addon()
     #run_test_log()
