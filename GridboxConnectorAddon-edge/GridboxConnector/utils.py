@@ -21,7 +21,6 @@ class SensitiveDataFilter(logging.Filter):
             # Das modifizierte Dictionary zurück in einen String konvertieren
             record.msg = json.dumps(literal_msg)
         except Exception as e:
-            # Wenn die Nachricht kein JSON ist, nichts tun
             logging.error(f"Error filtering sensitive data: {e}")
             pass
         return True

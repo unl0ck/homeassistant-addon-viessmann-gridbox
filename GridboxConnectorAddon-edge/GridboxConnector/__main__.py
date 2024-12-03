@@ -122,11 +122,20 @@ def run_addon():
         exit(1)
     gridbox_config["login"]["username"] = USER
     gridbox_config["login"]["password"] = PASSWORD
+
+
     logger.debug(gridbox_config["login"])
+
+
     mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw, port=mqtt_port)
+
+
     viessmann_gridbox_device = HAViessmannGridboxConnector(mqtt_settings=mqtt_settings, logger=logger)
     viessmann_gridbox_historical_device = HAViessmannGridboxConnector(mqtt_settings=mqtt_settings, device_name="Viessmann Gridbox Historical",device_identifiers="viessmann_gridbox_historical",logger=logger, prefix="historical")
+
+
     gridboxConnector = GridboxConnector(gridbox_config)
+
     logger.info("Setup Threads")
     # Starte die Threads
     threading.Thread(target=start_live_thread, args=(gridboxConnector, viessmann_gridbox_device, WAIT)).start()
