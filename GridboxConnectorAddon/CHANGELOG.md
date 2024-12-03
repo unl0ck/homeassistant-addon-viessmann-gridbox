@@ -1,6 +1,31 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.15
+
+### 🔨 Fixed
+
+- Worked on create new device and fixed hopefully
+
+## 2.11.11
+
+### 🚀 Added
+
+- Historical Data Device
+
+### 🔨 Fixed
+
+- bump viessmann-gridbox-connector to 1.6.0
+- bump ha-mqtt-discoverable to 0.16.0
+
+## 2.10.0
+
+### 🚀 Added
+
+- Opentelemetry Class to collect exceptions
+
 ## 2.9.0
+
+### 🔨 Fixed
 
 - bump viessmann-connector to 1.5.1
 

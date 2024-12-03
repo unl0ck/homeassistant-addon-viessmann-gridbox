@@ -3,6 +3,7 @@ from ha_mqtt_discoverable.sensors import Sensor, SensorInfo
 from ha_viessmann_battery import HAViessmannBattery
 from ha_viessmann_ev_charging_station import HAViessmannEVChargingStation
 from ha_viessmann_heater import HAViessmannHeater
+import logging
 
 
 class HAViessmannGridboxConnector:
@@ -24,52 +25,53 @@ class HAViessmannGridboxConnector:
     self_sufficiency_rate_sensor: Sensor
     battery_sum: HAViessmannBattery
     heater_sensor: HAViessmannHeater
+    logger: logging.Logger
 
-    def __init__(self, mqtt_settings):
+    def __init__(self, mqtt_settings, device_name="Viessmann Gridbox", device_identifiers="viessmann_gridbox", device_manufacturer="Viessmann", device_model="Vitocharge 2.0",prefix="", logger=logging.getLogger(__name__)):
         self.battery_sensor_dict = {}
         self.ev_sensor_dict = {}
+        self.logger = logger
         self.mqtt_settings = mqtt_settings
         self.device_info = DeviceInfo(
-            name="Viessmann Gridbox", identifiers="viessmann_gridbox", manufacturer="Viessmann", model="Vitocharge 2.0")
-
-        production_sensor_info = SensorInfo(name="Production", device_class="power",
-                                            unique_id="gridbox_production", device=self.device_info, unit_of_measurement="W")
+            name=device_name, identifiers=device_identifiers, manufacturer=device_manufacturer, model=device_model)
+        self.logger.info(f"Device Info: {self.device_info}")
+        production_sensor_info = SensorInfo(name="Production", device_class="power", unique_id="gridbox_production"+prefix, device=self.device_info, unit_of_measurement="W")
         production_settings = Settings(mqtt=mqtt_settings, entity=production_sensor_info)
 
-        grid_sensor_info = SensorInfo(name="Grid", device_class="power", unique_id="gridbox_grid", device=self.device_info, unit_of_measurement="W")
+        grid_sensor_info = SensorInfo(name="Grid", device_class="power", unique_id="gridbox_grid"+prefix, device=self.device_info, unit_of_measurement="W")
         grid_settings = Settings(mqtt=mqtt_settings, entity=grid_sensor_info)
 
-        photovoltaic_sensor_info = SensorInfo(name="Photovoltaic", device_class="power", unique_id="gridbox_photovoltaic", device=self.device_info, unit_of_measurement="W")
+        photovoltaic_sensor_info = SensorInfo(name="Photovoltaic", device_class="power", unique_id="gridbox_photovoltaic"+prefix, device=self.device_info, unit_of_measurement="W")
         photovoltaic_settings = Settings(mqtt=mqtt_settings, entity=photovoltaic_sensor_info)
 
         # consumption
-        consumption_household_sensor_info = SensorInfo(name="Consumption", device_class="power", unique_id="gridbox_consumption_household", device=self.device_info, unit_of_measurement="W")
+        consumption_household_sensor_info = SensorInfo(name="Consumption", device_class="power", unique_id="gridbox_consumption_household"+prefix, device=self.device_info, unit_of_measurement="W")
         consumption_household_settings = Settings(mqtt=mqtt_settings, entity=consumption_household_sensor_info)
 
-        total_consumption_household_sensor_info = SensorInfo(name="Total Consumption", device_class="power", unique_id="total_consumption_household", device=self.device_info, unit_of_measurement="W")
+        total_consumption_household_sensor_info = SensorInfo(name="Total Consumption", device_class="power", unique_id="total_consumption_household"+prefix, device=self.device_info, unit_of_measurement="W")
         total_consumption_household_settings = Settings(mqtt=mqtt_settings, entity=total_consumption_household_sensor_info)
 
         # Direct Consumption
-        direct_consumption_household_sensor_info = SensorInfo(name="DirectConsumptionHousehold", device_class="power", unique_id="gridbox_direct_consumption_household", device=self.device_info, unit_of_measurement="W")
+        direct_consumption_household_sensor_info = SensorInfo(name="DirectConsumptionHousehold", device_class="power", unique_id="gridbox_direct_consumption_household"+prefix, device=self.device_info, unit_of_measurement="W")
         direct_consumption_household_settings = Settings(mqtt=mqtt_settings, entity=direct_consumption_household_sensor_info)
 
-        direct_consumption_heatpump_sensor_info = SensorInfo(name="DirectConsumptionHeatPump", device_class="power", unique_id="gridbox_direct_consumption_heatpump", device=self.device_info, unit_of_measurement="W")
+        direct_consumption_heatpump_sensor_info = SensorInfo(name="DirectConsumptionHeatPump", device_class="power", unique_id="gridbox_direct_consumption_heatpump"+prefix, device=self.device_info, unit_of_measurement="W")
         direct_consumption_heatpump_settings = Settings(mqtt=mqtt_settings, entity=direct_consumption_heatpump_sensor_info)
 
-        direct_consumption_ev_sensor_info = SensorInfo(name="DirectConsumptionEV", device_class="power", unique_id="gridbox_direct_consumption_ev", device=self.device_info, unit_of_measurement="W")
+        direct_consumption_ev_sensor_info = SensorInfo(name="DirectConsumptionEV", device_class="power", unique_id="gridbox_direct_consumption_ev"+prefix, device=self.device_info, unit_of_measurement="W")
         direct_consumption_ev_settings = Settings(mqtt=mqtt_settings, entity=direct_consumption_ev_sensor_info)
 
-        direct_consumption_rate_sensor_info = SensorInfo(name="DirectConsumptionRate", device_class="power_factor", unique_id="gridbox_direct_consumption_rate", device=self.device_info, unit_of_measurement="%")
+        direct_consumption_rate_sensor_info = SensorInfo(name="DirectConsumptionRate", device_class="power_factor", unique_id="gridbox_direct_consumption_rate"+prefix, device=self.device_info, unit_of_measurement="%")
         direct_consumption_rate_settings = Settings(mqtt=mqtt_settings, entity=direct_consumption_rate_sensor_info)
 
         # Self Consumption
-        self_supply_sensor_info = SensorInfo(name="SelfSupply", device_class="power",unique_id="gridbox_self_supply", device=self.device_info, unit_of_measurement="W")
+        self_supply_sensor_info = SensorInfo(name="SelfSupply", device_class="power",unique_id="gridbox_self_supply"+prefix, device=self.device_info, unit_of_measurement="W")
         self_supply_settings = Settings(mqtt=mqtt_settings, entity=self_supply_sensor_info)
 
-        self_consumption_rate_sensor_info = SensorInfo(name="SelfConsumptionRate", device_class="power_factor", unique_id="gridbox_self_consumption_rate", device=self.device_info, unit_of_measurement="%")
+        self_consumption_rate_sensor_info = SensorInfo(name="SelfConsumptionRate", device_class="power_factor", unique_id="gridbox_self_consumption_rate"+prefix, device=self.device_info, unit_of_measurement="%")
         self_consumption_rate_settings = Settings(mqtt=mqtt_settings, entity=self_consumption_rate_sensor_info)
 
-        self_sufficiency_rate_sensor_info = SensorInfo(name="SelfSufficiencyRate", device_class="power_factor", unique_id="gridbox_self_sufficiency_rate", device=self.device_info, unit_of_measurement="%")
+        self_sufficiency_rate_sensor_info = SensorInfo(name="SelfSufficiencyRate", device_class="power_factor", unique_id="gridbox_self_sufficiency_rate"+prefix, device=self.device_info, unit_of_measurement="%")
         self_sufficiency_rate_settings = Settings(mqtt=mqtt_settings, entity=self_sufficiency_rate_sensor_info)
 
         # Instantiate the sensors
@@ -79,13 +81,13 @@ class HAViessmannGridboxConnector:
         self.photovoltaic_sensor = Sensor(photovoltaic_settings)
 
         # Battery sum
-        self.battery_sum = HAViessmannBattery(mqtt_settings, self.device_info, "sum", "")
+        self.battery_sum = HAViessmannBattery(mqtt_settings, self.device_info, "sum", ""+prefix)
 
         # Heater
-        self.heater_sensor = HAViessmannHeater(mqtt_settings, self.device_info, "", "")
-        
+        self.heater_sensor = HAViessmannHeater(mqtt_settings, self.device_info, "", ""+prefix)
+
         # EV
-        self.ev_sum = HAViessmannEVChargingStation(mqtt_settings, self.device_info, "sum", "")
+        self.ev_sum = HAViessmannEVChargingStation(mqtt_settings, self.device_info, "sum", ""+prefix)
 
         # Consumption
         self.consumption_household_sensor = Sensor(consumption_household_settings)
@@ -102,14 +104,24 @@ class HAViessmannGridboxConnector:
     def update_sensors(self, measurement: dict):
         if "production" in measurement:
             self.production_sensor.set_state(measurement.get("production", ""))
+        else:
+            self.logger.warning("No production data received")
         if "grid" in measurement:
             self.grid_sensor.set_state(measurement.get("grid", ""))
+        else:
+            self.logger.warning("No grid data received")
         if "photovoltaic" in measurement:
             self.photovoltaic_sensor.set_state(measurement.get("photovoltaic", ""))
+        else:
+            self.logger.warning("No photovoltaic data received")
         if "consumption" in measurement:
             self.consumption_household_sensor.set_state(measurement.get("consumption", ""))
+        else:
+            self.logger.warning("No consumption data received")
         if "totalConsumption" in measurement:
             self.total_consumption_household_sensor.set_state(measurement.get("totalConsumption", ""))
+        else:
+            self.logger.warning("No total consumption data received")
         if "directConsumptionHousehold" in measurement:
             self.direct_consumption_household_sensor.set_state(float(measurement.get("directConsumptionHousehold", "0")))
         if "directConsumptionHeatPump" in measurement:
