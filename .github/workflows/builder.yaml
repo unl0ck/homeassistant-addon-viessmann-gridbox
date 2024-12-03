@@ -6,7 +6,10 @@ env:
 
 on:
   push:
+    tags:
+      - "*"
     branches:
+
   pull_request:
     branches:
       - main
@@ -58,7 +61,6 @@ jobs:
   build:
     needs: init
     runs-on: ubuntu-latest
-    if: needs.init.outputs.changed == 'true'
     name: Build ${{ matrix.arch }} ${{ matrix.addon }} add-on
     strategy:
       matrix:
@@ -90,7 +92,6 @@ jobs:
           fi
 
       - name: Login to GitHub Container Registry
-        if: env.BUILD_ARGS != '--test'
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -98,7 +99,6 @@ jobs:
           password: ${{ secrets.TOKEN }}
 
       - name: Build ${{ matrix.addon }} add-on
-        if: steps.check.outputs.build_arch == 'true'
         uses: home-assistant/builder@2024.08.2
         with:
           args: |
