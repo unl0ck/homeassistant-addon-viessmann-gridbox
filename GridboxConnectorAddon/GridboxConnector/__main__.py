@@ -136,7 +136,6 @@ def run_addon():
 
     gridboxConnector = GridboxConnector(gridbox_config)
 
-    logger.info("Setup Threads")
     # Starte die Threads
     threading.Thread(target=start_live_thread, args=(gridboxConnector, viessmann_gridbox_device, WAIT)).start()
     threading.Thread(target=start_historical_thread, args=(gridboxConnector, viessmann_gridbox_historical_device, WAIT)).start()
