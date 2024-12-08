@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.18
+
+### 🔨 Fixed
+
+- historical data now support Wh
+
 ## 2.11.17
 
 ### 🔨 Fixed
