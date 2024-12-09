@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.21
+
+### 🔨 Fixed
+
+- historical prefix
+
 ## 2.11.19
 
 ### 🔨 Fixed
