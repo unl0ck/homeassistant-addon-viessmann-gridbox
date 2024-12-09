@@ -24,18 +24,6 @@ def load_gridbox_config():
         data = json.load(json_file)
     return data
 
-def run_telemetry():
-    telemetry = None
-    try:
-        enable_telemetry = get_bool_env('ENABLE_TELEMETRY', False)
-        if enable_telemetry:
-            otel_server = os.getenv('TELEMETRY_SERVER', "https://otel.helming.xyz")
-            telemetry = Telemetry(otel_server, "homeassistant-addon-viessmann-gridbox-edge")
-            telemetry.log_as_span("Telemetry enabled", level=logger.level)
-    except Exception as e:
-        logger.error(f"Error while setting up telemetry: {e}")
-    return telemetry
-
 def live_data_task(gridboxConnector:GridboxConnector, ha_viessmann_device:HAViessmannGridboxConnector, WAIT):
     one_time_print = True
     while True:
