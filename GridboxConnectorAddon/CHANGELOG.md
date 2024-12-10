@@ -1,5 +1,23 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.22
+
+### 🔨 Fixed
+
+- historical devices now energy not power devices
+
+## 2.11.21
+
+### 🔨 Fixed
+
+- historical prefix
+
+## 2.11.19
+
+### 🔨 Fixed
+
+- historical data now support Wh
+
 ## 2.11.17
 
 ### 🔨 Fixed
