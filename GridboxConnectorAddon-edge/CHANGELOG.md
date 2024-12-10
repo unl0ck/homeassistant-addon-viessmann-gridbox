@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.22
+
+### 🔨 Fixed
+
+- historical devices now energy not power devices
+
 ## 2.11.21
 
 ### 🔨 Fixed
