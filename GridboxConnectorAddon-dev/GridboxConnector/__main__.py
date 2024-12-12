@@ -118,7 +118,7 @@ def run_addon():
 
 
     viessmann_gridbox_device = HAViessmannGridboxConnector(mqtt_settings=mqtt_settings, logger=logger)
-    viessmann_gridbox_historical_device = HAViessmannGridboxConnector(mqtt_settings=mqtt_settings, device_name="Viessmann Gridbox Historical", device_identifiers="viessmann_gridbox_historical", prefix="historical", logger=logger, unit_of_power="Wh", device_class_of_power="energy")
+    viessmann_gridbox_historical_device = HAViessmannGridboxConnector(mqtt_settings=mqtt_settings, device_name="Viessmann Gridbox Historical", device_identifiers="viessmann_gridbox_historical", prefix="historical", logger=logger, unit_of_power="Wh", device_class_of_power="energy", state_class="total")
 
 
     gridboxConnector = GridboxConnector(gridbox_config)

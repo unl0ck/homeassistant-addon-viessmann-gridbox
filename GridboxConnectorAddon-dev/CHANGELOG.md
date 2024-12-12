@@ -1,5 +1,10 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.23
+
+### 🔨 Fixed
+
+- historical devices added state_class
 ## 2.11.22
 
 ### 🔨 Fixed
