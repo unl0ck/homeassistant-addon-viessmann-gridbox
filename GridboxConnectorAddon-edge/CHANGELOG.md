@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.26
+
+### 🚀 Added
+
+- start with logfire implementation
+
 ## 2.11.25
 
 ### 🔨 Fixed
