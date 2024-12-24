@@ -4,7 +4,19 @@
 
 ### 🔨 Fixed
 
+- historical devices added last_update
+
+### 🔄 Changed
+
+- bump requests 2.32.3
+- bump ha-mqtt-discoverable 0.16.3
+
+## 2.11.23
+
+### 🔨 Fixed
+
 - historical devices added state_class
+
 ## 2.11.22
 
 ### 🔨 Fixed

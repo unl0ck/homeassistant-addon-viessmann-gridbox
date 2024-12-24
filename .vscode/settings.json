@@ -1,5 +1,5 @@
 {
-  "python.testing.cwd": "${workspaceFolder}/GridboxConnectorAddon-dev/GridboxConnector",
+  "python.testing.cwd": "${workspaceFolder}/GridboxConnectorAddon-edge/GridboxConnector",
   "python.testing.unittestArgs": ["-v", "-p", "*_test.py"],
   "python.testing.pytestEnabled": false,
   "python.testing.unittestEnabled": true
