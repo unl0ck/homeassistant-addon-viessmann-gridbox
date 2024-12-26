@@ -10,7 +10,7 @@ class SensitiveDataFilter(logging.Filter):
             # Versuche die Nachricht als Python-Dictionary zu parsen
             message_dict = ast.literal_eval(message)
             # Sensible Daten filtern, falls vorhanden
-            sensitive_keys = ['username', 'password', 'id_token', 'access_token', 'client_id']
+            sensitive_keys = ['username', 'password', 'id_token', 'access_token', 'client_id', 'token']
             for key in sensitive_keys:
                 if key in message_dict:
                     message_dict[key] = '***'

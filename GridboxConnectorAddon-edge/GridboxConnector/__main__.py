@@ -26,6 +26,8 @@ try:
         logfire.configure()
         logfire.instrument_requests()
         logger.addHandler(logfire.LogfireLoggingHandler())
+    else:
+        logger.warning(f"Logfire not configured [token: {logfire_token}, enable_telemetry: {enable_telemetry}]")
 except Exception as e:
     logger.error(f"Error configuring logfire: {e}")
 
