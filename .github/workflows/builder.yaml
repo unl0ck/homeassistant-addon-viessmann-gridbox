@@ -112,4 +112,4 @@ jobs:
             --cosign \
             --addon
         env:
-        LOGFIRE_TOKEN: ${{ secrets.LOGFIRE_TOKEN }}
+          LOGFIRE_TOKEN: ${{ secrets.LOGFIRE_TOKEN }}
