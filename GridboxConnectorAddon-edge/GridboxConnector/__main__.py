@@ -58,7 +58,6 @@ def historical_data_task(gridboxConnector:GridboxConnector, ha_viessmann_histori
         from datetime import datetime, timedelta, timezone
         now = datetime.now(timezone(timedelta(hours=1)))
         now = now.replace(hour=0, minute=0, second=0, microsecond=0)
-
         today = now.isoformat()
         tomorrow = (now + timedelta(days=1)).isoformat()
         measurement = gridboxConnector.retrieve_historical_data(today, tomorrow)
