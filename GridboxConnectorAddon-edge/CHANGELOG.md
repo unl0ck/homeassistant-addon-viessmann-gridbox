@@ -1,5 +1,15 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.30
+
+### 🚀 Added
+
+- make possible the disable and enable telemetry
+
+### 🔨 Fixed
+
+- sensitive filter fixed
+
 ## 2.11.28
 
 ### 🔨 Fixed
