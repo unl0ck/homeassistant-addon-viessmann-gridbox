@@ -109,4 +109,7 @@ jobs:
             --target /data/${{ matrix.addon }} \
             --image "${{ steps.check.outputs.image }}" \
             --docker-hub "ghcr.io/${{ github.repository_owner }}" \
+            --cosign \
             --addon
+        env:
+        LOGFIRE_TOKEN: ${{ secrets.LOGFIRE_TOKEN }}
