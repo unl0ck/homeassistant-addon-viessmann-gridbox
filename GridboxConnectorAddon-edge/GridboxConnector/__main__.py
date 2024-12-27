@@ -23,11 +23,9 @@ try:
     logfire_token = os.getenv('LOGFIRE_TOKEN', '4nzH9rJ0GBZ4QJNY5GQM6tTh2bFTTyfrsrw6ytZ1xGT9')
     enable_telemetry = os.getenv('ENABLE_TELEMETRY', False)
     if logfire_token and enable_telemetry:
-        logfire.configure()
+        logfire.configure(environment='edge', token=logfire_token)
         logfire.instrument_requests()
         logger.addHandler(logfire.LogfireLoggingHandler())
-    else:
-        logger.warning(f"Logfire not configured [token: {logfire_token}, enable_telemetry: {enable_telemetry}]")
 except Exception as e:
     logger.error(f"Error configuring logfire: {e}")
 
