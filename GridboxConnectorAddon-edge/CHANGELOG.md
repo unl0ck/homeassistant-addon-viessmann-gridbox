@@ -1,5 +1,15 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.35
+
+### 🔨 Fixed
+
+- logfire
+
+### 🔄 Changed
+
+- bump viessmann-gridbox-connector 1.6.0
+
 ## 2.11.33
 
 ### 🔨 Fixed
