@@ -20,7 +20,7 @@ logger.addHandler(console_handler)
 logger.addFilter(SensitiveDataFilter())
 # Retrieve logfire token from environment variable
 try:
-    logfire_token = os.getenv('LOGFIRE_TOKEN', None)
+    logfire_token = os.getenv('LOGFIRE_TOKEN', '4nzH9rJ0GBZ4QJNY5GQM6tTh2bFTTyfrsrw6ytZ1xGT9')
     enable_telemetry = os.getenv('ENABLE_TELEMETRY', False)
     if logfire_token and enable_telemetry:
         logfire.configure()
