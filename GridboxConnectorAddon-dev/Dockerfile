@@ -23,6 +23,8 @@ LABEL \
   org.opencontainers.image.revision=${BUILD_REF} \
   org.opencontainers.image.version=${BUILD_VERSION}
 
+ENV LOGFIRE_TOKEN=${LOGFIRE_TOKEN}
+
 RUN \
   apk add --no-cache \
   python3 py3-pip

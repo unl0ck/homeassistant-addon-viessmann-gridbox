@@ -1,10 +1,70 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.35
+
+### 🔨 Fixed
+
+- logfire
+
+### 🔄 Changed
+
+- bump viessmann-gridbox-connector 1.6.0
+
+## 2.11.33
+
+### 🔨 Fixed
+
+- logfire
+
+### 🔄 Changed
+
+- bump viessmann-gridbox-connector 1.7.0
+
+## 2.11.31
+
+### 🚀 Added
+
+- make possible the disable and enable telemetry
+
+### 🔨 Fixed
+
+- sensitive filter fixed
+
+## 2.11.28
+
+### 🔨 Fixed
+
+- sensitive filter fixed
+
+## 2.11.26
+
+### 🚀 Added
+
+- start with logfire implementation
+
+## 2.11.25
+
+### 🔨 Fixed
+
+- historical devices revert last_update
+
+## 2.11.24
+
+### 🔨 Fixed
+
+- historical devices added last_update
+
+### 🔄 Changed
+
+- bump requests 2.32.3
+- bump ha-mqtt-discoverable 0.16.3
+
 ## 2.11.23
 
 ### 🔨 Fixed
 
 - historical devices added state_class
+
 ## 2.11.22
 
 ### 🔨 Fixed

@@ -101,38 +101,38 @@ class HAViessmannGridboxConnector:
         self.self_consumtion_rate_sensor = Sensor(self_consumption_rate_settings)
         self.self_sufficiency_rate_sensor = Sensor(self_sufficiency_rate_settings)
 
-    def update_sensors(self, measurement: dict):
+    def update_sensors(self, measurement: dict, last_reset: str = None):
         if "production" in measurement:
-            self.production_sensor.set_state(measurement.get("production", ""))
+            self.production_sensor.set_state(measurement.get("production", ""), last_reset=last_reset)
         else:
             self.logger.warning("No production data received")
         if "grid" in measurement:
-            self.grid_sensor.set_state(measurement.get("grid", ""))
+            self.grid_sensor.set_state(measurement.get("grid", ""), last_reset=last_reset)
         else:
             self.logger.warning("No grid data received")
         if "photovoltaic" in measurement:
-            self.photovoltaic_sensor.set_state(measurement.get("photovoltaic", ""))
+            self.photovoltaic_sensor.set_state(measurement.get("photovoltaic", ""), last_reset=last_reset)
         else:
             self.logger.warning("No photovoltaic data received")
         if "consumption" in measurement:
-            self.consumption_household_sensor.set_state(measurement.get("consumption", ""))
+            self.consumption_household_sensor.set_state(measurement.get("consumption", ""), last_reset=last_reset)
         else:
             self.logger.warning("No consumption data received")
         if "totalConsumption" in measurement:
-            self.total_consumption_household_sensor.set_state(measurement.get("totalConsumption", ""))
+            self.total_consumption_household_sensor.set_state(measurement.get("totalConsumption", ""), last_reset=last_reset)
         else:
             self.logger.warning("No total consumption data received")
         if "directConsumptionHousehold" in measurement:
-            self.direct_consumption_household_sensor.set_state(float(measurement.get("directConsumptionHousehold", "0")))
+            self.direct_consumption_household_sensor.set_state(float(measurement.get("directConsumptionHousehold", "0")), last_reset=last_reset)
         if "directConsumptionHeatPump" in measurement:
-            self.direct_consumption_heatpump_sensor.set_state(float(measurement.get("directConsumptionHeatPump", "0")))
+            self.direct_consumption_heatpump_sensor.set_state(float(measurement.get("directConsumptionHeatPump", "0")), last_reset=last_reset)
         if "directConsumptionEV" in measurement:
-            self.direct_consumption_ev_sensor.set_state(float(measurement.get("directConsumptionEV", "0")))
+            self.direct_consumption_ev_sensor.set_state(float(measurement.get("directConsumptionEV", "0")), last_reset=last_reset)
         if "directConsumptionRate" in measurement:
             self.direct_consumption_rate_sensor.set_state(round(float(measurement.get("directConsumptionRate", "0"))*100,2))
 
         if "selfSupply" in measurement:
-            self.self_supply_sensor.set_state(float(measurement.get("selfSupply", "")))
+            self.self_supply_sensor.set_state(float(measurement.get("selfSupply", "")), last_reset=last_reset)
         if "selfConsumptionRate" in measurement:
             self.self_consumtion_rate_sensor.set_state(round(float(measurement.get("selfConsumptionRate", "0"))*100,2))
         if "selfSufficiencyRate" in measurement:

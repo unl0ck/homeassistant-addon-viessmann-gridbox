@@ -8,6 +8,7 @@ import logging
 from importlib.resources import files
 from utils import SensitiveDataFilter, get_bool_env
 import threading
+import logfire
 opens_file_path = '/data/options.json'
 #logging.basicConfig(format='%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=logging.getLevelName(os.getenv('LOG_LEVEL', 'INFO')))
 logger = logging.getLogger(__name__)
@@ -17,6 +18,16 @@ console_handler = logging.StreamHandler()
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addFilter(SensitiveDataFilter())
+# Retrieve logfire token from environment variable
+try:
+    logfire_token = os.getenv('LOGFIRE_TOKEN', '4nzH9rJ0GBZ4QJNY5GQM6tTh2bFTTyfrsrw6ytZ1xGT9')
+    enable_telemetry = os.getenv('ENABLE_TELEMETRY', False)
+    if logfire_token and enable_telemetry:
+        logfire.configure(environment='dev', token=logfire_token)
+        logfire.instrument_requests()
+        logger.addHandler(logfire.LogfireLoggingHandler())
+except Exception as e:
+    logger.error(f"Error configuring logfire: {e}")
 
 def load_gridbox_config():
     config_file = files('viessmann_gridbox_connector').joinpath('config.json')
@@ -48,10 +59,10 @@ def historical_data_task(gridboxConnector:GridboxConnector, ha_viessmann_histori
         from datetime import datetime, timedelta, timezone
         now = datetime.now(timezone(timedelta(hours=1)))
         now = now.replace(hour=0, minute=0, second=0, microsecond=0)
-
         today = now.isoformat()
         tomorrow = (now + timedelta(days=1)).isoformat()
         measurement = gridboxConnector.retrieve_historical_data(today, tomorrow)
+        midnight_today = now.replace(hour=0, minute=0, second=0, microsecond=0)
         if len(measurement) > 0:
             result = measurement[0]
             total = result["total"]
