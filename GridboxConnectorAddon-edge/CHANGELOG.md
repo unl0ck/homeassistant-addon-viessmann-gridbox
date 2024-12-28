@@ -1,5 +1,15 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.36
+
+### 🔨 Fixed
+
+- last_reset should now working 🙈 🤷
+
+### 🔄 Changed
+
+- bump ha-mqtt-discoverable 0.16.4
+
 ## 2.11.35
 
 ### 🔨 Fixed
