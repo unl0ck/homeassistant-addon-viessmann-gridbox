@@ -99,6 +99,8 @@ def run_addon():
     gridbox_config = load_gridbox_config()
     options_file = ''
     WAIT = int(os.getenv('WAITTIME', "60"))
+    if WAIT < 30:
+        WAIT = 30
     if os.path.exists(opens_file_path):
         options_file = open(opens_file_path)
         options_json = json.load(options_file)
