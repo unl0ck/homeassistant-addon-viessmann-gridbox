@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.40
+
+### 🔨 Fixed
+
+- fixed more step by step good to be test it first on edge
+
 ## 2.11.39
 
 ### 🔨 Fixed
