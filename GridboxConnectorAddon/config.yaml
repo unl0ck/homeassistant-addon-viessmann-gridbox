@@ -30,5 +30,5 @@ schema:
   OverrideMqttPw: password?
   OverrideMqttServer: str?
   OverrideMqttPort: int?
-  log_level: list(TRACE|DEBUG|INFO|WARN|ERROR)
+  log_level: list(TRACE|DEBUG|INFO|WARNING|ERROR)
 image: ghcr.io/unl0ck/homeassistant-addon-viessmann-gridbox-{arch}
