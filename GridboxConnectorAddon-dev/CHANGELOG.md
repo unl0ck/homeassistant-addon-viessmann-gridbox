@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.42
+
+### 🔨 Fixed
+
+- set correct environment
+
 ## 2.11.41
 
 ### 🔨 Fixed
