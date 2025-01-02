@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.41
+
+### 🔨 Fixed
+
+- fixed telemetry default value
+
 ## 2.11.40
 
 ### 🔨 Fixed

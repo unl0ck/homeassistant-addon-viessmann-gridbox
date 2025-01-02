@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: Viessmann Gridbox Connector (dev)
-version: "2.11.40"
+version: "2.11.41"
 slug: "gridbox_connector_dev"
 description: Development version of Viessmann Gridbox Connector
 url: "https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox/tree/main/GridboxConnectorAddon-dev"
@@ -22,6 +22,8 @@ options:
   password: "password"
   wait_time: 60
   log_level: INFO
+  enable_telemetry: False
+
 schema:
   username: str
   password: password
@@ -31,5 +33,6 @@ schema:
   OverrideMqttServer: str?
   OverrideMqttPort: int?
   log_level: list(TRACE|DEBUG|INFO|WARNING|ERROR)
+  enable_telemetry: bool
 image: ghcr.io/unl0ck/homeassistant-addon-viessmann-gridbox-dev-{arch}
 stage: experimental
