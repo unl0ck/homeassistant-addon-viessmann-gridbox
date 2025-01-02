@@ -1,4 +1,4 @@
-ha-mqtt-discoverable==0.16.3
+ha-mqtt-discoverable==0.16.4
 requests==2.32.3
 viessmann-gridbox-connector==1.6.0
 logfire==2.11.0

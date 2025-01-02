@@ -17,6 +17,12 @@ use your credentials from the Viessmann **myGridbox** App or from the Viessmann 
 username: email
 password: password
 wait_time: timeout when will refresh
+OverrideMqttUser: Mqtt user
+OverrideMqttPw: Mqtt password
+OverrideMqttServer: Mqtt Server
+OverrideMqttPort: Mqtt Port
+log_level: select one of this(TRACE|DEBUG|INFO|WARN|ERROR)
+enable_telemetry: Send to logfire logs and exceptions
 ```
 
 if you use an custom setup MQTT-Broker so you can add in the Addon the MQTT settings currently only support MQTT Standard Port 1833 (will fixed later)

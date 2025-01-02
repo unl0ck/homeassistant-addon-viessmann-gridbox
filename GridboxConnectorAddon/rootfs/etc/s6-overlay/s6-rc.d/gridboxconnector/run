@@ -21,7 +21,6 @@ export USERNAME=$(bashio::config 'username')
 export PASSWORD=$(bashio::config 'password')
 export LOG_LEVEL=$(bashio::config 'log_level')
 export ENABLE_TELEMETRY=$(bashio::config 'enable_telemetry')
-export TELEMETRY_SERVER=$(bashio::config 'OverrideTelemetryUrl')
 ls -lash /data
 cd /build/
 ls -lash

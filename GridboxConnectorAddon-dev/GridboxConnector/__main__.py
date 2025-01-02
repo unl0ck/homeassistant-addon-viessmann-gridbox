@@ -66,7 +66,7 @@ def historical_data_task(gridboxConnector:GridboxConnector, ha_viessmann_histori
         if len(measurement) > 0:
             result = measurement[0]
             total = result["total"]
-            ha_viessmann_historical_device.update_sensors(total)
+            ha_viessmann_historical_device.update_sensors(total, last_reset=midnight_today.isoformat())
             if one_time_print or logger.level == logging.DEBUG:
                 logger.info(total)
                 one_time_print = False
@@ -99,8 +99,6 @@ def run_addon():
     gridbox_config = load_gridbox_config()
     options_file = ''
     WAIT = int(os.getenv('WAITTIME', "60"))
-    if WAIT < 30:
-        WAIT = 30
     if os.path.exists(opens_file_path):
         options_file = open(opens_file_path)
         options_json = json.load(options_file)

@@ -35,37 +35,37 @@ class HAViessmannGridboxConnector:
         self.device_info = DeviceInfo(
             name=device_name, identifiers=device_identifiers, manufacturer=device_manufacturer, model=device_model)
         self.logger.info(f"Device Info: {self.device_info}")
-        production_sensor_info = SensorInfo(name="Production", device_class=device_class_of_power, unique_id="gridbox_production"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class)
+        production_sensor_info = SensorInfo(name="Production", device_class=device_class_of_power, unique_id="gridbox_production"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class, value_template=None if state_class is None else "{{ value_json.state }}", last_reset_value_template=None if state_class is None else "{{ value_json.last_reset }}")
         production_settings = Settings(mqtt=mqtt_settings, entity=production_sensor_info)
 
-        grid_sensor_info = SensorInfo(name="Grid", device_class=device_class_of_power, unique_id="gridbox_grid"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class)
+        grid_sensor_info = SensorInfo(name="Grid", device_class=device_class_of_power, unique_id="gridbox_grid"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class, value_template=None if state_class is None else "{{ value_json.state }}", last_reset_value_template=None if state_class is None else "{{ value_json.last_reset }}")
         grid_settings = Settings(mqtt=mqtt_settings, entity=grid_sensor_info)
 
-        photovoltaic_sensor_info = SensorInfo(name="Photovoltaic", device_class=device_class_of_power, unique_id="gridbox_photovoltaic"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class)
+        photovoltaic_sensor_info = SensorInfo(name="Photovoltaic", device_class=device_class_of_power, unique_id="gridbox_photovoltaic"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class, value_template=None if state_class is None else "{{ value_json.state }}", last_reset_value_template=None if state_class is None else "{{ value_json.last_reset }}")
         photovoltaic_settings = Settings(mqtt=mqtt_settings, entity=photovoltaic_sensor_info)
 
         # consumption
-        consumption_household_sensor_info = SensorInfo(name="Consumption", device_class=device_class_of_power, unique_id="gridbox_consumption_household"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class)
+        consumption_household_sensor_info = SensorInfo(name="Consumption", device_class=device_class_of_power, unique_id="gridbox_consumption_household"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class, value_template=None if state_class is None else "{{ value_json.state }}", last_reset_value_template=None if state_class is None else "{{ value_json.last_reset }}")
         consumption_household_settings = Settings(mqtt=mqtt_settings, entity=consumption_household_sensor_info)
 
-        total_consumption_household_sensor_info = SensorInfo(name="Total Consumption", device_class=device_class_of_power, unique_id="total_consumption_household"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class)
+        total_consumption_household_sensor_info = SensorInfo(name="Total Consumption", device_class=device_class_of_power, unique_id="total_consumption_household"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class, value_template=None if state_class is None else "{{ value_json.state }}", last_reset_value_template=None if state_class is None else "{{ value_json.last_reset }}")
         total_consumption_household_settings = Settings(mqtt=mqtt_settings, entity=total_consumption_household_sensor_info)
 
         # Direct Consumption
-        direct_consumption_household_sensor_info = SensorInfo(name="DirectConsumptionHousehold", device_class=device_class_of_power, unique_id="gridbox_direct_consumption_household"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class)
+        direct_consumption_household_sensor_info = SensorInfo(name="DirectConsumptionHousehold", device_class=device_class_of_power, unique_id="gridbox_direct_consumption_household"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class, value_template=None if state_class is None else "{{ value_json.state }}", last_reset_value_template=None if state_class is None else "{{ value_json.last_reset }}")
         direct_consumption_household_settings = Settings(mqtt=mqtt_settings, entity=direct_consumption_household_sensor_info)
 
-        direct_consumption_heatpump_sensor_info = SensorInfo(name="DirectConsumptionHeatPump", device_class=device_class_of_power, unique_id="gridbox_direct_consumption_heatpump"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class)
+        direct_consumption_heatpump_sensor_info = SensorInfo(name="DirectConsumptionHeatPump", device_class=device_class_of_power, unique_id="gridbox_direct_consumption_heatpump"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class, value_template=None if state_class is None else "{{ value_json.state }}", last_reset_value_template=None if state_class is None else "{{ value_json.last_reset }}")
         direct_consumption_heatpump_settings = Settings(mqtt=mqtt_settings, entity=direct_consumption_heatpump_sensor_info)
 
-        direct_consumption_ev_sensor_info = SensorInfo(name="DirectConsumptionEV", device_class=device_class_of_power, unique_id="gridbox_direct_consumption_ev"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class)
+        direct_consumption_ev_sensor_info = SensorInfo(name="DirectConsumptionEV", device_class=device_class_of_power, unique_id="gridbox_direct_consumption_ev"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class, value_template=None if state_class is None else "{{ value_json.state }}", last_reset_value_template=None if state_class is None else "{{ value_json.last_reset }}")
         direct_consumption_ev_settings = Settings(mqtt=mqtt_settings, entity=direct_consumption_ev_sensor_info)
 
         direct_consumption_rate_sensor_info = SensorInfo(name="DirectConsumptionRate", device_class="power_factor", unique_id="gridbox_direct_consumption_rate"+prefix, device=self.device_info, unit_of_measurement="%")
         direct_consumption_rate_settings = Settings(mqtt=mqtt_settings, entity=direct_consumption_rate_sensor_info)
 
         # Self Consumption
-        self_supply_sensor_info = SensorInfo(name="SelfSupply", device_class=device_class_of_power,unique_id="gridbox_self_supply"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class)
+        self_supply_sensor_info = SensorInfo(name="SelfSupply", device_class=device_class_of_power,unique_id="gridbox_self_supply"+prefix, device=self.device_info, unit_of_measurement=unit_of_power, state_class=state_class, value_template=None if state_class is None else "{{ value_json.state }}", last_reset_value_template=None if state_class is None else "{{ value_json.last_reset }}")
         self_supply_settings = Settings(mqtt=mqtt_settings, entity=self_supply_sensor_info)
 
         self_consumption_rate_sensor_info = SensorInfo(name="SelfConsumptionRate", device_class="power_factor", unique_id="gridbox_self_consumption_rate"+prefix, device=self.device_info, unit_of_measurement="%")
