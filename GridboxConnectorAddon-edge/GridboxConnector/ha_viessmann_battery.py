@@ -21,32 +21,32 @@ Methods:
     set_states(level, capacity, power, remaining_charge): Sets the states of the four sensors.
 """
 
-    def __init__(self, mqtt_settings, device_info, name, id, prefix=""):
+    def __init__(self, mqtt_settings, device_info, name, id):
         self.id: str = id
         self.name: str = name
         self.device_info: DeviceInfo = device_info
         self.mqtt_settings: Settings.MQTT = mqtt_settings
 
         self.battery_sensor_info = SensorInfo(
-            name=f"Battery {name} Level", device_class="battery", unique_id=f"gridbox_battery_{name}"+prefix, device=device_info, unit_of_measurement="%")
+            name=f"Battery {name} Level", device_class="battery", unique_id=f"gridbox_battery_{name}", device=device_info, unit_of_measurement="%")
         self.battery_settings = Settings(
             mqtt=mqtt_settings, entity=self.battery_sensor_info)
         self.battery_level = Sensor(self.battery_settings)
 
         self.battery_sensor_capacity = SensorInfo(
-            name=f"Battery {name} Capacity", device_class="energy", unique_id=f"gridbox_battery_level_{name}"+prefix, device=device_info, unit_of_measurement="Wh")
+            name=f"Battery {name} Capacity", device_class="energy", unique_id=f"gridbox_battery_level_{name}", device=device_info, unit_of_measurement="Wh")
         self.battery_settings_capacity = Settings(
             mqtt=mqtt_settings, entity=self.battery_sensor_capacity)
         self.battery_capacity = Sensor(self.battery_settings_capacity)
 
         self.battery_sensor_power = SensorInfo(
-            name=f"Battery {name} Power", device_class="battery", unique_id=f"gridbox_battery_power_{name}"+prefix, device=device_info, unit_of_measurement="W")
+            name=f"Battery {name} Power", device_class="battery", unique_id=f"gridbox_battery_power_{name}", device=device_info, unit_of_measurement="W")
         self.battery_settings_power = Settings(
             mqtt=mqtt_settings, entity=self.battery_sensor_power)
         self.battery_power = Sensor(self.battery_settings_power)
 
         self.battery_sensor_remaining_charge = SensorInfo(
-            name=f"Battery {name} Remaining Charge", device_class="energy", unique_id=f"gridbox_remaining_charge_{name}"+prefix, device=device_info, unit_of_measurement="Wh")
+            name=f"Battery {name} Remaining Charge", device_class="energy", unique_id=f"gridbox_remaining_charge_{name}", device=device_info, unit_of_measurement="Wh")
         self.battery_settings_remaining_charge = Settings(
             mqtt=mqtt_settings, entity=self.battery_sensor_remaining_charge)
         self.battery_remaining_charge = Sensor(

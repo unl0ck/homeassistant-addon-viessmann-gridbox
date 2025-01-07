@@ -17,6 +17,21 @@ class SensorModel(BaseModel):
 
 def load_sensor_by_key(key: str) -> SensorModel:
     with open('models.json') as f:
-        sensors = json.load(f)
+        sensors: dict = json.load(f)
+        sensor_json_value = sensors.get(key, None)
+        if sensor_json_value is None:
+            raise ValueError(f"Sensor with key {key} not found")
         sensor = json.dumps(sensors.get(key))
     return SensorModel.model_validate(from_json(sensor))
+
+
+if __name__ == "__main__":
+    print(repr(load_sensor_by_key("production")))
+    with open('tests/mock_data/mock_data_with_batteries.json') as f:
+        mock_data = json.load(f)
+        for key, value in mock_data.items():
+            try:
+                print(repr(load_sensor_by_key(key)))
+            except ValueError as e:
+                print(e)
+                continue
