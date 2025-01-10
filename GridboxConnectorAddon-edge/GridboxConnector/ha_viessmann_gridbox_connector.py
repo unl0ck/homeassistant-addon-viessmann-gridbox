@@ -3,7 +3,6 @@ from ha_mqtt_discoverable.sensors import Sensor, SensorInfo
 from ha_viessmann_battery import HAViessmannBattery
 from ha_viessmann_ev_charging_station import HAViessmannEVChargingStation
 from ha_viessmann_heater import HAViessmannHeater
-from pydantic import BaseModel
 from sensor_model import SensorModel, load_sensor_by_key
 import logging
 
@@ -37,6 +36,15 @@ class HAViessmannGridboxConnector:
         self.device_info = DeviceInfo(
             name=device_name, identifiers=device_identifiers, manufacturer=device_manufacturer, model=device_model)
         self.logger.info(f"Device Info: {self.device_info}")
+        import json
+        with open('models.json') as f:
+            sensors: dict = json.load(f)
+            for key in sensors.keys():
+                try:
+                    self[key] = self.create_ha_sensor(key)
+                except ValueError as e:
+                    self.logger.error(e)
+                    continue
         # Instantiate the sensors
         self.production_sensor = self.create_ha_sensor("production")
         self.grid_sensor = self.create_ha_sensor("grid")
@@ -72,7 +80,7 @@ class HAViessmannGridboxConnector:
             mqtt_settings, self.device_info, "sum", "")
 
     def create_ha_sensor(self, key: str):
-        sensor = load_sensor_by_key(key)
+        sensor: SensorModel = load_sensor_by_key(key)
         sensor_info = SensorInfo(name=sensor.name, device_class=sensor.device_class, unique_id=sensor.unique_id, device=self.device_info, unit_of_measurement=sensor.unit,
                                  state_class=sensor.state_class, value_template=sensor.value_template, last_reset_value_template=sensor.last_reset_topic)
         settings = Settings(mqtt=self.mqtt_settings, entity=sensor_info)
