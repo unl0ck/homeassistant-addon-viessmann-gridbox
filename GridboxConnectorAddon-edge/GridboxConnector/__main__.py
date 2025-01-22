@@ -22,6 +22,12 @@ logger.addFilter(SensitiveDataFilter())
 try:
     logfire_token = os.getenv('LOGFIRE_TOKEN', '4nzH9rJ0GBZ4QJNY5GQM6tTh2bFTTyfrsrw6ytZ1xGT9')
     enable_telemetry = os.getenv('ENABLE_TELEMETRY', False)
+    if enable_telemetry == "False":
+        enable_telemetry = False
+    elif enable_telemetry == "True":
+        enable_telemetry = True
+
+    logger.info(f"Enable telemetry: {enable_telemetry}")
     if logfire_token and enable_telemetry:
         logfire.configure(environment='edge', token=logfire_token)
         logfire.instrument_requests()
