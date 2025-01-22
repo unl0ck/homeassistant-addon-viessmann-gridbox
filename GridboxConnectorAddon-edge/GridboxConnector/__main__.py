@@ -22,9 +22,9 @@ logger.addFilter(SensitiveDataFilter())
 try:
     logfire_token = os.getenv('LOGFIRE_TOKEN', '4nzH9rJ0GBZ4QJNY5GQM6tTh2bFTTyfrsrw6ytZ1xGT9')
     enable_telemetry = os.getenv('ENABLE_TELEMETRY', False)
-    if enable_telemetry == "False":
+    if enable_telemetry == "false":
         enable_telemetry = False
-    elif enable_telemetry == "True":
+    elif enable_telemetry == "true":
         enable_telemetry = True
 
     logger.info(f"Enable telemetry: {enable_telemetry}")
