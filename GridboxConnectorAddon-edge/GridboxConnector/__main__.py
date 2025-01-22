@@ -25,7 +25,7 @@ try:
     if logfire_token and enable_telemetry:
         logfire.configure(environment='edge', token=logfire_token)
         logfire.instrument_requests()
-        logger.addHandler(logfire.LogfireLoggingHandler())
+        #logger.addHandler(logfire.LogfireLoggingHandler())
 except Exception as e:
     logger.error(f"Error configuring logfire: {e}")
 
@@ -99,6 +99,8 @@ def run_addon():
     gridbox_config = load_gridbox_config()
     options_file = ''
     WAIT = int(os.getenv('WAITTIME', "60"))
+    if WAIT < 60:
+        WAIT = 60
     if os.path.exists(opens_file_path):
         options_file = open(opens_file_path)
         options_json = json.load(options_file)

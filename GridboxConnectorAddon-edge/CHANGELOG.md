@@ -1,5 +1,15 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.43
+
+### 🚀 Added
+
+- hopefully added Battery historical data
+
+### 🔨 Fixed
+
+- removed logs from logfire
+
 ## 2.11.42
 
 ### 🔨 Fixed
