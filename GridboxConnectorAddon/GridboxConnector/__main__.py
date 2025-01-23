@@ -22,10 +22,16 @@ logger.addFilter(SensitiveDataFilter())
 try:
     logfire_token = os.getenv('LOGFIRE_TOKEN', '4nzH9rJ0GBZ4QJNY5GQM6tTh2bFTTyfrsrw6ytZ1xGT9')
     enable_telemetry = os.getenv('ENABLE_TELEMETRY', False)
+    if enable_telemetry == "false":
+        enable_telemetry = False
+    elif enable_telemetry == "true":
+        enable_telemetry = True
+
+    logger.info(f"Enable telemetry: {enable_telemetry}")
     if logfire_token and enable_telemetry:
         logfire.configure(environment='live', token=logfire_token)
         logfire.instrument_requests()
-        logger.addHandler(logfire.LogfireLoggingHandler())
+        #logger.addHandler(logfire.LogfireLoggingHandler())
 except Exception as e:
     logger.error(f"Error configuring logfire: {e}")
 
@@ -99,6 +105,8 @@ def run_addon():
     gridbox_config = load_gridbox_config()
     options_file = ''
     WAIT = int(os.getenv('WAITTIME', "60"))
+    if WAIT < 60:
+        WAIT = 60
     if os.path.exists(opens_file_path):
         options_file = open(opens_file_path)
         options_json = json.load(options_file)

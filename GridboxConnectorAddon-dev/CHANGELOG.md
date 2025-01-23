@@ -1,5 +1,17 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.46
+
+### 🔨 Fixed
+
+- read telemetry option
+
+## 2.11.43
+
+### 🔨 Fixed
+
+- removed logs from logfire
+
 ## 2.11.42
 
 ### 🔨 Fixed

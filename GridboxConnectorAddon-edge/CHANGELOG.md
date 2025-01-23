@@ -8,10 +8,6 @@
 
 ## 2.11.43
 
-### 🚀 Added
-
-- hopefully added Battery historical data
-
 ### 🔨 Fixed
 
 - removed logs from logfire
