@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.49
+
+### 🔨 Fixed
+
+- fixed battery live data sorry guys
+
 ## 2.11.48
 
 ### 🔨 Fixed

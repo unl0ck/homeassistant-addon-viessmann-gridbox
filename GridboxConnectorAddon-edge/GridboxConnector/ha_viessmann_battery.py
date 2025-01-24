@@ -58,16 +58,16 @@ Methods:
         self.battery_capacity.set_state(capacity)
         self.battery_power.set_state(power)
         self.battery_remaining_charge.set_state(remaining_charge)
-        # if charge is not None and self.battery_charge is not None:
-        #     self.battery_sensor_charge = SensorInfo(name=f"Battery {self.name} Charge", device_class="energy", unique_id=f"gridbox_charge_{self.name}"+self.prefix, device=self.device_info, unit_of_measurement="Wh", state_class=self.state_class, value_template=None if self.state_class is None else "{{ value_json.state }}", last_reset_value_template=None if self.state_class is None else "{{ value_json.last_reset }}")
-        #     self.battery_settings_charge = Settings(mqtt=self.mqtt_settings, entity=self.battery_sensor_charge)
-        #     self.battery_charge = Sensor(self.battery_settings_charge)
-        # if charge is not None:
-        #     self.battery_charge.set_state(charge)
+        if charge is not None and self.battery_charge is not None:
+            self.battery_sensor_charge = SensorInfo(name=f"Battery {self.name} Charge", device_class="energy", unique_id=f"gridbox_charge_{self.name}"+self.prefix, device=self.device_info, unit_of_measurement="Wh", state_class=self.state_class, value_template=None if self.state_class is None else "{{ value_json.state }}", last_reset_value_template=None if self.state_class is None else "{{ value_json.last_reset }}")
+            self.battery_settings_charge = Settings(mqtt=self.mqtt_settings, entity=self.battery_sensor_charge)
+            self.battery_charge = Sensor(self.battery_settings_charge)
+        if charge is not None:
+            self.battery_charge.set_state(charge)
 
-        # if discharge is not None and self.battery_discharge is not None:
-        #     self.battery_sensor_discharge = SensorInfo(name=f"Battery {self.name} Discharge", device_class="energy", unique_id=f"gridbox_discharge_{self.name}"+self.prefix, device=self.device_info, unit_of_measurement="Wh", state_class=self.state_class, value_template=None if self.state_class is None else "{{ value_json.state }}", last_reset_value_template=None if self.state_class is None else "{{ value_json.last_reset }}")
-        #     self.battery_settings_discharge = Settings(mqtt=self.mqtt_settings, entity=self.battery_sensor_discharge)
-        #     self.battery_discharge = Sensor(self.battery_settings_discharge)
-        # if discharge is not None:
-        #     self.battery_discharge.set_state(discharge)
+        if discharge is not None and self.battery_discharge is not None:
+            self.battery_sensor_discharge = SensorInfo(name=f"Battery {self.name} Discharge", device_class="energy", unique_id=f"gridbox_discharge_{self.name}"+self.prefix, device=self.device_info, unit_of_measurement="Wh", state_class=self.state_class, value_template=None if self.state_class is None else "{{ value_json.state }}", last_reset_value_template=None if self.state_class is None else "{{ value_json.last_reset }}")
+            self.battery_settings_discharge = Settings(mqtt=self.mqtt_settings, entity=self.battery_sensor_discharge)
+            self.battery_discharge = Sensor(self.battery_settings_discharge)
+        if discharge is not None:
+            self.battery_discharge.set_state(discharge)
