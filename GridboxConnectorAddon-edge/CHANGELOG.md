@@ -1,5 +1,12 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.52
+
+### 🚀 Added
+
+- setup.ini to read environment
+- added unittest to workflow
+
 ## 2.11.51
 
 ### 🔨 Fixed
