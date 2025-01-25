@@ -146,7 +146,7 @@ class HAViessmannGridboxConnector:
             remaining_charge = round(float(battery.get("remainingCharge", "0")),2)
             charge = round(float(battery.get("charge", "-1")),2)
             discharge = round(float(battery.get("discharge", "-1")),2)
-            self.battery_sum.set_states(state_of_charge, capacity, power, remaining_charge, charge, discharge)
+            self.battery_sum.set_states(state_of_charge, capacity, power, remaining_charge, charge, discharge, last_reset)
 
         if "batteries" in measurement:
             batteries: list = measurement.get("batteries", [])

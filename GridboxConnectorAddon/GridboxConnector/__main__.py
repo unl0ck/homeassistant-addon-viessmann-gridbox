@@ -31,7 +31,9 @@ try:
     if logfire_token and enable_telemetry:
         logfire.configure(environment='live', token=logfire_token)
         logfire.instrument_requests()
-        #logger.addHandler(logfire.LogfireLoggingHandler())
+        logfire_handler = logfire.LogfireLoggingHandler()
+        logfire_handler.setLevel(logging.ERROR)
+        logger.addHandler(logfire_handler)
 except Exception as e:
     logger.error(f"Error configuring logfire: {e}")
 
@@ -77,7 +79,7 @@ def historical_data_task(gridboxConnector:GridboxConnector, ha_viessmann_histori
                 logger.info(total)
                 one_time_print = False
         else:
-            logger.warning("No data received")
+            logger.warning("No data received I will Refresh token")
             gridboxConnector.init_auth()
         time.sleep(WAIT)
 

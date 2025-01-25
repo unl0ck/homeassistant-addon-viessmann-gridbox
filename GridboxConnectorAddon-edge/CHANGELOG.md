@@ -1,5 +1,14 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.51
+
+### 🔨 Fixed
+
+- fixed unittests
+- fixed historical data exception workaround try catch
+- modified unittests for batteries
+- added logfire for logger only error logs
+
 ## 2.11.50
 
 ### 🔨 Fixed

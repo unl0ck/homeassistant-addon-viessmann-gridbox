@@ -44,15 +44,17 @@ class TestGridboxConnectorMethods(unittest.TestCase):
              patch.object(viessmann_gridbox_connector.direct_consumption_household_sensor, 'set_state') as mock_direct_consumption_household_sensor, \
              patch.object(viessmann_gridbox_connector.direct_consumption_heatpump_sensor, 'set_state') as mock_direct_consumption_heatpump_sensor, \
              patch.object(viessmann_gridbox_connector.direct_consumption_rate_sensor, 'set_state') as mock_direct_consumption_rate_sensor, \
+             patch.object(viessmann_gridbox_connector.battery_sum, 'set_states') as mock_battery_sum_sensor, \
              patch.object(viessmann_gridbox_connector.self_sufficiency_rate_sensor, 'set_state') as mock_self_sufficiency_rate_sensor:
             viessmann_gridbox_connector.update_sensors(result[0])
-            mock_self_supply_sensor.assert_called_once_with(600.0)
+            mock_self_supply_sensor.assert_called_once_with(600.0, last_reset=None)
             mock_self_consumtion_rate_sensor.assert_called_once_with(96.1)
-            mock_consumption_household_sensor.assert_called_once_with(600)
-            mock_direct_consumption_household_sensor.assert_called_once_with(600.0)
-            mock_direct_consumption_heatpump_sensor.assert_called_once_with(0.0)
+            mock_consumption_household_sensor.assert_called_once_with(600, last_reset=None)
+            mock_direct_consumption_household_sensor.assert_called_once_with(600.0, last_reset=None)
+            mock_direct_consumption_heatpump_sensor.assert_called_once_with(0.0, last_reset=None)
             mock_direct_consumption_rate_sensor.assert_called_once_with(39.68)
             mock_self_sufficiency_rate_sensor.assert_called_once_with(100.0)
+            mock_battery_sum_sensor.assert_called_once_with(77.0, 10000.0, -853.0, 7700.0, -1.0, -1.0, None)
 
     @patch('paho.mqtt.client.Client')
     @patch.object(GridboxConnector, 'init_auth', return_value=None)
@@ -83,9 +85,9 @@ class TestGridboxConnectorMethods(unittest.TestCase):
         viessmann_gridbox_connector = HAViessmannGridboxConnector(
             mqtt_settings)
 
-        with patch.object(viessmann_gridbox_connector.ev_sum_sensor, 'set_state') as mock_ev_sum_sensor:
+        with patch.object(viessmann_gridbox_connector.ev_sum, 'set_states') as mock_ev_sum:
             viessmann_gridbox_connector.update_sensors(result[0])
-            mock_ev_sum_sensor.assert_called_once_with(7930.4,0,0,0,0,0)
+            mock_ev_sum.assert_called_once_with(7930.4,0,0,0,0,0)
 
     @patch('paho.mqtt.client.Client')
     @patch.object(GridboxConnector, 'init_auth', return_value=None)
@@ -111,13 +113,11 @@ class TestGridboxConnectorMethods(unittest.TestCase):
         mqtt_server = "mqtt_server"
         mqtt_user = "mqtt_user"
         mqtt_pw = "mqtt_pw"
-        mqtt_settings = Settings.MQTT(
-            host=mqtt_server, username=mqtt_user, password=mqtt_pw)
-        viessmann_gridbox_connector = HAViessmannGridboxConnector(
-            mqtt_settings)
+        mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw)
+        viessmann_gridbox_connector = HAViessmannGridboxConnector(mqtt_settings)
 
-        with patch.object(viessmann_gridbox_connector.heater_sensor, 'set_state') as mock_heater_sensor:
-            viessmann_gridbox_connector.update_sensors(result[0])
+        with patch.object(viessmann_gridbox_connector.heater_sensor, 'set_states') as mock_heater_sensor:
+            viessmann_gridbox_connector.update_sensors(result[0], last_reset=None)
             mock_heater_sensor.assert_called_once_with(3676,70.9)
 
     def test_logger(self):

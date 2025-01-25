@@ -1,6 +1,6 @@
 from ha_mqtt_discoverable.sensors import Sensor, SensorInfo
 from ha_mqtt_discoverable import Settings, DeviceInfo
-
+import logging
 
 class HAViessmannBattery:
     """
@@ -21,11 +21,12 @@ Methods:
     set_states(level, capacity, power, remaining_charge): Sets the states of the four sensors.
 """
 
-    def __init__(self, mqtt_settings, device_info, name, id, prefix="", unit_of_power="W", state_class=None):
+    def __init__(self, mqtt_settings, device_info, name, id,logger=logging.getLogger(__name__), prefix="", unit_of_power="W", state_class=None):
         self.id: str = id
         self.name: str = name
         self.device_info: DeviceInfo = device_info
         self.mqtt_settings: Settings.MQTT = mqtt_settings
+        self.logger: logging.Logger = logger
         self.prefix: str = prefix
         self.unit_of_power: str = unit_of_power
         self.state_class: str = state_class
@@ -53,21 +54,27 @@ Methods:
     def get_name(self):
         return self.name
 
-    def set_states(self, level, capacity, power, remaining_charge, charge=-1, discharge=-1):
+    def set_states(self, level, capacity, power, remaining_charge, charge=-1, discharge=-1, last_reset=None):
         self.battery_level.set_state(level)
         self.battery_capacity.set_state(capacity)
         self.battery_power.set_state(power)
         self.battery_remaining_charge.set_state(remaining_charge)
-        if charge >= 0 and self.battery_charge is not None:
-            self.battery_sensor_charge = SensorInfo(name=f"Battery {self.name} Charge", device_class="energy", unique_id=f"gridbox_charge_{self.name}"+self.prefix, device=self.device_info, unit_of_measurement="Wh", state_class=self.state_class, value_template=None if self.state_class is None else "{{ value_json.state }}", last_reset_value_template=None if self.state_class is None else "{{ value_json.last_reset }}")
-            self.battery_settings_charge = Settings(mqtt=self.mqtt_settings, entity=self.battery_sensor_charge)
-            self.battery_charge = Sensor(self.battery_settings_charge)
-        if charge >= 0:
-            self.battery_charge.set_state(charge)
+        try:
+            if charge >= 0 and self.battery_charge is not None:
+                self.battery_sensor_charge = SensorInfo(name=f"Battery {self.name} Charge", device_class="energy", unique_id=f"gridbox_charge_{self.name}"+self.prefix, device=self.device_info, unit_of_measurement="Wh", state_class=self.state_class, value_template=None if self.state_class is None else "{{ value_json.state }}", last_reset_value_template=None if self.state_class is None else "{{ value_json.last_reset }}")
+                self.battery_settings_charge = Settings(mqtt=self.mqtt_settings, entity=self.battery_sensor_charge)
+                self.battery_charge = Sensor(self.battery_settings_charge)
+            if charge >= 0 and self.battery_charge is not None:
+                self.battery_charge.set_state(charge, last_reset)
+        except Exception as e:
+            self.logger.error(f"Error setting charge state: {e}")
+        try:
 
-        if discharge >= 0 and self.battery_discharge is not None:
-            self.battery_sensor_discharge = SensorInfo(name=f"Battery {self.name} Discharge", device_class="energy", unique_id=f"gridbox_discharge_{self.name}"+self.prefix, device=self.device_info, unit_of_measurement="Wh", state_class=self.state_class, value_template=None if self.state_class is None else "{{ value_json.state }}", last_reset_value_template=None if self.state_class is None else "{{ value_json.last_reset }}")
-            self.battery_settings_discharge = Settings(mqtt=self.mqtt_settings, entity=self.battery_sensor_discharge)
-            self.battery_discharge = Sensor(self.battery_settings_discharge)
-        if discharge >= 0:
-            self.battery_discharge.set_state(discharge)
+            if discharge >= 0 and self.battery_discharge is not None:
+                self.battery_sensor_discharge = SensorInfo(name=f"Battery {self.name} Discharge", device_class="energy", unique_id=f"gridbox_discharge_{self.name}"+self.prefix, device=self.device_info, unit_of_measurement="Wh", state_class=self.state_class, value_template=None if self.state_class is None else "{{ value_json.state }}", last_reset_value_template=None if self.state_class is None else "{{ value_json.last_reset }}")
+                self.battery_settings_discharge = Settings(mqtt=self.mqtt_settings, entity=self.battery_sensor_discharge)
+                self.battery_discharge = Sensor(self.battery_settings_discharge)
+            if discharge >= 0 and self.battery_discharge is not None:
+                self.battery_discharge.set_state(discharge, last_reset)
+        except Exception as e:
+            self.logger.error(f"Error setting discharge state: {e}")
