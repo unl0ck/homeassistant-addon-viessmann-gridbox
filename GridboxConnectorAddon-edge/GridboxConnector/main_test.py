@@ -6,7 +6,7 @@ from ha_mqtt_discoverable import Settings
 from ha_viessmann_gridbox_connector import HAViessmannGridboxConnector
 from paho.mqtt.client import MQTT_ERR_SUCCESS
 from ha_mqtt_discoverable.sensors import Sensor
-
+os.environ['LOG_LEVEL'] = 'ERROR'
 class TestGridboxConnectorMethods(unittest.TestCase):
 
     @patch('paho.mqtt.client.Client')
