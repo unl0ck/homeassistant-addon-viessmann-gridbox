@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.53
+
+### 🔨 Fixed
+
+- fixed Historical Data Battery
+
 ## 2.11.52
 
 ### 🚀 Added
