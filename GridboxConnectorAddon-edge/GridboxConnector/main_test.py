@@ -158,8 +158,9 @@ class TestGridboxConnectorMethods(unittest.TestCase):
         with patch.object(viessmann_gridbox_historical_device.battery_sum, 'set_states') as mock_battery_sum_sensor:
             viessmann_gridbox_historical_device.update_sensors(result[0], last_reset=midnight_today.isoformat())
             mock_battery_sum_sensor.assert_called_once_with(3.3195323553890965, 6354.166666666667, 0.0, 0.0, 548.55, 3612.91, '2023-01-01T00:00:00+01:00')
-            self.assertIsNotNone(viessmann_gridbox_historical_device.battery_sum.battery_charge)
-            self.assertIsNotNone(viessmann_gridbox_historical_device.battery_sum.battery_discharge)
+        viessmann_gridbox_historical_device.update_sensors(result[0], last_reset=midnight_today.isoformat())
+        self.assertIsNotNone(viessmann_gridbox_historical_device.battery_sum.battery_charge)
+        self.assertIsNotNone(viessmann_gridbox_historical_device.battery_sum.battery_discharge)
 
 
     def test_logger(self):

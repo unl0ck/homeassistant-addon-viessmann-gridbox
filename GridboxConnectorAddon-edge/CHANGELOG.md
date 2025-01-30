@@ -1,5 +1,12 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.54
+
+### 🔨 Fixed
+
+- unit test for battery in historical data
+
+
 ## 2.11.53
 
 ### 🔨 Fixed
