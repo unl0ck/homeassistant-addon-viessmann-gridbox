@@ -122,7 +122,7 @@ class TestGridboxConnectorMethods(unittest.TestCase):
     @patch.object(GridboxConnector, 'init_auth', return_value=None)
     @patch.object(GridboxConnector, '__init__', return_value=None)
     @patch.object(GridboxConnector, 'retrieve_historical_data')
-    def test_main_heater(self, mock_retrieve_historical_data, mock_init, mock_init_auth,mock_mqtt_client):
+    def test_main_historical_data(self, mock_retrieve_historical_data, mock_init, mock_init_auth,mock_mqtt_client):
         # Load mock data from JSON file
         with open('tests/mock_data/mock_data_historical_with_heater_and_battery.json') as f:
             mock_data = [json.load(f)]
@@ -158,6 +158,8 @@ class TestGridboxConnectorMethods(unittest.TestCase):
         with patch.object(viessmann_gridbox_historical_device.battery_sum, 'set_states') as mock_battery_sum_sensor:
             viessmann_gridbox_historical_device.update_sensors(result[0], last_reset=midnight_today.isoformat())
             mock_battery_sum_sensor.assert_called_once_with(3.3195323553890965, 6354.166666666667, 0.0, 0.0, 548.55, 3612.91, '2023-01-01T00:00:00+01:00')
+            self.assertIsNotNone(viessmann_gridbox_historical_device.battery_sum.battery_charge)
+            self.assertIsNotNone(viessmann_gridbox_historical_device.battery_sum.battery_discharge)
 
 
     def test_logger(self):
