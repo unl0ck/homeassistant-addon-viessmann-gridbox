@@ -59,9 +59,6 @@ Methods:
         self.battery_capacity.set_state(capacity)
         self.battery_power.set_state(power)
         self.battery_remaining_charge.set_state(remaining_charge)
-        if charge == -1 and discharge == -1:
-            charge = 1000
-            discharge = 1000
         try:
             if charge >= 0 and self.battery_charge is None:
                 self.battery_sensor_charge = SensorInfo(name=f"Battery {self.name} Charge", device_class="energy", unique_id=f"gridbox_charge_{self.name}"+self.prefix, device=self.device_info, unit_of_measurement="Wh", state_class=self.state_class, value_template=None if self.state_class is None else "{{ value_json.state }}", last_reset_value_template=None if self.state_class is None else "{{ value_json.last_reset }}")

@@ -1,5 +1,48 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.58
+
+### 🔨 Fixed
+
+- removed temp Battery value
+
+## 2.11.57
+
+### 🔨 Fixed
+
+- added temp Battery value
+
+## 2.11.56
+
+### 🔨 Fixed
+
+- added temp Battery value
+
+## 2.11.55
+
+### 🔨 Fixed
+
+- version number
+
+## 2.11.54
+
+### 🔨 Fixed
+
+- unit test for battery in historical data
+
+## 2.11.53
+
+### 🔨 Fixed
+
+- fixed Historical Data Battery
+
+## 2.11.52
+
+### 🚀 Added
+
+- setup.ini to read environment
+- added unittest to workflow
+
 ## 2.11.51
 
 ### 🔨 Fixed
