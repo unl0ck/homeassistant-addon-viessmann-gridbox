@@ -138,15 +138,15 @@ class HAViessmannGridboxConnector:
         if "selfSufficiencyRate" in measurement:
             self.self_sufficiency_rate_sensor.set_state(round(float(measurement.get("selfSufficiencyRate", "0"))*100,2))
 
-        if "battery" in measurement:
-            battery: dict = measurement.get("battery", {})
-            state_of_charge = float(battery.get("stateOfCharge", "0"))*100
-            capacity = float(battery.get("capacity", "0"))
-            power = round(float(battery.get("power", "0")),2)
-            remaining_charge = round(float(battery.get("remainingCharge", "0")),2)
-            charge = round(float(battery.get("charge", "-1")),2)
-            discharge = round(float(battery.get("discharge", "-1")),2)
-            self.battery_sum.set_states(state_of_charge, capacity, power, remaining_charge, charge, discharge, last_reset)
+        #if "battery" in measurement:
+        battery: dict = measurement.get("battery", {"stateOfCharge": "0", "capacity": "0", "power": "0", "remainingCharge": "0", "charge": "-1", "discharge": "-1"})
+        state_of_charge = float(battery.get("stateOfCharge", "0"))*100
+        capacity = float(battery.get("capacity", "0"))
+        power = round(float(battery.get("power", "0")),2)
+        remaining_charge = round(float(battery.get("remainingCharge", "0")),2)
+        charge = round(float(battery.get("charge", "-1")),2)
+        discharge = round(float(battery.get("discharge", "-1")),2)
+        self.battery_sum.set_states(state_of_charge, capacity, power, remaining_charge, charge, discharge, last_reset)
 
         if "batteries" in measurement:
             batteries: list = measurement.get("batteries", [])
