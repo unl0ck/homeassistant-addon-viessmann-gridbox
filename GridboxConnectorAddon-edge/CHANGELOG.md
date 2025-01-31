@@ -1,9 +1,17 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
-## 2.11.55
+
+## 2.11.57
 
 ### 🔨 Fixed
 
 - added temp Battery value
+
+## 2.11.56
+
+### 🔨 Fixed
+
+- added temp Battery value
+
 ## 2.11.55
 
 ### 🔨 Fixed
