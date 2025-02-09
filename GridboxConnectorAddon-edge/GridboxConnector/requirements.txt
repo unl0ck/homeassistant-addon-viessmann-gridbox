@@ -2,7 +2,7 @@ ha-mqtt-discoverable==0.16.4
 requests==2.32.3
 viessmann-gridbox-connector==1.7.2
 logfire==3.4.0
-opentelemetry-instrumentation-requests==0.50b0
+opentelemetry-instrumentation-requests==0.51b0
 configparser==7.1.0
 coverage==7.6.10
 bump-my-version==0.31.0
