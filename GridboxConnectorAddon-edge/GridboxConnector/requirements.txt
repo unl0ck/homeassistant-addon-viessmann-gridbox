@@ -5,4 +5,4 @@ logfire==3.5.3
 opentelemetry-instrumentation-requests==0.51b0
 configparser==7.1.0
 coverage==7.6.11
-bump-my-version==0.32.0
+bump-my-version==0.32.1
