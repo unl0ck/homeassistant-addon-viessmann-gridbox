@@ -1,5 +1,7 @@
 name: Builder
-
+permissions:
+  contents: read
+  pull-requests: write
 env:
   BUILD_ARGS: "--test"
   MONITORED_FILES: "build.yaml config.yaml Dockerfile rootfs GridboxConnectorAddon GridboxConnectorAddon-dev GridboxConnectorAddon-edge"
