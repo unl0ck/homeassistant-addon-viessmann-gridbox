@@ -1,7 +1,7 @@
 ha-mqtt-discoverable==0.18.0
 requests==2.32.3
 viessmann-gridbox-connector==1.7.2
-logfire==3.6.2
+logfire==3.7.1
 opentelemetry-instrumentation-requests==0.51b0
 configparser==7.2.0
 coverage==7.6.12
