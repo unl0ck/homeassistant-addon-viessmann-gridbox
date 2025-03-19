@@ -1,87 +1,89 @@
 {
-  "production": {
-    "name": "Production",
-    "unit": "W",
-    "device_class": "power",
-    "factor": 1,
-    "unique_id": "production"
-  },
-  "grid": {
-    "name": "Grid",
-    "unit": "W",
-    "device_class": "power",
-    "factor": 1,
-    "unique_id": "grid"
-  },
-  "photovoltaic": {
-    "name": "Photovoltaic",
-    "unit": "W",
-    "device_class": "power",
-    "factor": 1,
-    "unique_id": "photovoltaic"
-  },
-  "consumption": {
-    "name": "Consumption",
-    "unit": "W",
-    "device_class": "power",
-    "factor": 1,
-    "unique_id": "consumption_household"
-  },
-  "totalConsumption": {
-    "name": "Total Consumption",
-    "unit": "W",
-    "device_class": "power",
-    "factor": 1,
-    "unique_id": "viessmann_total_consumption_household"
-  },
-  "directConsumptionHousehold": {
-    "name": "DirectConsumptionHousehold",
-    "unit": "W",
-    "device_class": "power",
-    "factor": 1,
-    "unique_id": "direct_consumption_household"
-  },
-  "directConsumptionHeatPump": {
-    "name": "DirectConsumptionHeatPump",
-    "unit": "W",
-    "device_class": "power",
-    "factor": 1,
-    "unique_id": "direct_consumption_heatpump"
-  },
-  "directConsumptionEV": {
-    "name": "DirectConsumptionEV",
-    "unit": "W",
-    "device_class": "power",
-    "factor": 1,
-    "unique_id": "direct_consumption_ev"
-  },
-  "directConsumptionRate": {
-    "name": "DirectConsumptionRate",
-    "unit": "%",
-    "device_class": "power_factor",
-    "factor": 100,
-    "unique_id": "direct_consumption_rate"
-  },
-  "selfSupply": {
-    "name": "SelfSupply",
-    "unit": "W",
-    "device_class": "power",
-    "factor": 1,
-    "unique_id": "self_supply"
-  },
-  "selfConsumptionRate": {
-    "name": "SelfConsumptionRate",
-    "unit": "%",
-    "device_class": "power_factor",
-    "factor": 100,
-    "unique_id": "self_consumption_rate"
-  },
-  "selfSufficiencyRate": {
-    "name": "SelfSufficiencyRate",
-    "unit": "%",
-    "device_class": "power_factor",
-    "factor": 100,
-    "unique_id": "self_sufficiency_rate"
+  "base": {
+    "production": {
+      "name": "Production",
+      "unit": "W",
+      "device_class": "power",
+      "factor": 1,
+      "unique_id": "production"
+    },
+    "grid": {
+      "name": "Grid",
+      "unit": "W",
+      "device_class": "power",
+      "factor": 1,
+      "unique_id": "grid"
+    },
+    "photovoltaic": {
+      "name": "Photovoltaic",
+      "unit": "W",
+      "device_class": "power",
+      "factor": 1,
+      "unique_id": "photovoltaic"
+    },
+    "consumption": {
+      "name": "Consumption",
+      "unit": "W",
+      "device_class": "power",
+      "factor": 1,
+      "unique_id": "consumption_household"
+    },
+    "totalConsumption": {
+      "name": "Total Consumption",
+      "unit": "W",
+      "device_class": "power",
+      "factor": 1,
+      "unique_id": "viessmann_total_consumption_household"
+    },
+    "directConsumptionHousehold": {
+      "name": "DirectConsumptionHousehold",
+      "unit": "W",
+      "device_class": "power",
+      "factor": 1,
+      "unique_id": "direct_consumption_household"
+    },
+    "directConsumptionHeatPump": {
+      "name": "DirectConsumptionHeatPump",
+      "unit": "W",
+      "device_class": "power",
+      "factor": 1,
+      "unique_id": "direct_consumption_heatpump"
+    },
+    "directConsumptionEV": {
+      "name": "DirectConsumptionEV",
+      "unit": "W",
+      "device_class": "power",
+      "factor": 1,
+      "unique_id": "direct_consumption_ev"
+    },
+    "directConsumptionRate": {
+      "name": "DirectConsumptionRate",
+      "unit": "%",
+      "device_class": "power_factor",
+      "factor": 100,
+      "unique_id": "direct_consumption_rate"
+    },
+    "selfSupply": {
+      "name": "SelfSupply",
+      "unit": "W",
+      "device_class": "power",
+      "factor": 1,
+      "unique_id": "self_supply"
+    },
+    "selfConsumptionRate": {
+      "name": "SelfConsumptionRate",
+      "unit": "%",
+      "device_class": "power_factor",
+      "factor": 100,
+      "unique_id": "self_consumption_rate"
+    },
+    "selfSufficiencyRate": {
+      "name": "SelfSufficiencyRate",
+      "unit": "%",
+      "device_class": "power_factor",
+      "factor": 100,
+      "unique_id": "self_sufficiency_rate"
+    }
   },
   "battery": {
     "stateOfCharge": {

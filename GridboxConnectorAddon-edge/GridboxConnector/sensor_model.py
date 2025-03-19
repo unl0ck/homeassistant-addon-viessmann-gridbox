@@ -15,14 +15,16 @@ class SensorModel(BaseModel):
     last_reset_topic: Optional[str] = None
 
 
-def load_sensor_by_key(key: str) -> SensorModel:
-    with open('models.json') as f:
+def load_sensor_by_key(key: str, path: str = "models/models.json", type: str = "base") -> SensorModel:
+    with open(path) as f:
         sensors: dict = json.load(f)
-        sensor_json_value = sensors.get(key, None)
-        if sensor_json_value is None:
-            raise ValueError(f"Sensor with key {key} not found")
-        sensor = json.dumps(sensors.get(key))
-    return SensorModel.model_validate(from_json(sensor))
+        type_json = sensors.get(type, None)
+        if type_json is None:
+            raise ValueError(f"Type {key} not found")
+        sensor_json = type_json.get(key, None)
+        if sensor_json is None:
+            raise ValueError(f"Sensor {key} not found")
+    return SensorModel.model_validate(sensor_json)
 
 
 if __name__ == "__main__":
