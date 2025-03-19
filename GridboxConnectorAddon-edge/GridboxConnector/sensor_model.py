@@ -12,7 +12,7 @@ class SensorModel(BaseModel):
     unique_id: Optional[str] = None
     state_class: Optional[str] = None
     value_template: Optional[str] = None
-    last_reset_topic: Optional[str] = None
+    last_reset_value_template: Optional[str] = None
 
 
 def load_sensor_by_key(key: str, path: str = "models/models.json", type: str = "base") -> SensorModel:
@@ -34,6 +34,14 @@ if __name__ == "__main__":
         for key, value in mock_data.items():
             try:
                 print(repr(load_sensor_by_key(key)))
+            except ValueError as e:
+                print(e)
+                continue
+    with open('tests/mock_data/mock_data_with_batteries.json') as f:
+        mock_data = json.load(f)
+        for key, value in mock_data.items():
+            try:
+                print(repr(load_sensor_by_key(key=key, path="models/models_historical.json")))
             except ValueError as e:
                 print(e)
                 continue
