@@ -1,0 +1,176 @@
+{
+  "production": {
+    "name": "Production",
+    "unit": "W",
+    "device_class": "power",
+    "factor": 1,
+    "unique_id": "production"
+  },
+  "grid": {
+    "name": "Grid",
+    "unit": "W",
+    "device_class": "power",
+    "factor": 1,
+    "unique_id": "grid"
+  },
+  "photovoltaic": {
+    "name": "Photovoltaic",
+    "unit": "W",
+    "device_class": "power",
+    "factor": 1,
+    "unique_id": "photovoltaic"
+  },
+  "consumption": {
+    "name": "Consumption",
+    "unit": "W",
+    "device_class": "power",
+    "factor": 1,
+    "unique_id": "consumption_household"
+  },
+  "totalConsumption": {
+    "name": "Total Consumption",
+    "unit": "W",
+    "device_class": "power",
+    "factor": 1,
+    "unique_id": "viessmann_total_consumption_household"
+  },
+  "directConsumptionHousehold": {
+    "name": "DirectConsumptionHousehold",
+    "unit": "W",
+    "device_class": "power",
+    "factor": 1,
+    "unique_id": "direct_consumption_household"
+  },
+  "directConsumptionHeatPump": {
+    "name": "DirectConsumptionHeatPump",
+    "unit": "W",
+    "device_class": "power",
+    "factor": 1,
+    "unique_id": "direct_consumption_heatpump"
+  },
+  "directConsumptionEV": {
+    "name": "DirectConsumptionEV",
+    "unit": "W",
+    "device_class": "power",
+    "factor": 1,
+    "unique_id": "direct_consumption_ev"
+  },
+  "directConsumptionRate": {
+    "name": "DirectConsumptionRate",
+    "unit": "%",
+    "device_class": "power_factor",
+    "factor": 100,
+    "unique_id": "direct_consumption_rate"
+  },
+  "selfSupply": {
+    "name": "SelfSupply",
+    "unit": "W",
+    "device_class": "power",
+    "factor": 1,
+    "unique_id": "self_supply"
+  },
+  "selfConsumptionRate": {
+    "name": "SelfConsumptionRate",
+    "unit": "%",
+    "device_class": "power_factor",
+    "factor": 100,
+    "unique_id": "self_consumption_rate"
+  },
+  "selfSufficiencyRate": {
+    "name": "SelfSufficiencyRate",
+    "unit": "%",
+    "device_class": "power_factor",
+    "factor": 100,
+    "unique_id": "self_sufficiency_rate"
+  },
+  "battery": {
+    "stateOfCharge": {
+      "name": "BatteryStateOfCharge",
+      "unit": "%",
+      "device_class": "battery",
+      "factor": 100,
+      "unique_id": "battery_state_of_charge"
+    },
+    "capacity": {
+      "name": "BatteryCapacity",
+      "unit": "Wh",
+      "device_class": "battery",
+      "factor": 1,
+      "unique_id": "battery_capacity"
+    },
+    "power": {
+      "name": "BatteryPower",
+      "unit": "W",
+      "device_class": "battery",
+      "factor": 1,
+      "unique_id": "battery_power"
+    },
+    "remainingCharge": {
+      "name": "BatteryRemainingCharge",
+      "unit": "Wh",
+      "device_class": "battery",
+      "factor": 1,
+      "unique_id": "battery_remaining_charge"
+    }
+  },
+  "heater": {
+    "power": {
+      "name": "HeaterPower",
+      "unit": "W",
+      "device_class": "heater",
+      "factor": 1,
+      "unique_id": "heater_power"
+    },
+    "temperature": {
+      "name": "HeaterTemperature",
+      "unit": "C",
+      "device_class": "heater",
+      "factor": 1,
+      "unique_id": "heater_temperature"
+    }
+  },
+  "evChargingStation": {
+    "power": {
+      "name": "EVChargingStationPower",
+      "unit": "W",
+      "device_class": "power",
+      "factor": 1,
+      "unique_id": "ev_charging_station_power"
+    },
+    "stateOfCharge": {
+      "name": "EVChargingStationStateOfCharge",
+      "unit": "%",
+      "device_class": "battery",
+      "factor": 100,
+      "unique_id": "ev_charging_station_state_of_charge"
+    },
+    "currentL1": {
+      "name": "EVChargingStationCurrentL1",
+      "unit": "A",
+      "device_class": "current",
+      "factor": 1,
+      "unique_id": "ev_charging_station_current_l1"
+    },
+    "currentL2": {
+      "name": "EVChargingStationCurrentL2",
+      "unit": "A",
+      "device_class": "current",
+      "factor": 1,
+      "unique_id": "ev_charging_station_current_l2"
+    },
+    "currentL3": {
+      "name": "EVChargingStationCurrentL3",
+      "unit": "A",
+      "device_class": "current",
+      "factor": 1,
+      "unique_id": "ev_charging_station_current_l3"
+    },
+    "readingTotal": {
+      "name": "EVChargingStationReadingTotal",
+      "unit": "kWh",
+      "device_class": "energy",
+      "factor": 1,
+      "unique_id": "ev_charging_station_reading_total"
+    }
+  }
+}
