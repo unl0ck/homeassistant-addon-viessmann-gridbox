@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional
-from pydantic_core import from_json
+from ha_mqtt_discoverable import Settings, DeviceInfo
+from ha_mqtt_discoverable.sensors import Sensor, SensorInfo
 import json
 
 
@@ -27,9 +28,25 @@ def load_sensor_by_key(key: str, path: str = "models/models.json", type: str = "
     return SensorModel.model_validate(sensor_json)
 
 
+def create_ha_sensor(key: str, device_info: DeviceInfo, mqtt_settings: Settings.MQTT, type: str = "base", path: str = "models/models.json") -> Sensor:
+    sensor: SensorModel = load_sensor_by_key(key, type=type, path=path)
+    sensor_info = SensorInfo(
+        name=sensor.name,
+        device_class=sensor.device_class,
+        unique_id=f"{device_info.identifiers}_{sensor.unique_id}",
+        device=device_info,
+        unit_of_measurement=sensor.unit,
+        state_class=sensor.state_class,
+        value_template=sensor.value_template,
+        last_reset_value_template=sensor.last_reset_value_template,
+    )
+    settings = Settings(mqtt=mqtt_settings, entity=sensor_info)
+    return Sensor(settings)
+
+
 if __name__ == "__main__":
     print(repr(load_sensor_by_key("production")))
-    with open('tests/mock_data/mock_data_with_batteries.json') as f:
+    with open("tests/mock_data/mock_data_with_batteries.json") as f:
         mock_data = json.load(f)
         for key, value in mock_data.items():
             try:
@@ -37,7 +54,7 @@ if __name__ == "__main__":
             except ValueError as e:
                 print(e)
                 continue
-    with open('tests/mock_data/mock_data_with_batteries.json') as f:
+    with open("tests/mock_data/mock_data_with_batteries.json") as f:
         mock_data = json.load(f)
         for key, value in mock_data.items():
             try:
