@@ -1,5 +1,42 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.65
+
+### 🔨 Fixed
+
+- using older builder imager
+
+## 2.11.63
+
+### 🔨 Fixed
+
+- python runtime
+
+## 2.11.62
+
+### 🔨 Fixed
+
+- build process adjusted
+
+## 2.11.61
+
+### 🔨 Fixed
+
+- fixed grid in historical data
+- fixed tests
+
+## 2.11.60
+
+### 🔨 Fixed
+
+- fixed grid in historical data
+
+## 2.11.59
+
+### 🚀 Added
+
+- test coverage report action
+
 ## 2.11.58
 
 ### 🔨 Fixed
