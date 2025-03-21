@@ -96,37 +96,37 @@
     "capacity": {
       "name": "BatteryCapacity",
       "unit": "Wh",
-      "device_class": "battery",
+      "device_class": "energy_storage",
       "factor": 1,
       "unique_id": "battery_capacity"
     },
     "power": {
       "name": "BatteryPower",
       "unit": "W",
-      "device_class": "battery",
+      "device_class": "energy_storage",
       "factor": 1,
       "unique_id": "battery_power"
     },
     "remainingCharge": {
       "name": "BatteryRemainingCharge",
       "unit": "Wh",
-      "device_class": "battery",
+      "device_class": "energy_storage",
       "factor": 1,
       "unique_id": "battery_remaining_charge"
     }
   },
-  "heater": {
+  "heaters": {
     "power": {
       "name": "HeaterPower",
       "unit": "W",
-      "device_class": "heater",
+      "device_class": "power",
       "factor": 1,
       "unique_id": "heater_power"
     },
     "temperature": {
       "name": "HeaterTemperature",
       "unit": "C",
-      "device_class": "heater",
+      "device_class": "temperature",
       "factor": 1,
       "unique_id": "heater_temperature"
     }

@@ -10,12 +10,22 @@
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
         },
-        "grid": {
-            "name": "Grid",
+        "feedIn": {
+            "name": "Feed In",
             "unit": "Wh",
             "device_class": "power",
             "factor": 1,
-            "unique_id": "grid",
+            "unique_id": "feed_in",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "supply": {
+            "name": "Supply",
+            "unit": "Wh",
+            "device_class": "power",
+            "factor": 1,
+            "unique_id": "supply",
             "state_class": "total",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
@@ -135,7 +145,7 @@
         "capacity": {
             "name": "BatteryCapacity",
             "unit": "Wh",
-            "device_class": "battery",
+            "device_class": "energy_storage",
             "factor": 1,
             "unique_id": "battery_capacity",
             "state_class": "total",
@@ -145,7 +155,7 @@
         "power": {
             "name": "BatteryPower",
             "unit": "Wh",
-            "device_class": "battery",
+            "device_class": "energy_storage",
             "factor": 1,
             "unique_id": "battery_power",
             "state_class": "total",
@@ -155,7 +165,7 @@
         "remainingCharge": {
             "name": "BatteryRemainingCharge",
             "unit": "Wh",
-            "device_class": "battery",
+            "device_class": "energy_storage",
             "factor": 1,
             "unique_id": "battery_remaining_charge",
             "state_class": "total",
@@ -163,11 +173,11 @@
             "value_template": "{{ value_json.state }}"
         }
     },
-    "heater": {
+    "heaters": {
         "power": {
             "name": "HeaterPower",
             "unit": "Wh",
-            "device_class": "heater",
+            "device_class": "energy",
             "factor": 1,
             "unique_id": "heater_power",
             "state_class": "total",
@@ -177,7 +187,7 @@
         "temperature": {
             "name": "HeaterTemperature",
             "unit": "C",
-            "device_class": "heater",
+            "device_class": "temperature",
             "factor": 1,
             "unique_id": "heater_temperature",
             "state_class": "total",
