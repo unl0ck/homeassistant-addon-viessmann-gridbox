@@ -3,6 +3,8 @@ import logging
 import ast
 import os
 import re
+
+
 class SensitiveDataFilter(logging.Filter):
     def filter(self, record):
         message = record.getMessage()
@@ -10,19 +12,20 @@ class SensitiveDataFilter(logging.Filter):
             # Versuche die Nachricht als Python-Dictionary zu parsen
             message_dict = ast.literal_eval(message)
             # Sensible Daten filtern, falls vorhanden
-            sensitive_keys = ['username', 'password', 'id_token', 'access_token', 'client_id', 'token']
+            sensitive_keys = ["username", "password", "id_token", "access_token", "client_id", "token"]
             for key in sensitive_keys:
                 if key in message_dict:
-                    message_dict[key] = '***'
+                    message_dict[key] = "***"
             # Das modifizierte Dictionary zurück in einen String konvertieren
             record.msg = str(message_dict)
-        except (ValueError, SyntaxError):
+        except (ValueError, SyntaxError):  # pragma: no cover
             pass
-            #logging.error(f"Error parsing message: {message}")
-        except Exception as e:
+            # logging.error(f"Error parsing message: {message}")
+        except Exception as e:  # pragma: no cover
             pass
-            #logging.error(f"Error filtering sensitive data: {e}")
+            # logging.error(f"Error filtering sensitive data: {e}")
         return True
+
 
 def get_bool_env(var, default=False):
     value = os.getenv(var, default)

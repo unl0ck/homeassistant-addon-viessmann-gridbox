@@ -53,7 +53,7 @@ def create_ha_sensor(key: str, device_info: DeviceInfo, mqtt_settings: Settings.
     return Sensor(settings)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     print(repr(load_sensor_by_key("production")))
     with open("tests/mock_data/mock_data_with_batteries.json") as f:
         mock_data = json.load(f)
