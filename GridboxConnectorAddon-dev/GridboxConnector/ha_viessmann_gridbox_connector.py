@@ -81,7 +81,7 @@ class HAViessmannGridboxConnector:
         self.photovoltaic_sensor = Sensor(photovoltaic_settings)
 
         # Battery sum
-        self.battery_sum = HAViessmannBattery(mqtt_settings, self.device_info, "sum", "", prefix)
+        self.battery_sum = HAViessmannBattery(mqtt_settings, self.device_info, "sum", "",self.logger, prefix, unit_of_power, state_class)
 
         # Heater
         self.heater_sensor = HAViessmannHeater(mqtt_settings, self.device_info, "", "", prefix)
@@ -142,9 +142,11 @@ class HAViessmannGridboxConnector:
             battery: dict = measurement.get("battery", {})
             state_of_charge = float(battery.get("stateOfCharge", "0"))*100
             capacity = float(battery.get("capacity", "0"))
-            power = float(battery.get("power", "0"))
-            remaining_charge = float(battery.get("remainingCharge", "0"))
-            self.battery_sum.set_states(state_of_charge, capacity, power, remaining_charge)
+            power = round(float(battery.get("power", "0")),2)
+            remaining_charge = round(float(battery.get("remainingCharge", "0")),2)
+            charge = round(float(battery.get("charge", "-1")),2)
+            discharge = round(float(battery.get("discharge", "-1")),2)
+            self.battery_sum.set_states(state_of_charge, capacity, power, remaining_charge, charge, discharge, last_reset)
 
         if "batteries" in measurement:
             batteries: list = measurement.get("batteries", [])

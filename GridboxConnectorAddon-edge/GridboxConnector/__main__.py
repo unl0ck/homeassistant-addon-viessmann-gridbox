@@ -9,9 +9,14 @@ from importlib.resources import files
 from utils import SensitiveDataFilter, get_bool_env
 import threading
 import logfire
-
-opens_file_path = "/data/options.json"
-# logging.basicConfig(format='%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=logging.getLevelName(os.getenv('LOG_LEVEL', 'INFO')))
+import configparser
+opens_file_path = '/data/options.json'
+setup_file_path = 'setup.ini'
+# Erstellen Sie eine ConfigParser-Instanz
+config = configparser.ConfigParser()
+# Lesen Sie die setup.ini-Datei
+config.read(setup_file_path)
+#logging.basicConfig(format='%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=logging.getLevelName(os.getenv('LOG_LEVEL', 'INFO')))
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.getLevelName(os.getenv("LOG_LEVEL", "INFO")))
 formatter = logging.Formatter("%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s")
@@ -19,14 +24,22 @@ console_handler = logging.StreamHandler()
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addFilter(SensitiveDataFilter())
-# Retrieve logfire token from environment variable
 try:
-    logfire_token = os.getenv("LOGFIRE_TOKEN", "4nzH9rJ0GBZ4QJNY5GQM6tTh2bFTTyfrsrw6ytZ1xGT9")
-    enable_telemetry = os.getenv("ENABLE_TELEMETRY", False)
+    logfire_token = os.getenv('LOGFIRE_TOKEN', '4nzH9rJ0GBZ4QJNY5GQM6tTh2bFTTyfrsrw6ytZ1xGT9')
+    enable_telemetry = os.getenv('ENABLE_TELEMETRY', False)
+    if enable_telemetry == "false":
+        enable_telemetry = False
+    elif enable_telemetry == "true":
+        enable_telemetry = True
+
+    logger.info(f"Enable telemetry: {enable_telemetry}")
     if logfire_token and enable_telemetry:
-        logfire.configure(environment="edge", token=logfire_token)
+        environment = config.get('logfire', 'environment',fallback='edge')
+        logfire.configure(environment=environment, token=logfire_token)
         logfire.instrument_requests()
-        logger.addHandler(logfire.LogfireLoggingHandler())
+        logfire_handler = logfire.LogfireLoggingHandler()
+        logfire_handler.setLevel(logging.ERROR)
+        logger.addHandler(logfire_handler)
 except Exception as e:
     logger.error(f"Error configuring logfire: {e}")
 
@@ -76,7 +89,7 @@ def historical_data_task(gridboxConnector: GridboxConnector, ha_viessmann_histor
                 logger.info(total)
                 one_time_print = False
         else:
-            logger.warning("No data received")
+            logger.warning("No data received I will Refresh token")
             gridboxConnector.init_auth()
         time.sleep(WAIT)
 
@@ -104,8 +117,15 @@ def start_historical_thread(gridboxConnector: GridboxConnector, ha_device, WAIT)
 
 def run_addon():
     gridbox_config = load_gridbox_config()
+<<<<<<< HEAD
     options_file = ""
     WAIT = int(os.getenv("WAITTIME", "60"))
+=======
+    options_file = ''
+    WAIT = int(os.getenv('WAITTIME', "60"))
+    if WAIT < 60:
+        WAIT = 60
+>>>>>>> main
     if os.path.exists(opens_file_path):
         options_file = open(opens_file_path)
         options_json = json.load(options_file)

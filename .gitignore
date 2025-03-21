@@ -3,3 +3,5 @@ __pycache__
 .history
 .venv
 GridX
+.coverage
+coverage.xml

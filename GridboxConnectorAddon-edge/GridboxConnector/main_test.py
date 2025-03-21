@@ -35,30 +35,14 @@ class TestGridboxConnectorMethods(unittest.TestCase):
         mqtt_pw = "mqtt_pw"
         mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw)
         viessmann_gridbox_connector = HAViessmannGridboxConnector(mqtt_settings)
-
-        # with patch.object(viessmann_gridbox_connector.self_supply_sensor, 'set_state') as mock_self_supply_sensor, \
-        #         patch.object(viessmann_gridbox_connector.self_consumtion_rate_sensor, 'set_state') as mock_self_consumtion_rate_sensor, \
-        #         patch.object(viessmann_gridbox_connector.consumption_household_sensor, 'set_state') as mock_consumption_household_sensor, \
-        #         patch.object(viessmann_gridbox_connector.direct_consumption_household_sensor, 'set_state') as mock_direct_consumption_household_sensor, \
-        #         patch.object(viessmann_gridbox_connector.direct_consumption_heatpump_sensor, 'set_state') as mock_direct_consumption_heatpump_sensor, \
-        #         patch.object(viessmann_gridbox_connector.direct_consumption_rate_sensor, 'set_state') as mock_direct_consumption_rate_sensor, \
-        #         patch.object(viessmann_gridbox_connector.self_sufficiency_rate_sensor, 'set_state') as mock_self_sufficiency_rate_sensor:
         viessmann_gridbox_connector.update_sensors(result)
-        print("test")
-        # mock_self_supply_sensor.assert_called_once_with(
-        #     600.0, last_reset=None)
-        # mock_self_consumtion_rate_sensor.assert_called_once_with(
-        #     96.1)
-        # mock_consumption_household_sensor.assert_called_once_with(
-        #     600, last_reset=None)
-        # mock_direct_consumption_household_sensor.assert_called_once_with(
-        #     600.0, last_reset=None)
-        # mock_direct_consumption_heatpump_sensor.assert_called_once_with(
-        #     0.0, last_reset=None)
-        # mock_direct_consumption_rate_sensor.assert_called_once_with(
-        #     39.68)
-        # mock_self_sufficiency_rate_sensor.assert_called_once_with(
-        #     100.0)
+        with (
+            patch.object(viessmann_gridbox_connector.production, "set_state") as mock_production,
+            patch.object(viessmann_gridbox_connector.selfConsumptionRate, "set_state") as mock_self_consumtion_rate_sensor,
+        ):
+            viessmann_gridbox_connector.update_sensors(result)
+            mock_production.assert_called_once_with(1512, last_reset=None)
+            mock_self_consumtion_rate_sensor.assert_called_once_with(96.1, last_reset=None)
 
     @patch("paho.mqtt.client.Client")
     @patch.object(GridboxConnector, "init_auth", return_value=None)
@@ -135,7 +119,7 @@ class TestGridboxConnectorMethods(unittest.TestCase):
         logger.addHandler(console_handler)
         logger.addFilter(SensitiveDataFilter())
         login_message = "{'grant_type': 'http://auth0.com/oauth/grant-type/password-realm', 'username': 'username@username', 'password': 'UltraSecret', 'audience': 'my.gridx', 'client_id': 'oZpr934Ikn8OZOHTJEcrgXkjio0I0Q7b', 'scope': 'email openid', 'realm': 'viessmann-authentication-db', 'client_secret': ''}"
-        logger.info(login_message)
+        # logger.info(login_message)
 
 
 if __name__ == "__main__":

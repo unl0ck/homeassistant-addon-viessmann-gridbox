@@ -1,5 +1,7 @@
 name: Release Dev
-
+permissions:
+  contents: read
+  pull-requests: write
 on:
   workflow_dispatch:
 

@@ -1,0 +1,32 @@
+{
+    "battery": {
+      "capacity": 6354.166666666667,
+      "charge": 548.5512500000001,
+      "discharge": 3612.908999999999,
+      "nominalCapacity": 6354.166666666667,
+      "stateOfCharge": 0.03319532355389097
+    },
+    "consumption": 11250.48725,
+    "directConsumption": 4371.350000000001,
+    "directConsumptionEV": 0,
+    "directConsumptionHeatPump": 0,
+    "directConsumptionHeater": 254.24499999999995,
+    "directConsumptionHousehold": 4117.103749999999,
+    "directConsumptionRate": 0.8812800984793493,
+    "grid": {
+      "feedIn": 55.148500000000006,
+      "supply": 3560.6865
+    },
+    "heating": 279.63224999999994,
+    "l1CurtailmentPower": 0,
+    "l2CurtailmentPower": 0,
+    "l3CurtailmentPower": 0,
+    "measuredAt": "2024-11-30T23:15:00Z/2024-12-01T23:00:00Z",
+    "photovoltaic": 4960.22775,
+    "production": 4960.22775,
+    "selfConsumption": 4919.90325,
+    "selfConsumptionRate": 0.9918704337719171,
+    "selfSufficiencyRate": 0.691184030388918,
+    "selfSupply": 7984.26,
+    "totalConsumption": 11530.12425
+  }

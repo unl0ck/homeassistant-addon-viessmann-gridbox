@@ -1,8 +1,4 @@
 from ha_mqtt_discoverable import Settings, DeviceInfo
-from ha_mqtt_discoverable.sensors import Sensor, SensorInfo
-from ha_viessmann_battery import HAViessmannBattery
-from ha_viessmann_ev_charging_station import HAViessmannEVChargingStation
-from ha_viessmann_heater import HAViessmannHeater
 from sensor_model import SensorModel, key_in_model, load_sensor_by_key, create_ha_sensor
 import logging
 from logging import Logger
@@ -13,21 +9,6 @@ class HAViessmannGridboxConnector:
     battery_sensor_dict: dict
     mqtt_settings: Settings.MQTT
     device_info: DeviceInfo
-    production_sensor: Sensor
-    grid_sensor: Sensor
-    photovoltaic_sensor: Sensor
-    consumption_household_sensor: Sensor
-    total_consumption_household_sensor: Sensor
-    direct_consumption_household_sensor: Sensor
-    direct_consumption_heatpump_sensor: Sensor
-    direct_consumption_ev_sensor: Sensor
-    direct_consumption_heater_sensor: Sensor
-    direct_consumption_rate_sensor: Sensor
-    self_supply_sensor: Sensor
-    self_consumtion_rate_sensor: Sensor
-    self_sufficiency_rate_sensor: Sensor
-    battery_sum: HAViessmannBattery
-    heater_sensor: HAViessmannHeater
     logger: logging.Logger
 
     def __init__(

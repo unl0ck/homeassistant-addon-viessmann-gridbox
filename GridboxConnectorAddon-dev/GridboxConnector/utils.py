@@ -17,9 +17,11 @@ class SensitiveDataFilter(logging.Filter):
             # Das modifizierte Dictionary zurück in einen String konvertieren
             record.msg = str(message_dict)
         except (ValueError, SyntaxError):
-            logging.error(f"Error parsing message: {message}")
+            pass
+            #logging.error(f"Error parsing message: {message}")
         except Exception as e:
-            logging.error(f"Error filtering sensitive data: {e}")
+            pass
+            #logging.error(f"Error filtering sensitive data: {e}")
         return True
 
 def get_bool_env(var, default=False):

@@ -9,6 +9,131 @@ will released if all Sensors integrated like 2.x
 
 - refactored the way of create sensors
 
+## 2.11.65
+
+### 🔨 Fixed
+
+- using older builder imager
+
+## 2.11.63
+
+### 🔨 Fixed
+
+- python runtime
+
+## 2.11.62
+
+### 🔨 Fixed
+
+- build process adjusted
+
+## 2.11.61
+
+### 🔨 Fixed
+
+- fixed grid in historical data
+- fixed tests
+
+## 2.11.60
+
+### 🔨 Fixed
+
+- fixed grid in historical data
+
+## 2.11.59
+
+### 🚀 Added
+
+- test coverage report action
+
+## 2.11.58
+
+### 🔨 Fixed
+
+- removed temp Battery value
+
+## 2.11.57
+
+### 🔨 Fixed
+
+- added temp Battery value
+
+## 2.11.56
+
+### 🔨 Fixed
+
+- added temp Battery value
+
+## 2.11.55
+
+### 🔨 Fixed
+
+- version number
+
+## 2.11.54
+
+### 🔨 Fixed
+
+- unit test for battery in historical data
+
+## 2.11.53
+
+### 🔨 Fixed
+
+- fixed Historical Data Battery
+
+## 2.11.52
+
+### 🚀 Added
+
+- setup.ini to read environment
+- added unittest to workflow
+
+## 2.11.51
+
+### 🔨 Fixed
+
+- fixed unittests
+- fixed historical data exception workaround try catch
+- modified unittests for batteries
+- added logfire for logger only error logs
+
+## 2.11.50
+
+### 🔨 Fixed
+
+- fixed battery live data sorry guys another try 🫠
+
+## 2.11.49
+
+### 🔨 Fixed
+
+- fixed battery live data sorry guys
+
+## 2.11.48
+
+### 🔨 Fixed
+
+- fixed build
+
+## 2.11.47
+
+### 🔨 Fixed
+
+- fixed build
+
+## 2.11.46
+
+### 🔨 Fixed
+
+- read telemetry option
+
+## 2.11.43
+
+### 🔨 Fixed
+
+- removed logs from logfire
+
 ## 2.11.42
 
 ### 🔨 Fixed
