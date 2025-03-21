@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.62
+
+### 🔨 Fixed
+
+- build process adjusted
+
 ## 2.11.61
 
 ### 🔨 Fixed
