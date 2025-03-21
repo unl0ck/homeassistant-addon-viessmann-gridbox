@@ -1,7 +1,7 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 ---
 name: Viessmann Gridbox Connector (edge)
-version: "2.11.62"
+version: "2.11.63"
 slug: "gridbox_connector_edge"
 description: "Viessmann Gridbox Connector (edge)"
 url: "https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox/tree/main/GridboxConnectorAddon-edge"
