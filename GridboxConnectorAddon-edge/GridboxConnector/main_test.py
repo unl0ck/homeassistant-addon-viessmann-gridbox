@@ -71,9 +71,12 @@ class TestGridboxConnectorMethods(unittest.TestCase):
         mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw)
         viessmann_gridbox_connector = HAViessmannGridboxConnector(mqtt_settings)
 
-        with patch.object(viessmann_gridbox_connector.ev_sum, "set_states") as mock_ev_sum:
+        viessmann_gridbox_connector.update_sensors(result)
+        with (
+            patch.object(viessmann_gridbox_connector.evChargingStation_power, "set_state") as mock_evChargingStation_power,
+        ):
             viessmann_gridbox_connector.update_sensors(result)
-            mock_ev_sum.assert_called_once_with(7930.4, 0, 0, 0, 0, 0)
+            mock_evChargingStation_power.assert_called_once_with(7930.4, last_reset=None)
 
     @patch("paho.mqtt.client.Client")
     @patch.object(GridboxConnector, "init_auth", return_value=None)
@@ -101,10 +104,14 @@ class TestGridboxConnectorMethods(unittest.TestCase):
         mqtt_pw = "mqtt_pw"
         mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw)
         viessmann_gridbox_connector = HAViessmannGridboxConnector(mqtt_settings)
-
-        with patch.object(viessmann_gridbox_connector.heater_sensor, "set_states") as mock_heater_sensor:
+        viessmann_gridbox_connector.update_sensors(result)
+        with (
+            patch.object(viessmann_gridbox_connector.heaters_power, "set_state") as mock_heaters_power,
+            patch.object(viessmann_gridbox_connector.heaters_temperature, "set_state") as mock_heaters_temperature,
+        ):
             viessmann_gridbox_connector.update_sensors(result)
-            mock_heater_sensor.assert_called_once_with(3676, 70.9)
+            mock_heaters_power.assert_called_once_with(3676, last_reset=None)
+            mock_heaters_temperature.assert_called_once_with(70.9, last_reset=None)
 
     def test_logger(self):
         import os
@@ -119,7 +126,7 @@ class TestGridboxConnectorMethods(unittest.TestCase):
         logger.addHandler(console_handler)
         logger.addFilter(SensitiveDataFilter())
         login_message = "{'grant_type': 'http://auth0.com/oauth/grant-type/password-realm', 'username': 'username@username', 'password': 'UltraSecret', 'audience': 'my.gridx', 'client_id': 'oZpr934Ikn8OZOHTJEcrgXkjio0I0Q7b', 'scope': 'email openid', 'realm': 'viessmann-authentication-db', 'client_secret': ''}"
-        # logger.info(login_message)
+        logger.info(login_message)
 
 
 if __name__ == "__main__":

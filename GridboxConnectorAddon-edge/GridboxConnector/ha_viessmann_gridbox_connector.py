@@ -64,7 +64,7 @@ class HAViessmannGridboxConnector:
         for key in measurement.keys():
             if key == "battery" or key == "evChargingStation":
                 type = key
-                type_json = measurement.get("battery", {})
+                type_json = measurement.get(key, {})
                 for type_key in type_json.keys():
                     attr_name = f"{type}_{type_key}"
                     if key_in_model(type_key, path=self.model_path, type=type):
@@ -82,7 +82,7 @@ class HAViessmannGridboxConnector:
                         if not hasattr(self, attr_name):
                             setattr(self, attr_name, create_ha_sensor(type_key, self.device_info, self.mqtt_settings, path=self.model_path, type=type))
                         sensor_model = load_sensor_by_key(type_key, path=self.model_path, type=type)
-                        getattr(self, attr_name).set_state(round(float(type_json.get(type_key, "0") * sensor_model.factor), 2), last_reset=last_reset)
+                        getattr(self, attr_name).set_state(round(float(heater.get(type_key, "0") * sensor_model.factor), 2), last_reset=last_reset)
             else:
                 if key_in_model(key, path=self.model_path):
                     if not hasattr(self, key):
