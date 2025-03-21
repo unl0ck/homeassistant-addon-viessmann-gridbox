@@ -1,5 +1,9 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+## 2.11.64
 
+### 🔨 Fixed
+
+- using older builder imager
 ## 2.11.63
 
 ### 🔨 Fixed
