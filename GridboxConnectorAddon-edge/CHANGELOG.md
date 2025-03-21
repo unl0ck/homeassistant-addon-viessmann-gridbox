@@ -1,5 +1,14 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 3.0.0-edge
+
+Is Currently not working correctly don't Use for Production
+will released if all Sensors integrated like 2.x
+
+### 🔄 Changed
+
+- refactored the way of create sensors
+
 ## 2.11.42
 
 ### 🔨 Fixed
