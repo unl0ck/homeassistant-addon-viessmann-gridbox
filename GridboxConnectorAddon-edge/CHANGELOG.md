@@ -1,9 +1,18 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+
+## 2.11.61
+
+### 🔨 Fixed
+
+- fixed grid in historical data
+- fixed tests
+
 ## 2.11.60
 
 ### 🔨 Fixed
 
 - fixed grid in historical data
+
 ## 2.11.59
 
 ### 🚀 Added

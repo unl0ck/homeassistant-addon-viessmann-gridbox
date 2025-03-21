@@ -107,7 +107,7 @@ jobs:
         if: env.BUILD_ARGS != '--test'
         run: |
           cd ./${{ matrix.addon }}/GridboxConnector
-          python -m unittest discover -p '*_test.py'
+          coverage run -m unittest discover -p '*_test.py'
           coverage xml -o coverage.xml
 
       - name: Get Cover

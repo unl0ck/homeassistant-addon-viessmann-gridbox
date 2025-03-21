@@ -247,7 +247,7 @@ class TestGridboxConnectorMethods(unittest.TestCase):
         logger.addHandler(console_handler)
         logger.addFilter(SensitiveDataFilter())
         login_message = "{'grant_type': 'http://auth0.com/oauth/grant-type/password-realm', 'username': 'username@username', 'password': 'UltraSecret', 'audience': 'my.gridx', 'client_id': 'oZpr934Ikn8OZOHTJEcrgXkjio0I0Q7b', 'scope': 'email openid', 'realm': 'viessmann-authentication-db', 'client_secret': ''}"
-        logger.info(login_message)
+        # logger.info(login_message)
 
 
 if __name__ == "__main__":
