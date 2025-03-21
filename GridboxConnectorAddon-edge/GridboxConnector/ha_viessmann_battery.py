@@ -21,7 +21,7 @@ class HAViessmannBattery:
         set_states(level, capacity, power, remaining_charge): Sets the states of the four sensors.
     """
 
-    def __init__(self, mqtt_settings, device_info, name, id):
+    def __init__(self, mqtt_settings: Settings.MQTT, device_info: DeviceInfo, name: str, id: str):
         self.id: str = id
         self.name: str = name
         self.device_info: DeviceInfo = device_info
