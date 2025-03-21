@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.66
+
+### 🔄 Changed
+
+- removed armhf and armv7 until it will working the build
+
 ## 2.11.65
 
 ### 🔨 Fixed
