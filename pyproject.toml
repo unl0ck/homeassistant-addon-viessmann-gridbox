@@ -1,0 +1,38 @@
+[tool.ruff]
+line-length = 200  # Maximale Zeilenlänge
+target-version = "py311"  # Setze auf deine Python-Version
+extend-exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    ".venv",
+    ".vscode",
+    ".idea",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".tox"
+]
+
+[tool.ruff.lint]
+select = ["B", "C", "E", "F", "W", "B9"]  # Gewählte Fehlercodes
+ignore = ["E203", "E266", "E501"]  # Ignorierte Fehlercodes
+
+# Maximal erlaubte Komplexität einer Funktion
+extend-select = ["C901"]
+
+[tool.ruff.format]
+# Nutze Ruff als Formatter mit diesen Einstellungen:
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+skip-magic-trailing-comma = true  # Verhindert unnötige Umbrechungen
+
+[tool.ruff.lint.isort]
+# Sortiere Imports im Google-Stil
+known-first-party = ["GridboxConnector"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"

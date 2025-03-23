@@ -80,7 +80,7 @@ jobs:
           path: "./${{ matrix.addon }}"
 
       - name: Check if add-on should be built
-        id: check
+        id: check #instead main {{github.ref_name}} [[ -z "{{github.ref_name}}" ]] &&
         run: |
           if [[ "${{ steps.info.outputs.architectures }}" =~ ${{ matrix.arch }} ]]; then
              echo "build_arch=true" >> $GITHUB_OUTPUT;

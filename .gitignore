@@ -2,6 +2,6 @@ __pycache__
 .pytest_cache
 .history
 .venv
-.coverage
 GridX
+.coverage
 coverage.xml

@@ -1,0 +1,260 @@
+{
+    "base": {
+        "production": {
+            "name": "Production",
+            "unit": "Wh",
+            "device_class": "power",
+            "factor": 1,
+            "unique_id": "production",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "feedIn": {
+            "name": "Feed In",
+            "unit": "Wh",
+            "device_class": "power",
+            "factor": 1,
+            "unique_id": "feed_in",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "supply": {
+            "name": "Supply",
+            "unit": "Wh",
+            "device_class": "power",
+            "factor": 1,
+            "unique_id": "supply",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "photovoltaic": {
+            "name": "Photovoltaic",
+            "unit": "Wh",
+            "device_class": "power",
+            "factor": 1,
+            "unique_id": "photovoltaic",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "consumption": {
+            "name": "Consumption",
+            "unit": "Wh",
+            "device_class": "power",
+            "factor": 1,
+            "unique_id": "consumption_household",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "totalConsumption": {
+            "name": "Total Consumption",
+            "unit": "Wh",
+            "device_class": "power",
+            "factor": 1,
+            "unique_id": "viessmann_total_consumption_household",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "directConsumptionHousehold": {
+            "name": "DirectConsumptionHousehold",
+            "unit": "Wh",
+            "device_class": "power",
+            "factor": 1,
+            "unique_id": "direct_consumption_household",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "directConsumptionHeatPump": {
+            "name": "DirectConsumptionHeatPump",
+            "unit": "Wh",
+            "device_class": "power",
+            "factor": 1,
+            "unique_id": "direct_consumption_heatpump",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "directConsumptionEV": {
+            "name": "DirectConsumptionEV",
+            "unit": "Wh",
+            "device_class": "power",
+            "factor": 1,
+            "unique_id": "direct_consumption_ev",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "directConsumptionRate": {
+            "name": "DirectConsumptionRate",
+            "unit": "%",
+            "device_class": "power_factor",
+            "factor": 100,
+            "unique_id": "direct_consumption_rate",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "selfSupply": {
+            "name": "SelfSupply",
+            "unit": "Wh",
+            "device_class": "power",
+            "factor": 1,
+            "unique_id": "self_supply",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "selfConsumptionRate": {
+            "name": "SelfConsumptionRate",
+            "unit": "%",
+            "device_class": "power_factor",
+            "factor": 100,
+            "unique_id": "self_consumption_rate",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "selfSufficiencyRate": {
+            "name": "SelfSufficiencyRate",
+            "unit": "%",
+            "device_class": "power_factor",
+            "factor": 100,
+            "unique_id": "self_sufficiency_rate",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        }
+    },
+    "battery": {
+        "stateOfCharge": {
+            "name": "BatteryStateOfCharge",
+            "unit": "%",
+            "device_class": "battery",
+            "factor": 100,
+            "unique_id": "battery_state_of_charge",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "capacity": {
+            "name": "BatteryCapacity",
+            "unit": "Wh",
+            "device_class": "energy_storage",
+            "factor": 1,
+            "unique_id": "battery_capacity",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "power": {
+            "name": "BatteryPower",
+            "unit": "Wh",
+            "device_class": "energy_storage",
+            "factor": 1,
+            "unique_id": "battery_power",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "remainingCharge": {
+            "name": "BatteryRemainingCharge",
+            "unit": "Wh",
+            "device_class": "energy_storage",
+            "factor": 1,
+            "unique_id": "battery_remaining_charge",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        }
+    },
+    "heaters": {
+        "power": {
+            "name": "HeaterPower",
+            "unit": "Wh",
+            "device_class": "energy",
+            "factor": 1,
+            "unique_id": "heater_power",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "temperature": {
+            "name": "HeaterTemperature",
+            "unit": "C",
+            "device_class": "temperature",
+            "factor": 1,
+            "unique_id": "heater_temperature",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        }
+    },
+    "evChargingStation": {
+        "power": {
+            "name": "EVChargingStationPower",
+            "unit": "Wh",
+            "device_class": "power",
+            "factor": 1,
+            "unique_id": "ev_charging_station_power",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "stateOfCharge": {
+            "name": "EVChargingStationStateOfCharge",
+            "unit": "%",
+            "device_class": "battery",
+            "factor": 100,
+            "unique_id": "ev_charging_station_state_of_charge",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "currentL1": {
+            "name": "EVChargingStationCurrentL1",
+            "unit": "A",
+            "device_class": "current",
+            "factor": 1,
+            "unique_id": "ev_charging_station_current_l1",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "currentL2": {
+            "name": "EVChargingStationCurrentL2",
+            "unit": "A",
+            "device_class": "current",
+            "factor": 1,
+            "unique_id": "ev_charging_station_current_l2",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "currentL3": {
+            "name": "EVChargingStationCurrentL3",
+            "unit": "A",
+            "device_class": "current",
+            "factor": 1,
+            "unique_id": "ev_charging_station_current_l3",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "readingTotal": {
+            "name": "EVChargingStationReadingTotal",
+            "unit": "kWh",
+            "device_class": "energy",
+            "factor": 1,
+            "unique_id": "ev_charging_station_reading_total",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        }
+    }
+}
