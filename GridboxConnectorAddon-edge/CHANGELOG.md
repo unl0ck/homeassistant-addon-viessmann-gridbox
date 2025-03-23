@@ -9,6 +9,12 @@ will released if all Sensors integrated like 2.x
 
 - refactored the way of create sensors
 
+## 2.11.66
+
+### 🔄 Changed
+
+- removed armhf and armv7 until it will working the build
+
 ## 2.11.65
 
 ### 🔨 Fixed
