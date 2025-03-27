@@ -13,6 +13,8 @@ import configparser
 
 opens_file_path = "/data/options.json"
 setup_file_path = "setup.ini"
+historical_model_path = "./models/models_historical.json"
+live_model_path = "./models/models.json"
 # Erstellen Sie eine ConfigParser-Instanz
 config = configparser.ConfigParser()
 # Lesen Sie die setup.ini-Datei
@@ -127,6 +129,27 @@ def run_addon():
         options_json = json.load(options_file)
         WAIT = int(options_json["wait_time"])
 
+    def list_files_recursive(path="."):
+        try:
+            for root, dirs, files in os.walk(path):
+                level = root.replace(path, "").count(os.sep)
+                indent = " " * 4 * level
+                logger.info(f"{indent}Directory: {root}")
+                sub_indent = " " * 4 * (level + 1)
+                for file in files:
+                    logger.info(f"{sub_indent}File: {os.path.join(root, file)}")
+        except Exception as e:
+            logger.error(f"Error listing files under {path}: {e}")
+
+    list_files_recursive("./")
+
+    if not os.path.exists(historical_model_path):
+        logger.error("Historical model file not found")
+        exit(1)
+    if not os.path.exists(live_model_path):
+        logger.error("Live model file not found")
+        exit(1)
+
     USER = os.getenv("USERNAME", "")
     PASSWORD = os.environ.get("PASSWORD", "")
     mqtt_user = os.getenv("MqttUser", "")
@@ -147,9 +170,9 @@ def run_addon():
 
     mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw, port=mqtt_port)
 
-    viessmann_gridbox_device = HAViessmannGridboxConnector(mqtt_settings=mqtt_settings, logger=logger)
+    viessmann_gridbox_device = HAViessmannGridboxConnector(mqtt_settings=mqtt_settings, logger=logger, model_path=live_model_path)
     viessmann_gridbox_historical_device = HAViessmannGridboxConnector(
-        mqtt_settings=mqtt_settings, device_name="Viessmann Gridbox Historical", device_identifiers="viessmann_gridbox_historical", logger=logger, model_path="models/models_historical.json"
+        mqtt_settings=mqtt_settings, device_name="Viessmann Gridbox Historical", device_identifiers="viessmann_gridbox_historical", logger=logger, model_path=historical_model_path
     )
 
     gridboxConnector = GridboxConnector(gridbox_config)

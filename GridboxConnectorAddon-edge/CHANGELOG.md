@@ -4,6 +4,12 @@
 
 ### 🚀 Added
 
+- logs of file structure
+
+## 3.0.2-edge
+
+### 🚀 Added
+
 - logs of content
 
 ## 3.0.0-edge
