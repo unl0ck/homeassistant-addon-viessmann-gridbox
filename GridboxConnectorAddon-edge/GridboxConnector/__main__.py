@@ -129,6 +129,29 @@ def run_addon():
         options_json = json.load(options_file)
         WAIT = int(options_json["wait_time"])
 
+    def find_file(start_path, target_file):
+        try:
+            for root, dirs, files in os.walk(start_path):
+                if target_file in files:
+                    return os.path.join(root, target_file)
+            return None
+        except Exception as e:
+            logger.error(f"Error searching for file {target_file} under {start_path}: {e}")
+            return None
+
+    # Example usage
+    start_path = "./"
+    target_file = "models_historical.json"  # Replace with the file you are searching for
+    found_path = find_file(start_path, target_file)
+    historical_model_path = found_path
+    target_file = "models.json"  # Replace with the file you are searching for
+    found_path = find_file(start_path, target_file)
+    live_model_path = found_path
+    if found_path:
+        logger.info(f"File found: {found_path}")
+    else:
+        logger.warning(f"File {target_file} not found in {start_path}")
+
     def list_files_recursive(path="."):
         try:
             for root, dirs, files in os.walk(path):
