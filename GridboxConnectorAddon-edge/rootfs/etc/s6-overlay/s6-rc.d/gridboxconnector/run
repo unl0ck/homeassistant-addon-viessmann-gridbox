@@ -24,5 +24,7 @@ export ENABLE_TELEMETRY=$(bashio::config 'enable_telemetry')
 ls -lash /data
 cd /build/
 ls -lash
+ls -lash ./GridboxConnector
+ls -lash ./GridboxConnector/models
 pwd
 python GridboxConnector

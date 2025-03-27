@@ -42,6 +42,7 @@ RUN \
 COPY GridboxConnector/ /build/GridboxConnector
 COPY cloudSettings.json /data/cloudSettings.json
 COPY cloudSettings.json /build/cloudSettings.json
+COPY GridboxConnector/models/*.json /build/GridboxConnector/models/
 
 RUN cd /build/GridboxConnector && pip install -r requirements.txt
 

@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 3.0.2-edge
+
+### 🚀 Added
+
+- logs of content
+
 ## 3.0.0-edge
 
 Is Currently not working correctly don't Use for Production
