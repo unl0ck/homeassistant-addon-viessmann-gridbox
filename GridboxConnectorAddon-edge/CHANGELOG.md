@@ -1,9 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
-## 3.0.5-edge
+
+## 3.0.6-edge
 
 ### 🚀 Added
 
 - battery charge and discharge
+
 ## 3.0.3-edge
 
 ### 🚀 Added
