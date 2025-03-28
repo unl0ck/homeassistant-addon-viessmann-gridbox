@@ -152,20 +152,6 @@ def run_addon():
     else:
         logger.warning(f"File {target_file} not found in {start_path}")
 
-    def list_files_recursive(path="."):
-        try:
-            for root, dirs, files in os.walk(path):
-                level = root.replace(path, "").count(os.sep)
-                indent = " " * 4 * level
-                logger.info(f"{indent}Directory: {root}")
-                sub_indent = " " * 4 * (level + 1)
-                for file in files:
-                    logger.info(f"{sub_indent}File: {os.path.join(root, file)}")
-        except Exception as e:
-            logger.error(f"Error listing files under {path}: {e}")
-
-    list_files_recursive("./")
-
     if not os.path.exists(historical_model_path):
         logger.error("Historical model file not found")
         exit(1)

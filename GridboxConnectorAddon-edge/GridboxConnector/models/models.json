@@ -33,14 +33,14 @@
       "unit": "W",
       "device_class": "power",
       "factor": 1,
-      "unique_id": "viessmann_total_consumption_household"
+      "unique_id": "total_consumption"
     },
     "directConsumptionHousehold": {
       "name": "DirectConsumptionHousehold",
       "unit": "W",
       "device_class": "power",
       "factor": 1,
-      "unique_id": "direct_consumption_household"
+      "unique_id": "direct_consumption"
     },
     "directConsumptionHeatPump": {
       "name": "DirectConsumptionHeatPump",
@@ -113,6 +113,20 @@
       "device_class": "energy_storage",
       "factor": 1,
       "unique_id": "battery_remaining_charge"
+    },
+    "charge": {
+      "name": "BatteryCharge",
+      "unit": "Wh",
+      "device_class": "energy_storage",
+      "factor": 1,
+      "unique_id": "battery_charge"
+    },
+    "discharge": {
+      "name": "BatteryDischarge",
+      "unit": "Wh",
+      "device_class": "energy_storage",
+      "factor": 1,
+      "unique_id": "battery_discharge"
     }
   },
   "heaters": {
