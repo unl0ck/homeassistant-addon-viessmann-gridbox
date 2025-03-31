@@ -177,14 +177,20 @@
             "unit": "Wh",
             "device_class": "energy_storage",
             "factor": 1,
-            "unique_id": "battery_charge"
+            "unique_id": "battery_charge",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
         },
         "discharge": {
             "name": "BatteryDischarge",
             "unit": "Wh",
             "device_class": "energy_storage",
             "factor": 1,
-            "unique_id": "battery_discharge"
+            "unique_id": "battery_discharge",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
         }
     },
     "heaters": {
