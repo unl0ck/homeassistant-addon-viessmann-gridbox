@@ -1,6 +1,6 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
-## 3.0.7-edge
+## 3.0.8-edge
 
 ### 🚀 Added
 
