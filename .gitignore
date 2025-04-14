@@ -5,3 +5,4 @@ __pycache__
 GridX
 .coverage
 coverage.xml
+venv
