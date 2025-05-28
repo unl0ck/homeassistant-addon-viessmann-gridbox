@@ -1,7 +1,7 @@
 ha-mqtt-discoverable==0.19.1
 requests==2.32.3
 viessmann-gridbox-connector==1.7.2
-opentelemetry-instrumentation-requests==0.53b0
+opentelemetry-instrumentation-requests==0.54b0
 pydantic==2.*
 ruff==0.11.11
 logfire==3.16.0
