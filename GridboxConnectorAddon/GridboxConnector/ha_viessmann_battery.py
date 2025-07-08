@@ -75,7 +75,7 @@ class HAViessmannBattery:
 
         self.battery_sensor_power = SensorInfo(
             name=f"Battery {name} Power",
-            device_class="battery",
+            device_class="power",
             unique_id=f"gridbox_battery_power_{name}" + prefix,
             device=device_info,
             unit_of_measurement=unit_of_power,

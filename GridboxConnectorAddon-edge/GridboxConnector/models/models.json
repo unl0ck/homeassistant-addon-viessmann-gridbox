@@ -103,7 +103,7 @@
     "power": {
       "name": "BatteryPower",
       "unit": "W",
-      "device_class": "energy_storage",
+      "device_class": "power",
       "factor": 1,
       "unique_id": "battery_power"
     },

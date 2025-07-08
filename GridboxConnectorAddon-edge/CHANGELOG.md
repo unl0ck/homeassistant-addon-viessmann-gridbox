@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 3.0.10-edge
+
+### 🔨 Fixed
+
+- BatteryPower device_class to power changed
+
 ## 3.0.9-edge
 
 ### 🚀 Added

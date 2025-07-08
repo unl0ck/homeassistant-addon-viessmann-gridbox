@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.67
+
+### 🔨 Fixed
+
+- changed device_class to power from battery in Battery Power
+
 ## 2.11.66
 
 ### 🔄 Changed
