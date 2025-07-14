@@ -1,5 +1,5 @@
 ha-mqtt-discoverable==0.18.0
-requests==2.32.3
+requests==2.32.4
 viessmann-gridbox-connector==1.7.2
 logfire==3.8.1
 opentelemetry-instrumentation-requests==0.52b0
