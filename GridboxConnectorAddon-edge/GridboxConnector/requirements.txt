@@ -6,5 +6,5 @@ pydantic==2.*
 ruff==0.12.5
 logfire==3.25.0
 configparser==7.2.0
-coverage==7.9.2
+coverage==7.10.0
 bump-my-version==1.2.1
