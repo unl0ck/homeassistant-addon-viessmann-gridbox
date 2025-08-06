@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 3.0.11-edge
+
+### 🔨 Fixed
+
+- Heaters changed device_class and unit of measurement
+
 ## 3.0.10-edge
 
 ### 🔨 Fixed

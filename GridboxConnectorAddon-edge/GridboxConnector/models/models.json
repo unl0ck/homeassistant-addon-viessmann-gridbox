@@ -139,7 +139,7 @@
     },
     "temperature": {
       "name": "HeaterTemperature",
-      "unit": "C",
+      "unit": "°C",
       "device_class": "temperature",
       "factor": 1,
       "unique_id": "heater_temperature"

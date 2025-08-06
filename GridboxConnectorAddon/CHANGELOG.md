@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 2.11.68
+
+### 🔨 Fixed
+
+- Heaters changed device_class and unit of measurement
+
 ## 2.11.67
 
 ### 🔨 Fixed

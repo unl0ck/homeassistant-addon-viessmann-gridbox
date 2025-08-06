@@ -10,13 +10,13 @@ class HAViessmannHeater:
         self.mqtt_settings: Settings.MQTT = mqtt_settings
 
         self.heater_sensor_power = SensorInfo(
-            name=f"Heater {name} Power", device_class="energy", unique_id=f"gridbox_heater_power_{name}"+prefix, device=device_info, unit_of_measurement="W")
+            name=f"Heater {name} Power", device_class="power", unique_id=f"gridbox_heater_power_{name}"+prefix, device=device_info, unit_of_measurement="W")
         self.heater_power_settings = Settings(
             mqtt=mqtt_settings, entity=self.heater_sensor_power)
         self.heater_power = Sensor(self.heater_power_settings)
 
         self.heater_sensor_temperature = SensorInfo(
-            name=f"Heater {name} Temperature", device_class="temperature", unique_id=f"gridbox_heater_temperature_{name}"+prefix, device=device_info, unit_of_measurement="C")
+            name=f"Heater {name} Temperature", device_class="temperature", unique_id=f"gridbox_heater_temperature_{name}"+prefix, device=device_info, unit_of_measurement="°C")
         self.heater_temperature_settings = Settings(
             mqtt=mqtt_settings, entity=self.heater_sensor_temperature)
         self.heater_temperature = Sensor(self.heater_temperature_settings)
