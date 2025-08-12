@@ -3,7 +3,7 @@
         "production": {
             "name": "Production",
             "unit": "Wh",
-            "device_class": "power",
+            "device_class": "energy",
             "factor": 1,
             "unique_id": "production",
             "state_class": "total",
@@ -13,7 +13,7 @@
         "feedIn": {
             "name": "Feed In",
             "unit": "Wh",
-            "device_class": "power",
+            "device_class": "energy",
             "factor": 1,
             "unique_id": "feed_in",
             "state_class": "total",
@@ -23,7 +23,7 @@
         "supply": {
             "name": "Supply",
             "unit": "Wh",
-            "device_class": "power",
+            "device_class": "energy",
             "factor": 1,
             "unique_id": "supply",
             "state_class": "total",
@@ -33,7 +33,7 @@
         "photovoltaic": {
             "name": "Photovoltaic",
             "unit": "Wh",
-            "device_class": "power",
+            "device_class": "energy",
             "factor": 1,
             "unique_id": "photovoltaic",
             "state_class": "total",
@@ -43,7 +43,7 @@
         "consumption": {
             "name": "Consumption",
             "unit": "Wh",
-            "device_class": "power",
+            "device_class": "energy",
             "factor": 1,
             "unique_id": "consumption_household",
             "state_class": "total",
@@ -53,7 +53,7 @@
         "totalConsumption": {
             "name": "Total Consumption",
             "unit": "Wh",
-            "device_class": "power",
+            "device_class": "energy",
             "factor": 1,
             "unique_id": "viessmann_total_consumption_household",
             "state_class": "total",
@@ -63,7 +63,7 @@
         "directConsumptionHousehold": {
             "name": "DirectConsumptionHousehold",
             "unit": "Wh",
-            "device_class": "power",
+            "device_class": "energy",
             "factor": 1,
             "unique_id": "direct_consumption_household",
             "state_class": "total",
@@ -73,7 +73,7 @@
         "directConsumptionHeatPump": {
             "name": "DirectConsumptionHeatPump",
             "unit": "Wh",
-            "device_class": "power",
+            "device_class": "energy",
             "factor": 1,
             "unique_id": "direct_consumption_heatpump",
             "state_class": "total",
@@ -83,7 +83,7 @@
         "directConsumptionEV": {
             "name": "DirectConsumptionEV",
             "unit": "Wh",
-            "device_class": "power",
+            "device_class": "energy",
             "factor": 1,
             "unique_id": "direct_consumption_ev",
             "state_class": "total",
@@ -103,7 +103,7 @@
         "selfSupply": {
             "name": "SelfSupply",
             "unit": "Wh",
-            "device_class": "power",
+            "device_class": "energy",
             "factor": 1,
             "unique_id": "self_supply",
             "state_class": "total",
@@ -113,7 +113,7 @@
         "heating": {
             "name": "Heating",
             "unit": "Wh",
-            "device_class": "power",
+            "device_class": "energy",
             "factor": 1,
             "unique_id": "self_supply",
             "state_class": "total",
@@ -229,7 +229,7 @@
         "power": {
             "name": "EVChargingStationPower",
             "unit": "Wh",
-            "device_class": "power",
+            "device_class": "energy",
             "factor": 1,
             "unique_id": "ev_charging_station_power",
             "state_class": "total",
