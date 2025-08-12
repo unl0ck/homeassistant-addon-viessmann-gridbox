@@ -1,5 +1,15 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 3.0.12-edge
+
+### 🔨 Fixed
+
+- Historical power to energy fixed
+
+### 🚀 Added
+
+- tool to make it easier to get logs and screenshot of dashboard
+
 ## 3.0.11-edge
 
 ### 🔨 Fixed
