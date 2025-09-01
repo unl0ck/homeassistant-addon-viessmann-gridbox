@@ -3,7 +3,7 @@ requests==2.32.5
 viessmann-gridbox-connector==1.7.3
 opentelemetry-instrumentation-requests==0.57b0
 pydantic==2.*
-ruff==0.12.10
+ruff==0.12.11
 logfire==4.3.5
 configparser==7.2.0
 coverage==7.10.6
