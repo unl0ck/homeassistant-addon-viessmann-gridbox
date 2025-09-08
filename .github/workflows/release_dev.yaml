@@ -19,7 +19,7 @@ jobs:
         run: ./copy_to_dev.sh
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
 
       - run: pip install bump-my-version
 
