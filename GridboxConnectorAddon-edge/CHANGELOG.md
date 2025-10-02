@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 3.1.0-edge
+
+### 🚀 Added
+
+- Heatpump Sum added
+
 ## 3.0.12-edge
 
 ### 🔨 Fixed

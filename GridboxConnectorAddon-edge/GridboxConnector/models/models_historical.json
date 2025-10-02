@@ -139,6 +139,16 @@
             "state_class": "total",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
+        },
+        "heatpump": {
+            "name": "HeatPump",
+            "unit": "Wh",
+            "device_class": "energy",
+            "factor": 1,
+            "unique_id": "heatpump",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
         }
     },
     "battery": {

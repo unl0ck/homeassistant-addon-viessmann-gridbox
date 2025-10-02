@@ -83,6 +83,13 @@
       "device_class": "power_factor",
       "factor": 100,
       "unique_id": "self_sufficiency_rate"
+    },
+    "heatpump": {
+      "name": "HeatPump",
+      "unit": "W",
+      "device_class": "power",
+      "factor": 1,
+      "unique_id": "heatpump"
     }
   },
   "battery": {
