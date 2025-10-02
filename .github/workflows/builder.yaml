@@ -24,7 +24,7 @@ jobs:
       changed: ${{ steps.changed_addons.outputs.changed }}
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Get changed files
         id: changed_files
@@ -58,7 +58,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Get information
         id: info
@@ -81,7 +81,7 @@ jobs:
           fi
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         if: env.BUILD_ARGS != '--test'
         with:
           python-version: "3.10"
@@ -116,7 +116,7 @@ jobs:
 
       - name: Build ${{ matrix.addon }} add-on
         if: steps.check.outputs.build_arch == 'true'
-        uses: home-assistant/builder@2025.03.0
+        uses: home-assistant/builder@2025.09.0
         with:
           args: |
             ${{ env.BUILD_ARGS }} \
