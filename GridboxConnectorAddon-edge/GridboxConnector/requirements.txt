@@ -7,4 +7,4 @@ ruff==0.13.2
 logfire==4.10.0
 configparser==7.2.0
 coverage==7.10.7
-bump-my-version==1.2.3
+bump-my-version==1.2.4
