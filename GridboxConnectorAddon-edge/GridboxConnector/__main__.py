@@ -35,6 +35,8 @@ try:
     elif enable_telemetry == "true":
         enable_telemetry = True
 
+    if not enable_telemetry:
+        logger.warning(f"No log fire token")
 
     if logfire_token and enable_telemetry:
         logger.info(f"===============================================================")

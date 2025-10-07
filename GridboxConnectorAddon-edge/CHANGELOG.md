@@ -1,5 +1,11 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 3.1.2-edge
+
+### 🔨 Fixed
+
+- using correct token
+
 ## 3.1.1-edge
 
 ### 🚀 Added
