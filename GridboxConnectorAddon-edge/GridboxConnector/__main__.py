@@ -28,15 +28,19 @@ console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addFilter(SensitiveDataFilter())
 try:
-    logfire_token = os.getenv("LOGFIRE_TOKEN", "4nzH9rJ0GBZ4QJNY5GQM6tTh2bFTTyfrsrw6ytZ1xGT9")
-    enable_telemetry = os.getenv("ENABLE_TELEMETRY", False)
+    logfire_token = os.getenv("LOGFIRE_TOKEN_EDGE", "")
+    enable_telemetry = os.getenv("ENABLE_TELEMETRY", "false")
     if enable_telemetry == "false":
         enable_telemetry = False
     elif enable_telemetry == "true":
         enable_telemetry = True
 
-    logger.info(f"Enable telemetry: {enable_telemetry}")
+
     if logfire_token and enable_telemetry:
+        logger.info(f"===============================================================")
+        logger.info(f"Telemetry to Logfire is {'enabled' if enable_telemetry else 'disabled'}")
+        logger.info(f"Will only logs ERROR to Logfire")
+        logger.info(f"===============================================================")
         environment = config.get("logfire", "environment", fallback="edge")
         logfire.configure(environment=environment, token=logfire_token)
         logfire.instrument_requests()

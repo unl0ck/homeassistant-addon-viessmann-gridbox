@@ -13,6 +13,7 @@ ARG BUILD_NAME
 ARG BUILD_REF
 ARG BUILD_REPOSITORY
 ARG BUILD_VERSION
+ENV LOGFIRE_TOKEN=${LOGFIRE_TOKEN_EDGE}
 
 LABEL \
   org.opencontainers.image.source="https://github.com/unl0ck/homeassistant-addon-viessmann-gridbox" \
