@@ -27,8 +27,11 @@ console_handler = logging.StreamHandler()
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addFilter(SensitiveDataFilter())
+
 try:
     logfire_token = os.getenv("LOGFIRE_TOKEN_EDGE", "")
+    if os.getenv("OVERRIDE_LOGFIRE_TOKEN", "") != "":
+        logfire_token = os.getenv("OVERRIDE_LOGFIRE_TOKEN", logfire_token)
     enable_telemetry = os.getenv("ENABLE_TELEMETRY", "false")
     if enable_telemetry == "false":
         enable_telemetry = False
@@ -37,17 +40,20 @@ try:
 
     if not enable_telemetry:
         logger.warning(f"No log fire token")
+    else:
+        logger.warning(f"Log fire token found {logfire_token}")
 
     if logfire_token and enable_telemetry:
         logger.info(f"===============================================================")
         logger.info(f"Telemetry to Logfire is {'enabled' if enable_telemetry else 'disabled'}")
         logger.info(f"Will only logs ERROR to Logfire")
         logger.info(f"===============================================================")
+
         environment = config.get("logfire", "environment", fallback="edge")
         logfire.configure(environment=environment, token=logfire_token)
         logfire.instrument_requests()
         logfire_handler = logfire.LogfireLoggingHandler()
-        logfire_handler.setLevel(logging.ERROR)
+        logfire_handler.setLevel(logging.getLevelName(os.getenv("LOG_LEVEL_TELEMETRY", "ERROR")))
         logger.addHandler(logfire_handler)
 except Exception as e:
     logger.error(f"Error configuring logfire: {e}")

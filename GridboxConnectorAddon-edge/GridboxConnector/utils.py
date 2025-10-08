@@ -6,9 +6,11 @@ import re
 
 
 class SensitiveDataFilter(logging.Filter):
+    uuid_pattern = r"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"
     def filter(self, record):
         message = record.getMessage()
         try:
+            message = re.sub(self.uuid_pattern, "***", message)
             # Versuche die Nachricht als Python-Dictionary zu parsen
             message_dict = ast.literal_eval(message)
             # Sensible Daten filtern, falls vorhanden
@@ -21,6 +23,7 @@ class SensitiveDataFilter(logging.Filter):
         except (ValueError, SyntaxError):  # pragma: no cover
             pass
             # logging.error(f"Error parsing message: {message}")
+            record.msg = re.sub(self.uuid_pattern, "***", message)
         except Exception as e:  # pragma: no cover
             pass
             # logging.error(f"Error filtering sensitive data: {e}")

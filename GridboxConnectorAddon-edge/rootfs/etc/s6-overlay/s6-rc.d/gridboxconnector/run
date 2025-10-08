@@ -21,6 +21,8 @@ export USERNAME=$(bashio::config 'username')
 export PASSWORD=$(bashio::config 'password')
 export LOG_LEVEL=$(bashio::config 'log_level')
 export ENABLE_TELEMETRY=$(bashio::config 'enable_telemetry')
+export OVERRIDE_LOGFIRE_TOKEN=$(bashio::config 'OverrideLogfireToken')
+export LOG_LEVEL_TELEMETRY=$(bashio::config 'log_level_telemetry')
 ls -lash /data
 cd /build/
 ls -lash

@@ -2,6 +2,13 @@
 
 ## 3.1.2-edge
 
+### 🚀 Added
+
+- you can use an own logfire token to get logs
+- you can set another loglevel as normal log, to reduce traffic on logfire
+
+## 3.1.2-edge
+
 ### 🔨 Fixed
 
 - using correct token
