@@ -1,5 +1,12 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 3.1.4-edge
+
+### 🔨 Fixed
+
+- logfire log output corrected
+
+
 ## 3.1.3-edge
 
 ### 🚀 Added
