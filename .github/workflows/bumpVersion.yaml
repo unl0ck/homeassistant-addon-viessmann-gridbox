@@ -51,6 +51,6 @@ jobs:
           echo "NEW_VERSION=$(bump-my-version show --config-file .bumpversion-${{ github.event.inputs.type }}.toml current_version)" >> $GITHUB_ENV
 
       - name: Commit and Tag
-        uses: stefanzweifel/git-auto-commit-action@v6
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "ci: bump ${{ github.event.inputs.type }} ${{ env.OLD_VERSION }} -> ${{ env.NEW_VERSION }}"
