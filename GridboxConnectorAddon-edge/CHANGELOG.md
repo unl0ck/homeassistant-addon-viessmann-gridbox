@@ -1,11 +1,16 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
+## 3.1.5-edge
+
+### 🔨 Fixed
+
+- eon-home endpoint set
+
 ## 3.1.4-edge
 
 ### 🔨 Fixed
 
 - logfire log output corrected
-
 
 ## 3.1.3-edge
 
