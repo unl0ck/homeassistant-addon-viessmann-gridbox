@@ -1,7 +1,7 @@
 import os
 import json
 import time
-from viessmann_gridbox_connector import GridboxConnector
+from gridx_connector import GridboxConnector
 from ha_mqtt_discoverable import Settings
 from ha_viessmann_gridbox_connector import HAViessmannGridboxConnector
 import logging
@@ -60,7 +60,7 @@ except Exception as e:
 
 
 def load_gridbox_config():
-    config_file = files("viessmann_gridbox_connector").joinpath("config.json")
+    config_file = files("gridx_connector").joinpath("eon-home.config.json")
     with open(str(config_file)) as json_file:
         data = json.load(json_file)
     return data

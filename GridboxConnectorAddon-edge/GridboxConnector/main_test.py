@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import Mock, patch
-from viessmann_gridbox_connector import GridboxConnector
+from gridx_connector import GridboxConnector
 import json
 from ha_mqtt_discoverable import Settings
 from ha_viessmann_gridbox_connector import HAViessmannGridboxConnector
