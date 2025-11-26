@@ -1,6 +1,6 @@
 ha-mqtt-discoverable==0.23.0
 requests==2.32.5
-viessmann-gridbox-connector==2.0.0
+gridx-connector==1.0.0
 opentelemetry-instrumentation-requests==0.59b0
 pydantic==2.*
 ruff==0.14.6
