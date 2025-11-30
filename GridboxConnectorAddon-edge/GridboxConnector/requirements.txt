@@ -3,7 +3,7 @@ requests==2.32.5
 gridx-connector==1.0.1
 opentelemetry-instrumentation-requests==0.59b0
 pydantic==2.*
-ruff==0.14.6
+ruff==0.14.7
 logfire==4.15.1
 configparser==7.2.0
 coverage==7.12.0
