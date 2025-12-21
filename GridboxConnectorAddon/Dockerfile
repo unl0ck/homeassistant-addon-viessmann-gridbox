@@ -24,6 +24,7 @@ LABEL \
   org.opencontainers.image.version=${BUILD_VERSION}
 
 ENV LOGFIRE_TOKEN=${LOGFIRE_TOKEN}
+ENV LOGFIRE_TOKEN_EDGE=${LOGFIRE_TOKEN_EDGE}
 
 RUN \
   apk add --no-cache \
