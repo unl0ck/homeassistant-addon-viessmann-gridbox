@@ -1,10 +1,10 @@
 ha-mqtt-discoverable==0.23.0
 requests==2.32.5
 gridx-connector==1.0.1
-opentelemetry-instrumentation-requests==0.59b0
+opentelemetry-instrumentation-requests==0.60b1
 pydantic==2.*
-ruff==0.14.6
-logfire==4.15.1
+ruff==0.14.9
+logfire==4.16.0
 configparser==7.2.0
-coverage==7.12.0
-bump-my-version==1.2.4
+coverage==7.13.0
+bump-my-version==1.2.5
