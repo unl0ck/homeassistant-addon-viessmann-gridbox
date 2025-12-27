@@ -3,7 +3,7 @@ from unittest.mock import Mock, patch
 from gridx_connector import GridboxConnector
 import json
 from ha_mqtt_discoverable import Settings
-from ha_viessmann_gridbox_connector import HAViessmannGridboxConnector
+from ha_gridbox_connector import HAGridboxConnector
 from paho.mqtt.client import MQTT_ERR_SUCCESS
 from ha_mqtt_discoverable.sensors import Sensor
 
@@ -34,15 +34,15 @@ class TestGridboxConnectorMethods(unittest.TestCase):
         mqtt_user = "mqtt_user"
         mqtt_pw = "mqtt_pw"
         mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw)
-        viessmann_gridbox_connector = HAViessmannGridboxConnector(mqtt_settings)
-        viessmann_gridbox_connector.update_sensors(result)
+        ha_gridbox_connector = HAGridboxConnector(mqtt_settings)
+        ha_gridbox_connector.update_sensors(result)
         with (
-            patch.object(viessmann_gridbox_connector.production, "set_state") as mock_production,
-            patch.object(viessmann_gridbox_connector.selfConsumptionRate, "set_state") as mock_self_consumtion_rate_sensor,
+            patch.object(ha_gridbox_connector.production, "set_state") as mock_production,
+            patch.object(ha_gridbox_connector.selfConsumptionRate, "set_state") as mock_self_consumtion_rate_sensor,
         ):
-            viessmann_gridbox_connector.update_sensors(result)
-            mock_production.assert_called_once_with(1512, last_reset=None)
-            mock_self_consumtion_rate_sensor.assert_called_once_with(96.1, last_reset=None)
+            ha_gridbox_connector.update_sensors(result)
+            mock_production.assert_called_once_with(1512, last_reset='')
+            mock_self_consumtion_rate_sensor.assert_called_once_with(96.1, last_reset='')
 
     @patch("paho.mqtt.client.Client")
     @patch.object(GridboxConnector, "init_auth", return_value=None)
@@ -69,14 +69,14 @@ class TestGridboxConnectorMethods(unittest.TestCase):
         mqtt_user = "mqtt_user"
         mqtt_pw = "mqtt_pw"
         mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw)
-        viessmann_gridbox_connector = HAViessmannGridboxConnector(mqtt_settings)
+        ha_gridbox_connector = HAGridboxConnector(mqtt_settings)
 
-        viessmann_gridbox_connector.update_sensors(result)
+        ha_gridbox_connector.update_sensors(result)
         with (
-            patch.object(viessmann_gridbox_connector.evChargingStation_power, "set_state") as mock_evChargingStation_power,
+            patch.object(ha_gridbox_connector.evChargingStation_power, "set_state") as mock_evChargingStation_power,
         ):
-            viessmann_gridbox_connector.update_sensors(result)
-            mock_evChargingStation_power.assert_called_once_with(7930.4, last_reset=None)
+            ha_gridbox_connector.update_sensors(result)
+            mock_evChargingStation_power.assert_called_once_with(7930.4, last_reset='')
 
     @patch("paho.mqtt.client.Client")
     @patch.object(GridboxConnector, "init_auth", return_value=None)
@@ -103,15 +103,15 @@ class TestGridboxConnectorMethods(unittest.TestCase):
         mqtt_user = "mqtt_user"
         mqtt_pw = "mqtt_pw"
         mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw)
-        viessmann_gridbox_connector = HAViessmannGridboxConnector(mqtt_settings)
-        viessmann_gridbox_connector.update_sensors(result)
+        ha_gridbox_connector = HAGridboxConnector(mqtt_settings)
+        ha_gridbox_connector.update_sensors(result)
         with (
-            patch.object(viessmann_gridbox_connector.heaters_power, "set_state") as mock_heaters_power,
-            patch.object(viessmann_gridbox_connector.heaters_temperature, "set_state") as mock_heaters_temperature,
+            patch.object(ha_gridbox_connector.heaters_power, "set_state") as mock_heaters_power,
+            patch.object(ha_gridbox_connector.heaters_temperature, "set_state") as mock_heaters_temperature,
         ):
-            viessmann_gridbox_connector.update_sensors(result)
-            mock_heaters_power.assert_called_once_with(3676, last_reset=None)
-            mock_heaters_temperature.assert_called_once_with(70.9, last_reset=None)
+            ha_gridbox_connector.update_sensors(result)
+            mock_heaters_power.assert_called_once_with(3676, last_reset='')
+            mock_heaters_temperature.assert_called_once_with(70.9, last_reset='')
 
     def test_logger(self):
         import os

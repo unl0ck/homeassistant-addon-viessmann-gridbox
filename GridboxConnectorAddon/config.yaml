@@ -20,6 +20,7 @@ options:
   wait_time: 60
   log_level: INFO
   enable_telemetry: False
+  log_level_telemetry: WARNING
 
 schema:
   username: str
@@ -29,6 +30,8 @@ schema:
   OverrideMqttPw: password?
   OverrideMqttServer: str?
   OverrideMqttPort: int?
-  log_level: list(TRACE|DEBUG|INFO|WARNING|ERROR)
+  log_level: list(DEBUG|INFO|WARNING|ERROR)
   enable_telemetry: bool
+  log_level_telemetry: list(DEBUG|INFO|WARNING|ERROR)
+  OverrideLogfireToken: str?
 image: ghcr.io/unl0ck/homeassistant-addon-viessmann-gridbox-{arch}

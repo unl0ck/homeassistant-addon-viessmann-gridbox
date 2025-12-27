@@ -4,8 +4,7 @@ import logging
 from logging import Logger
 import json
 
-
-class HAViessmannGridboxConnector:
+class HAGridboxConnector:
     battery_sensor_dict: dict
     mqtt_settings: Settings.MQTT
     device_info: DeviceInfo
@@ -14,7 +13,7 @@ class HAViessmannGridboxConnector:
     def __init__(
         self,
         mqtt_settings,
-        device_name: str = "Viessmann Gridbox",
+        device_name: str = "Viessmann Gridbox", #TODO using dynamic name from config file will load over ha setting
         device_identifiers: str = "viessmann_gridbox",
         device_manufacturer: str = "Viessmann",
         device_model: str = "Vitocharge 2.0",
@@ -29,38 +28,7 @@ class HAViessmannGridboxConnector:
         self.device_info = DeviceInfo(name=device_name, identifiers=device_identifiers, manufacturer=device_manufacturer, model=device_model)
         self.logger.info(f"Device Info: {self.device_info}")
 
-        # with open(self.model_path) as f:
-        #     sensors: dict = json.load(f)
-        #     for key in sensors.keys():
-        #         try:
-        #             self[key] = create_ha_sensor(key)
-        #         except ValueError as e:
-        #             self.logger.error(e)
-        #             continue
-        # # Instantiate the sensors
-        # self.production_sensor = create_ha_sensor("production", self.device_info, mqtt_settings, path=self.model_path)
-        # self.grid_sensor = create_ha_sensor("grid", self.device_info, mqtt_settings, path=self.model_path)
-        # self.photovoltaic_sensor = create_ha_sensor("photovoltaic", self.device_info, mqtt_settings, path=self.model_path)
-        # self.consumption_household_sensor = create_ha_sensor("consumption", self.device_info, mqtt_settings, path=self.model_path)
-        # self.total_consumption_household_sensor = create_ha_sensor("totalConsumption", self.device_info, mqtt_settings, path=self.model_path)
-        # self.direct_consumption_household_sensor = create_ha_sensor("directConsumptionHousehold", self.device_info, mqtt_settings, path=self.model_path)
-        # self.direct_consumption_heatpump_sensor = create_ha_sensor("directConsumptionHeatPump", self.device_info, mqtt_settings, path=self.model_path)
-        # self.direct_consumption_ev_sensor = create_ha_sensor("directConsumptionEV", self.device_info, mqtt_settings, path=self.model_path)
-        # self.direct_consumption_rate_sensor = create_ha_sensor("directConsumptionRate", self.device_info, mqtt_settings, path=self.model_path)
-        # self.self_supply_sensor = create_ha_sensor("selfSupply", self.device_info, mqtt_settings, path=self.model_path)
-        # self.self_consumtion_rate_sensor = create_ha_sensor("selfConsumptionRate", self.device_info, mqtt_settings, path=self.model_path)
-        # self.self_sufficiency_rate_sensor = create_ha_sensor("selfSufficiencyRate", self.device_info, mqtt_settings, path=self.model_path)
-
-        # # Battery sum
-        # self.battery_sum = HAViessmannBattery(mqtt_settings, self.device_info, "sum", "")
-
-        # # Heater
-        # self.heater_sensor = HAViessmannHeater(mqtt_settings, self.device_info, "", "")
-
-        # # EV
-        # self.ev_sum = HAViessmannEVChargingStation(mqtt_settings, self.device_info, "sum", "")
-
-    def update_sensors(self, measurement: dict, last_reset: str = None):
+    def update_sensors(self, measurement: dict, last_reset: str = ""):
         for key in measurement.keys():
             if key == "battery" or key == "evChargingStation":
                 type = key

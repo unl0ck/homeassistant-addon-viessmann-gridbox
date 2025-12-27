@@ -3,13 +3,14 @@ import json
 import time
 from gridx_connector import GridboxConnector
 from ha_mqtt_discoverable import Settings
-from ha_viessmann_gridbox_connector import HAViessmannGridboxConnector
+from ha_gridbox_connector import HAGridboxConnector
 import logging
 from importlib.resources import files
 from utils import SensitiveDataFilter, get_bool_env
 import threading
 import logfire
 import configparser
+import sys
 
 opens_file_path = "/data/options.json"
 setup_file_path = "setup.ini"
@@ -66,7 +67,7 @@ def load_gridbox_config():
     return data
 
 
-def live_data_task(gridboxConnector: GridboxConnector, ha_viessmann_device: HAViessmannGridboxConnector, WAIT):
+def live_data_task(gridboxConnector: GridboxConnector, ha_viessmann_device: HAGridboxConnector, WAIT):
     one_time_print = True
     while True:
         measurement = gridboxConnector.retrieve_live_data()
@@ -83,7 +84,7 @@ def live_data_task(gridboxConnector: GridboxConnector, ha_viessmann_device: HAVi
         time.sleep(WAIT)
 
 
-def historical_data_task(gridboxConnector: GridboxConnector, ha_viessmann_historical_device: HAViessmannGridboxConnector, WAIT):
+def historical_data_task(gridboxConnector: GridboxConnector, ha_viessmann_historical_device: HAGridboxConnector, WAIT):
     one_time_print = True
 
     while True:
@@ -112,7 +113,10 @@ def historical_data_task(gridboxConnector: GridboxConnector, ha_viessmann_histor
 def start_thread(target, args):
     while True:
         try:
-            thread = threading.Thread(target=target, args=args)
+            if sys.is_finalizing():
+                logger.info("Interpreter is finalizing, not starting new thread")
+                return
+            thread = threading.Thread(target=target, args=args, daemon=True)
             thread.start()
             thread.join()
         except Exception as e:
@@ -146,10 +150,10 @@ def run_addon():
             for root, dirs, files in os.walk(start_path):
                 if target_file in files:
                     return os.path.join(root, target_file)
-            return None
+            return ""
         except Exception as e:
             logger.error(f"Error searching for file {target_file} under {start_path}: {e}")
-            return None
+            return ""
 
     # Example usage
     start_path = "./"
@@ -189,18 +193,18 @@ def run_addon():
 
     logger.debug(gridbox_config["login"])
 
-    mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw, port=mqtt_port)
+    mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw, port=int(mqtt_port))
 
-    viessmann_gridbox_device = HAViessmannGridboxConnector(mqtt_settings=mqtt_settings, logger=logger, model_path=live_model_path)
-    viessmann_gridbox_historical_device = HAViessmannGridboxConnector(
+    viessmann_gridbox_device = HAGridboxConnector(mqtt_settings=mqtt_settings, logger=logger, model_path=live_model_path)
+    viessmann_gridbox_historical_device = HAGridboxConnector(
         mqtt_settings=mqtt_settings, device_name="Viessmann Gridbox Historical", device_identifiers="viessmann_gridbox_historical", logger=logger, model_path=historical_model_path
     )
 
     gridboxConnector = GridboxConnector(gridbox_config)
 
     # Starte die Threads
-    threading.Thread(target=start_live_thread, args=(gridboxConnector, viessmann_gridbox_device, WAIT)).start()
-    threading.Thread(target=start_historical_thread, args=(gridboxConnector, viessmann_gridbox_historical_device, WAIT)).start()
+    threading.Thread(target=start_live_thread, args=(gridboxConnector, viessmann_gridbox_device, WAIT), daemon=True).start()
+    threading.Thread(target=start_historical_thread, args=(gridboxConnector, viessmann_gridbox_historical_device, WAIT), daemon=True).start()
 
 
 if __name__ == "__main__":

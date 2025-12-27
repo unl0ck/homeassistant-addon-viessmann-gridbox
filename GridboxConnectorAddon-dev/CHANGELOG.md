@@ -1,43 +1,47 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
-## 3.1.5-edge
+## 3.1.6
+### 🔨 Fixed
+
+- threading
+## 3.1.5
 
 ### 🔨 Fixed
 
 - eon-home endpoint set
 
-## 3.1.4-edge
+## 3.1.4
 
 ### 🔨 Fixed
 
 - logfire log output corrected
 
-## 3.1.3-edge
+## 3.1.3
 
 ### 🚀 Added
 
 - you can use an own logfire token to get logs
 - you can set another loglevel as normal log, to reduce traffic on logfire
 
-## 3.1.2-edge
+## 3.1.2
 
 ### 🔨 Fixed
 
 - using correct token
 
-## 3.1.1-edge
+## 3.1.1
 
 ### 🚀 Added
 
 - New Logfire token
 
-## 3.1.0-edge
+## 3.1.0
 
 ### 🚀 Added
 
 - Heatpump Sum added
 
-## 3.0.12-edge
+## 3.0.12
 
 ### 🔨 Fixed
 
@@ -47,37 +51,37 @@
 
 - tool to make it easier to get logs and screenshot of dashboard
 
-## 3.0.11-edge
+## 3.0.11
 
 ### 🔨 Fixed
 
 - Heaters changed device_class and unit of measurement
 
-## 3.0.10-edge
+## 3.0.10
 
 ### 🔨 Fixed
 
 - BatteryPower device_class to power changed
 
-## 3.0.9-edge
+## 3.0.9
 
 ### 🚀 Added
 
 - heating in historical
 
-## 3.0.7-edge
+## 3.0.7
 
 ### 🚀 Added
 
 - battery charge and discharge
 
-## 3.0.6-edge
+## 3.0.6
 
 ### 🚀 Added
 
 - battery charge and discharge
 
-## 3.0.3-edge
+## 3.0.3
 
 ### 🚀 Added
 
@@ -87,13 +91,13 @@
 
 - logs of file structure
 
-## 3.0.2-edge
+## 3.0.2
 
 ### 🚀 Added
 
 - logs of content
 
-## 3.0.0-edge
+## 3.0.0
 
 Is Currently not working correctly don't Use for Production
 will released if all Sensors integrated like 2.x
