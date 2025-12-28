@@ -116,7 +116,7 @@ def start_thread(target, args):
             if sys.is_finalizing():
                 logger.info("Interpreter is finalizing, not starting new thread")
                 return
-            thread = threading.Thread(target=target, args=args, daemon=True)
+            thread = threading.Thread(target=target, args=args)
             thread.start()
             thread.join()
         except Exception as e:
@@ -203,8 +203,8 @@ def run_addon():
     gridboxConnector = GridboxConnector(gridbox_config)
 
     # Starte die Threads
-    threading.Thread(target=start_live_thread, args=(gridboxConnector, viessmann_gridbox_device, WAIT), daemon=True).start()
-    threading.Thread(target=start_historical_thread, args=(gridboxConnector, viessmann_gridbox_historical_device, WAIT), daemon=True).start()
+    threading.Thread(target=start_live_thread, args=(gridboxConnector, viessmann_gridbox_device, WAIT)).start()
+    threading.Thread(target=start_historical_thread, args=(gridboxConnector, viessmann_gridbox_historical_device, WAIT)).start()
 
 
 if __name__ == "__main__":
