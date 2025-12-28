@@ -1,4 +1,9 @@
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
+
+## 3.1.7
+### 🔨 Fixed
+
+- threading daemon removed
 ## 3.1.6-edge
 ### 🔨 Fixed
 
