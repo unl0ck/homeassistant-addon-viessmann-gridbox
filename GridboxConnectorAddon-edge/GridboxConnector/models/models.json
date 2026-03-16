@@ -4,6 +4,7 @@
       "name": "Production",
       "unit": "W",
       "device_class": "power",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "production"
     },
@@ -11,6 +12,7 @@
       "name": "Grid",
       "unit": "W",
       "device_class": "power",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "grid"
     },
@@ -18,6 +20,7 @@
       "name": "Photovoltaic",
       "unit": "W",
       "device_class": "power",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "photovoltaic"
     },
@@ -25,6 +28,7 @@
       "name": "Consumption",
       "unit": "W",
       "device_class": "power",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "consumption_household"
     },
@@ -32,6 +36,7 @@
       "name": "Total Consumption",
       "unit": "W",
       "device_class": "power",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "total_consumption"
     },
@@ -39,6 +44,7 @@
       "name": "DirectConsumptionHousehold",
       "unit": "W",
       "device_class": "power",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "direct_consumption"
     },
@@ -46,6 +52,7 @@
       "name": "DirectConsumptionHeatPump",
       "unit": "W",
       "device_class": "power",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "direct_consumption_heatpump"
     },
@@ -53,6 +60,7 @@
       "name": "DirectConsumptionEV",
       "unit": "W",
       "device_class": "power",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "direct_consumption_ev"
     },
@@ -60,6 +68,7 @@
       "name": "DirectConsumptionRate",
       "unit": "%",
       "device_class": "power_factor",
+      "state_class": "measurement",
       "factor": 100,
       "unique_id": "direct_consumption_rate"
     },
@@ -67,6 +76,7 @@
       "name": "SelfSupply",
       "unit": "W",
       "device_class": "power",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "self_supply"
     },
@@ -74,6 +84,7 @@
       "name": "SelfConsumptionRate",
       "unit": "%",
       "device_class": "power_factor",
+      "state_class": "measurement",
       "factor": 100,
       "unique_id": "self_consumption_rate"
     },
@@ -81,6 +92,7 @@
       "name": "SelfSufficiencyRate",
       "unit": "%",
       "device_class": "power_factor",
+      "state_class": "measurement",
       "factor": 100,
       "unique_id": "self_sufficiency_rate"
     },
@@ -88,6 +100,7 @@
       "name": "HeatPump",
       "unit": "W",
       "device_class": "power",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "heatpump"
     }
@@ -97,6 +110,7 @@
       "name": "BatteryStateOfCharge",
       "unit": "%",
       "device_class": "battery",
+      "state_class": "measurement",
       "factor": 100,
       "unique_id": "battery_state_of_charge"
     },
@@ -104,6 +118,7 @@
       "name": "BatteryCapacity",
       "unit": "Wh",
       "device_class": "energy_storage",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "battery_capacity"
     },
@@ -111,6 +126,7 @@
       "name": "BatteryPower",
       "unit": "W",
       "device_class": "power",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "battery_power"
     },
@@ -118,6 +134,7 @@
       "name": "BatteryRemainingCharge",
       "unit": "Wh",
       "device_class": "energy_storage",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "battery_remaining_charge"
     },
@@ -125,6 +142,7 @@
       "name": "BatteryCharge",
       "unit": "Wh",
       "device_class": "energy_storage",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "battery_charge"
     },
@@ -132,6 +150,7 @@
       "name": "BatteryDischarge",
       "unit": "Wh",
       "device_class": "energy_storage",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "battery_discharge"
     }
@@ -141,6 +160,7 @@
       "name": "HeaterPower",
       "unit": "W",
       "device_class": "power",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "heater_power"
     },
@@ -148,6 +168,7 @@
       "name": "HeaterTemperature",
       "unit": "°C",
       "device_class": "temperature",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "heater_temperature"
     }
@@ -157,6 +178,7 @@
       "name": "EVChargingStationPower",
       "unit": "W",
       "device_class": "power",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "ev_charging_station_power"
     },
@@ -164,6 +186,7 @@
       "name": "EVChargingStationStateOfCharge",
       "unit": "%",
       "device_class": "battery",
+      "state_class": "measurement",
       "factor": 100,
       "unique_id": "ev_charging_station_state_of_charge"
     },
@@ -171,6 +194,7 @@
       "name": "EVChargingStationCurrentL1",
       "unit": "A",
       "device_class": "current",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "ev_charging_station_current_l1"
     },
@@ -178,6 +202,7 @@
       "name": "EVChargingStationCurrentL2",
       "unit": "A",
       "device_class": "current",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "ev_charging_station_current_l2"
     },
@@ -185,6 +210,7 @@
       "name": "EVChargingStationCurrentL3",
       "unit": "A",
       "device_class": "current",
+      "state_class": "measurement",
       "factor": 1,
       "unique_id": "ev_charging_station_current_l3"
     },
@@ -192,6 +218,7 @@
       "name": "EVChargingStationReadingTotal",
       "unit": "kWh",
       "device_class": "energy",
+      "state_class": "total_increasing",
       "factor": 1,
       "unique_id": "ev_charging_station_reading_total"
     }
