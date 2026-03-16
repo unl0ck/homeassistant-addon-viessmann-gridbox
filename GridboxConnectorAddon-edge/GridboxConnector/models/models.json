@@ -152,6 +152,23 @@
       "unique_id": "heater_temperature"
     }
   },
+  "heatPumps": {
+    "power": {
+      "name": "HeatPumpPower",
+      "unit": "W",
+      "device_class": "power",
+      "state_class": "measurement",
+      "factor": 1,
+      "unique_id": "heatpump_power"
+    },
+    "sgReadyState": {
+      "name": "HeatPumpSGReadyState",
+      "unit": null,
+      "device_class": null,
+      "factor": 1,
+      "unique_id": "heatpump_sg_ready_state"
+    }
+  },
   "evChargingStation": {
     "power": {
       "name": "EVChargingStationPower",
