@@ -149,6 +149,26 @@
             "state_class": "total",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
+        },
+        "selfConsumption": {
+            "name": "SelfConsumption",
+            "unit": "Wh",
+            "device_class": "energy",
+            "factor": 1,
+            "unique_id": "self_consumption",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "directConsumptionHeater": {
+            "name": "DirectConsumptionHeater",
+            "unit": "Wh",
+            "device_class": "energy",
+            "factor": 1,
+            "unique_id": "direct_consumption_heater",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
         }
     },
     "battery": {

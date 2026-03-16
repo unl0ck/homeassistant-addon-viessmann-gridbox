@@ -84,12 +84,44 @@
       "factor": 100,
       "unique_id": "self_sufficiency_rate"
     },
-    "heatpump": {
+    "heatPump": {
       "name": "HeatPump",
       "unit": "W",
       "device_class": "power",
       "factor": 1,
       "unique_id": "heatpump"
+    },
+    "selfConsumption": {
+      "name": "SelfConsumption",
+      "unit": "W",
+      "device_class": "power",
+      "state_class": "measurement",
+      "factor": 1,
+      "unique_id": "self_consumption"
+    },
+    "directConsumptionHeater": {
+      "name": "DirectConsumptionHeater",
+      "unit": "W",
+      "device_class": "power",
+      "state_class": "measurement",
+      "factor": 1,
+      "unique_id": "direct_consumption_heater"
+    },
+    "gridMeterReadingNegative": {
+      "name": "GridMeterReadingNegative",
+      "unit": "Wh",
+      "device_class": "energy",
+      "state_class": "total_increasing",
+      "factor": 1,
+      "unique_id": "grid_meter_reading_negative"
+    },
+    "gridMeterReadingPositive": {
+      "name": "GridMeterReadingPositive",
+      "unit": "Wh",
+      "device_class": "energy",
+      "state_class": "total_increasing",
+      "factor": 1,
+      "unique_id": "grid_meter_reading_positive"
     }
   },
   "battery": {
