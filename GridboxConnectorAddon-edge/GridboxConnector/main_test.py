@@ -113,6 +113,41 @@ class TestGridboxConnectorMethods(unittest.TestCase):
             mock_heaters_power.assert_called_once_with(3676, last_reset='')
             mock_heaters_temperature.assert_called_once_with(70.9, last_reset='')
 
+    @patch("paho.mqtt.client.Client")
+    @patch.object(GridboxConnector, "init_auth", return_value=None)
+    @patch.object(GridboxConnector, "__init__", return_value=None)
+    @patch.object(GridboxConnector, "retrieve_live_data_by_id")
+    def test_main_heatpump(self, mock_retrieve_live_data, mock_init, mock_init_auth, mock_mqtt_client):
+        # Load mock data from JSON file
+        with open("tests/mock_data/mock_data_with_heatpump.json") as f:
+            mock_data = json.load(f)
+        mock_mqtt_client.return_value.connect.return_value = MQTT_ERR_SUCCESS
+        mock_retrieve_live_data.return_value = mock_data
+        # Create an instance of the class
+        gridbox_connector = GridboxConnector(None)
+
+        # Call the function
+        result = gridbox_connector.retrieve_live_data_by_id()
+
+        # Assert the function was called once
+        mock_retrieve_live_data.assert_called_once()
+
+        # Assert the function returned the mock value
+        self.assertEqual(result, mock_data)
+        mqtt_server = "mqtt_server"
+        mqtt_user = "mqtt_user"
+        mqtt_pw = "mqtt_pw"
+        mqtt_settings = Settings.MQTT(host=mqtt_server, username=mqtt_user, password=mqtt_pw)
+        ha_gridbox_connector = HAGridboxConnector(mqtt_settings)
+        ha_gridbox_connector.update_sensors(result)
+        with (
+            patch.object(ha_gridbox_connector.heatPumps_power, "set_state") as mock_heatpumps_power,
+            patch.object(ha_gridbox_connector.heatPumps_sgReadyState, "set_state") as mock_heatpumps_sg_ready_state,
+        ):
+            ha_gridbox_connector.update_sensors(result)
+            mock_heatpumps_power.assert_called_once_with(1074.93, last_reset='')
+            mock_heatpumps_sg_ready_state.assert_called_once_with("AUTO")
+
     def test_logger(self):
         import os
         import logging
