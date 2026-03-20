@@ -25,7 +25,7 @@ jobs:
       changed: ${{ steps.changed_addons.outputs.changed }}
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Get changed files
         id: changed_files
@@ -58,7 +58,7 @@ jobs:
         arch: ["aarch64", "amd64"]
     steps:
       - name: Check out repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Get information
         id: info
@@ -81,7 +81,7 @@ jobs:
           fi
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         if: env.BUILD_ARGS != '--test'
         with:
           python-version: "3.12"

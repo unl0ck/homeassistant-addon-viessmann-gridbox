@@ -13,12 +13,22 @@ jobs:
       pull-requests: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Copy Release
         run: ./copy_to_release.sh
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+
+      - run: pip install bump-my-version
+
+      - name: Get Current Version
+        run: |
+          echo "CURRENT_VERSION=$(bump-my-version show --config-file .bumpversion-stable.toml current_version)" >> $GITHUB_ENV
+
       - name: Commit Stable
-        uses: stefanzweifel/git-auto-commit-action@v7
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "release: Release Stable Version"
+          tagging_message: "v${{ env.CURRENT_VERSION }}"
+          commit_message: "release: Release Stable Version v${{ env.CURRENT_VERSION }}"

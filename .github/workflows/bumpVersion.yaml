@@ -14,7 +14,6 @@ on:
           - major
           - minor
           - patch
-          - dev
       type:
         description: "Select Type"
         required: true
@@ -23,6 +22,7 @@ on:
         options:
           - dev
           - edge
+          - stable
 
 jobs:
   build:
@@ -32,10 +32,10 @@ jobs:
       pull-requests: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
 
       - run: pip install bump-my-version
 
@@ -51,6 +51,6 @@ jobs:
           echo "NEW_VERSION=$(bump-my-version show --config-file .bumpversion-${{ github.event.inputs.type }}.toml current_version)" >> $GITHUB_ENV
 
       - name: Commit and Tag
-        uses: stefanzweifel/git-auto-commit-action@v7
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "ci: bump ${{ github.event.inputs.type }} ${{ env.OLD_VERSION }} -> ${{ env.NEW_VERSION }}"
