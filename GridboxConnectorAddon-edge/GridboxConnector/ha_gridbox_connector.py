@@ -42,7 +42,7 @@ class HAGridboxConnector:
                         getattr(self, attr_name).set_state(round(float(type_json.get(type_key, "0") * sensor_model.factor), 2), last_reset=last_reset)
             elif key == "heaters":
                 type = "heaters"
-                heaters = measurement.get("heaters", [])
+                heaters = measurement.get(key, [])
                 heater = heaters[0]
                 for type_key in heater.keys():
                     attr_name = f"{type}_{type_key}"
@@ -53,7 +53,7 @@ class HAGridboxConnector:
                         getattr(self, attr_name).set_state(round(float(heater.get(type_key, "0") * sensor_model.factor), 2), last_reset=last_reset)
             elif key == "heatPumps":
                 type = "heatPumps"
-                heat_pumps = measurement.get("heatPumps", [])
+                heat_pumps = measurement.get(key, [])
                 if heat_pumps:
                     heat_pump = heat_pumps[0]
                     for type_key in heat_pump.keys():
