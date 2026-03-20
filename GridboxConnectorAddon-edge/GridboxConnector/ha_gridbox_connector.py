@@ -41,27 +41,25 @@ class HAGridboxConnector:
                         sensor_model = load_sensor_by_key(type_key, path=self.model_path, type=type)
                         getattr(self, attr_name).set_state(round(float(type_json.get(type_key, "0") * sensor_model.factor), 2), last_reset=last_reset)
             elif key == "heaters":
-                type = "heaters"
                 heaters = measurement.get(key, [])
                 heater = heaters[0]
                 for type_key in heater.keys():
-                    attr_name = f"{type}_{type_key}"
-                    if key_in_model(type_key, path=self.model_path, type=type):
+                    attr_name = f"{key}_{type_key}"
+                    if key_in_model(type_key, path=self.model_path, type=key):
                         if not hasattr(self, attr_name):
-                            setattr(self, attr_name, create_ha_sensor(type_key, self.device_info, self.mqtt_settings, path=self.model_path, type=type))
-                        sensor_model = load_sensor_by_key(type_key, path=self.model_path, type=type)
+                            setattr(self, attr_name, create_ha_sensor(type_key, self.device_info, self.mqtt_settings, path=self.model_path, type=key))
+                        sensor_model = load_sensor_by_key(type_key, path=self.model_path, type=key)
                         getattr(self, attr_name).set_state(round(float(heater.get(type_key, "0") * sensor_model.factor), 2), last_reset=last_reset)
             elif key == "heatPumps":
-                type = "heatPumps"
                 heat_pumps = measurement.get(key, [])
                 if heat_pumps:
                     heat_pump = heat_pumps[0]
                     for type_key in heat_pump.keys():
-                        attr_name = f"{type}_{type_key}"
-                        if key_in_model(type_key, path=self.model_path, type=type):
+                        attr_name = f"{key}_{type_key}"
+                        if key_in_model(type_key, path=self.model_path, type=key):
                             if not hasattr(self, attr_name):
-                                setattr(self, attr_name, create_ha_sensor(type_key, self.device_info, self.mqtt_settings, path=self.model_path, type=type))
-                            sensor_model = load_sensor_by_key(type_key, path=self.model_path, type=type)
+                                setattr(self, attr_name, create_ha_sensor(type_key, self.device_info, self.mqtt_settings, path=self.model_path, type=key))
+                            sensor_model = load_sensor_by_key(type_key, path=self.model_path, type=key)
                             value = heat_pump.get(type_key, "0")
                             if isinstance(value, str):
                                 getattr(self, attr_name).set_state(value)
