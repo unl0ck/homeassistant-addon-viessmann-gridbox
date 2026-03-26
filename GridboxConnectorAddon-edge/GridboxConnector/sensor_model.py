@@ -3,6 +3,7 @@ from typing import Optional
 from ha_mqtt_discoverable import Settings, DeviceInfo
 from ha_mqtt_discoverable.sensors import Sensor, SensorInfo
 import json
+import functools
 
 
 class SensorModel(BaseModel):
@@ -16,25 +17,29 @@ class SensorModel(BaseModel):
     last_reset_value_template: Optional[str] = None
 
 
-def load_sensor_by_key(key: str, path: str = "models/models.json", type: str = "base") -> SensorModel:
+@functools.lru_cache(maxsize=4)
+def _load_sensors(path: str) -> dict:
     with open(path) as f:
-        sensors: dict = json.load(f)
-        type_json = sensors.get(type, None)
-        if type_json is None:
-            raise ValueError(f"Type {key} not found")
-        sensor_json = type_json.get(key, None)
-        if sensor_json is None:
-            raise ValueError(f"Sensor {key} not found")
+        return json.load(f)
+
+
+def load_sensor_by_key(key: str, path: str = "models/models.json", type: str = "base") -> SensorModel:
+    sensors = _load_sensors(path)
+    type_json = sensors.get(type)
+    if type_json is None:
+        raise ValueError(f"Type {key} not found")
+    sensor_json = type_json.get(key)
+    if sensor_json is None:
+        raise ValueError(f"Sensor {key} not found")
     return SensorModel.model_validate(sensor_json)
 
 
 def key_in_model(key: str, path: str = "models/models.json", type: str = "base") -> bool:
-    with open(path) as f:
-        sensors: dict = json.load(f)
-        type_json = sensors.get(type, None)
-        if type_json is None:
-            return False
-        return key in type_json
+    sensors = _load_sensors(path)
+    type_json = sensors.get(type)
+    if type_json is None:
+        return False
+    return key in type_json
 
 
 def create_ha_sensor(key: str, device_info: DeviceInfo, mqtt_settings: Settings.MQTT, type: str = "base", path: str = "models/models.json") -> Sensor:

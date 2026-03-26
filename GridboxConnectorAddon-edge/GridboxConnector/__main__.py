@@ -1,6 +1,7 @@
 import os
 import json
 import time
+from datetime import datetime, timedelta
 from gridx_connector import GridboxConnector
 from ha_mqtt_discoverable import Settings
 from ha_gridbox_connector import HAGridboxConnector
@@ -39,11 +40,7 @@ try:
     logfire_token = os.getenv("LOGFIRE_TOKEN_EDGE", "")
     if os.getenv("OVERRIDE_LOGFIRE_TOKEN", "") != "":
         logfire_token = os.getenv("OVERRIDE_LOGFIRE_TOKEN", logfire_token)
-    enable_telemetry = os.getenv("ENABLE_TELEMETRY", "false")
-    if enable_telemetry == "false":
-        enable_telemetry = False
-    elif enable_telemetry == "true":
-        enable_telemetry = True
+    enable_telemetry = get_bool_env("ENABLE_TELEMETRY", False)
 
     if not enable_telemetry:
         logger.warning(f"No log fire token")
@@ -94,9 +91,6 @@ def historical_data_task(gridboxConnector: GridboxConnector, ha_viessmann_histor
     one_time_print = True
 
     while True:
-        import time
-        from datetime import datetime, timedelta
-
         now = datetime.now().astimezone()
         if one_time_print or logger.level == logging.DEBUG:
             logger.info(f"Using local timezone for historical data: {now.tzinfo}")
@@ -148,32 +142,9 @@ def run_addon():
     if WAIT < 60:
         WAIT = 60
     if os.path.exists(opens_file_path):
-        options_file = open(opens_file_path)
-        options_json = json.load(options_file)
+        with open(opens_file_path) as options_file:
+            options_json = json.load(options_file)
         WAIT = int(options_json["wait_time"])
-
-    def find_file(start_path, target_file):
-        try:
-            for root, dirs, files in os.walk(start_path):
-                if target_file in files:
-                    return os.path.join(root, target_file)
-            return ""
-        except Exception as e:
-            logger.error(f"Error searching for file {target_file} under {start_path}: {e}")
-            return ""
-
-    # Example usage
-    start_path = "./"
-    target_file = "models_historical.json"  # Replace with the file you are searching for
-    found_path = find_file(start_path, target_file)
-    historical_model_path = found_path
-    target_file = "models.json"  # Replace with the file you are searching for
-    found_path = find_file(start_path, target_file)
-    live_model_path = found_path
-    if found_path:
-        logger.info(f"File found: {found_path}")
-    else:
-        logger.warning(f"File {target_file} not found in {start_path}")
 
     if not os.path.exists(historical_model_path):
         logger.error("Historical model file not found")
