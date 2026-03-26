@@ -31,7 +31,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v7
         with:
-          file: ./GridboxConnectorAddon-edge/Dockerfile.standalone
+          file: ./GridboxConnectorAddon/Dockerfile.standalone
           push: true
           tags: ghcr.io/${{ github.repository }}/standalone-viessman-gridbox-connector:latest
           platforms: linux/amd64,linux/arm64

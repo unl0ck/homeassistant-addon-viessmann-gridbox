@@ -4,6 +4,16 @@ permissions:
   pull-requests: write
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Version bump type"
+        required: true
+        type: choice
+        default: "patch"
+        options:
+          - major
+          - minor
+          - patch
 
 jobs:
   build:
@@ -23,7 +33,7 @@ jobs:
       - run: pip install bump-my-version
 
       - name: Bump Version
-        run: bump-my-version bump patch --config-file .bumpversion-edge.toml
+        run: bump-my-version bump ${{ github.event.inputs.version }} --config-file .bumpversion-edge.toml
 
       - name: Get Current Version
         run: |
@@ -50,5 +60,6 @@ jobs:
       - name: Commit Edge Release
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
+          token: ${{ secrets.TOKEN }}
           tagging_message: "v${{ env.CURRENT_VERSION }}-edge"
           commit_message: "release: Release Edge Version v${{ env.CURRENT_VERSION }}-edge"
