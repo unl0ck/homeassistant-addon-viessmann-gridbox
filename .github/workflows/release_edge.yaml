@@ -26,6 +26,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          token: ${{ secrets.TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -58,8 +59,11 @@ jobs:
           fi
 
       - name: Commit Edge Release
-        uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          token: ${{ secrets.TOKEN }}
-          tagging_message: "v${{ env.CURRENT_VERSION }}-edge"
-          commit_message: "release: Release Edge Version v${{ env.CURRENT_VERSION }}-edge"
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "release: Release Edge Version v${{ env.CURRENT_VERSION }}-edge"
+          git tag -a "v${{ env.CURRENT_VERSION }}-edge" -m "v${{ env.CURRENT_VERSION }}-edge"
+          git push
+          git push --tags

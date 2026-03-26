@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          token: ${{ secrets.TOKEN }}
 
       - name: Copy Release
         run: ./copy_to_release.sh
@@ -64,9 +65,12 @@ jobs:
             echo -e "${NEW_ENTRY}" > "$CHANGELOG_FILE"
           fi
 
-      - name: Commit Stable
-        uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          token: ${{ secrets.TOKEN }}
-          tagging_message: "v${{ env.CURRENT_VERSION }}"
-          commit_message: "release: Release Stable Version v${{ env.CURRENT_VERSION }}"
+      - name: Commit Stable Release
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "release: Release Stable Version v${{ env.CURRENT_VERSION }}"
+          git tag -a "v${{ env.CURRENT_VERSION }}" -m "v${{ env.CURRENT_VERSION }}"
+          git push
+          git push --tags
