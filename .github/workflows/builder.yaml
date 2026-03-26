@@ -39,13 +39,21 @@ jobs:
         run: |
           declare -a changed_addons
           for addon in ${{ steps.addons.outputs.addons }}; do
-            changed_addons+=("\"${addon}\",");
+            if [[ "${{ steps.changed_files.outputs.all }}" =~ $addon ]]; then
+              changed_addons+=("\"${addon}\"");
+            fi
           done
 
-          changed=$(echo ${changed_addons[@]} | rev | cut -c 2- | rev)
-          echo "Changed add-ons: $changed";
-          echo "changed=true" >> $GITHUB_OUTPUT;
-          echo "addons=[$changed]" >> $GITHUB_OUTPUT;
+          if [ ${#changed_addons[@]} -eq 0 ]; then
+            echo "No add-ons changed";
+            echo "changed=false" >> $GITHUB_OUTPUT;
+            echo "addons=[]" >> $GITHUB_OUTPUT;
+          else
+            changed=$(IFS=,; echo "${changed_addons[*]}")
+            echo "Changed add-ons: $changed";
+            echo "changed=true" >> $GITHUB_OUTPUT;
+            echo "addons=[$changed]" >> $GITHUB_OUTPUT;
+          fi
 
   build:
     needs: init
@@ -127,7 +135,7 @@ jobs:
         run: |
           echo "## 🧪 Test Coverage – ${{ matrix.addon }} (${{ matrix.arch }})" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
-          grep -A 9999 "------" ./${{ matrix.addon }}/GridboxConnector/pytest-output.txt | tail -n +2 >> $GITHUB_STEP_SUMMARY || true
+          awk '/^Name/{p=1} p{print} /^TOTAL/{p=0}' ./${{ matrix.addon }}/GridboxConnector/pytest-output.txt >> $GITHUB_STEP_SUMMARY || true
           echo '```' >> $GITHUB_STEP_SUMMARY
 
       - name: Get Cover

@@ -22,12 +22,29 @@ jobs:
 
       - name: Set up Python
         uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
 
-      - run: pip install bump-my-version
+      - name: Install dependencies
+        run: pip install -r GridboxConnectorAddon/GridboxConnector/requirements.txt
+
+      - name: Run tests
+        run: |
+          cd GridboxConnectorAddon/GridboxConnector
+          pytest tests/ --cov=. --cov-report=term-missing 2>&1 | tee pytest-output.txt
+
+      - name: Write coverage summary
+        run: |
+          echo "## 🧪 Test Coverage – GridboxConnectorAddon" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          awk '/^Name/{p=1} p{print} /^TOTAL/{p=0}' GridboxConnectorAddon/GridboxConnector/pytest-output.txt >> $GITHUB_STEP_SUMMARY || true
+          echo '```' >> $GITHUB_STEP_SUMMARY
 
       - name: Get Current Version
         run: |
-          echo "CURRENT_VERSION=$(bump-my-version show --config-file .bumpversion-stable.toml current_version)" >> $GITHUB_ENV
+          NEW_VERSION=$(yq '.version' GridboxConnectorAddon/config.yaml)
+          echo "CURRENT_VERSION=${NEW_VERSION}" >> $GITHUB_ENV
+          sed -i "s/^current_version = .*/current_version = \"${NEW_VERSION}\"/" .bumpversion-stable.toml
 
       - name: Generate Changelog
         run: |
