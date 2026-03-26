@@ -20,14 +20,20 @@ live_model_path = "./models/models.json"
 config = configparser.ConfigParser()
 # Lesen Sie die setup.ini-Datei
 config.read(setup_file_path)
-# logging.basicConfig(format='%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s', level=logging.getLevelName(os.getenv('LOG_LEVEL', 'INFO')))
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.getLevelName(os.getenv("LOG_LEVEL", "INFO")))
+log_level = logging.getLevelName(os.getenv("LOG_LEVEL", "WARNING"))
 formatter = logging.Formatter("%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s")
-console_handler = logging.StreamHandler()
+console_handler = logging.StreamHandler(sys.stdout)
 console_handler.setFormatter(formatter)
-logger.addHandler(console_handler)
-logger.addFilter(SensitiveDataFilter())
+console_handler.addFilter(SensitiveDataFilter())
+
+# Einheitliches Log-Level für die gesamte App
+logging.basicConfig(level=log_level, handlers=[console_handler])
+
+logging.getLogger("urllib3").setLevel(log_level)
+logging.getLogger("requests").setLevel(log_level)
+logging.getLogger("paho").setLevel(log_level)
+
+logger = logging.getLogger(__name__)
 
 try:
     logfire_token = os.getenv("LOGFIRE_TOKEN_EDGE", "")

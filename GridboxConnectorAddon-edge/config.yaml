@@ -19,7 +19,7 @@ options:
   username: "email"
   password: "password"
   wait_time: 60
-  log_level: INFO
+  log_level: WARNING
   enable_telemetry: False
   log_level_telemetry: WARNING
 
