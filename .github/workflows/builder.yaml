@@ -8,8 +8,6 @@ env:
 
 on:
   push:
-    branches:
-      - "**"
     tags:
       - "v*"
 
@@ -109,7 +107,7 @@ jobs:
       - name: Run tests
         run: |
           cd ./${{ matrix.addon }}/GridboxConnector
-          pytest tests/ --cov=. --cov-report=xml:coverage.xml --cov-report=term-missing 2>&1 | tee pytest-output.txt
+          PYTHONPATH=. pytest tests/ --cov=. --cov-report=xml:coverage.xml --cov-report=term-missing 2>&1 | tee pytest-output.txt
 
       - name: Write coverage summary
         run: |
@@ -126,7 +124,7 @@ jobs:
           token: ${{ secrets.TOKEN }}
 
   build:
-    needs: init
+    needs: [init, test]
     runs-on: ubuntu-latest
     if: needs.init.outputs.changed == 'true'
     name: Build ${{ matrix.arch }} ${{ matrix.addon }} add-on
