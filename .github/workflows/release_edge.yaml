@@ -22,6 +22,9 @@ jobs:
 
       - run: pip install bump-my-version
 
+      - name: Bump Version
+        run: bump-my-version bump patch --config-file .bumpversion-edge.toml
+
       - name: Get Current Version
         run: |
           echo "CURRENT_VERSION=$(bump-my-version show --config-file .bumpversion-edge.toml current_version)" >> $GITHUB_ENV
