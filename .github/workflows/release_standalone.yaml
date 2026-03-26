@@ -4,12 +4,13 @@ permissions:
   pull-requests: write
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "v*"
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: ${{ !endsWith(github.ref_name, '-edge') && !endsWith(github.ref_name, '-dev') }}
 
     steps:
       - name: Checkout repository
