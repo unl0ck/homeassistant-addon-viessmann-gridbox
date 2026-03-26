@@ -1,3 +1,55 @@
+## 3.1.8-edge
+### 🔄 Changes
+- rework on release strategy
+- refactor: migrate tests to pytest, add conftest.py, move to tests/
+- using pytest
+- fixed duplicate code
+- build(deps): bump home-assistant/builder from 2026.02.1 to 2026.03.2
+- build(deps): bump coverage
+- build(deps): bump ha-mqtt-discoverable
+- ci: bump edge 3.1.7 -> 3.1.8
+- requirements.txt aktualisieren
+- Remove redundant type variable, use key directly
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- Revert action version changes, keep only functional improvements
+- Fix workflows and add stable versioning support
+- Initial plan
+- Use key variable instead of hardcoded strings for measurement.get()
+- Add missing live and historical sensors, fix heatPump casing
+- Use local timezone for historical statistics
+- Add heatPumps MQTT sensor support
+- Add state_class to live sensor models
+- Fix invalid state_class metadata for historical sensors
+- build(deps): bump logfire
+- build(deps): bump ha-mqtt-discoverable
+- build(deps): bump docker/setup-buildx-action from 3 to 4
+- build(deps): bump docker/login-action from 3 to 4
+- build(deps): bump docker/build-push-action from 6 to 7
+- build(deps): bump opentelemetry-instrumentation-requests
+- build(deps): bump logfire
+- build(deps): bump home-assistant/builder from 2025.11.0 to 2026.02.1
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump bump-my-version
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump coverage
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump coverage
+- build(deps): bump logfire
+- build(deps): bump logfire
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump coverage
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump bump-my-version
+- build(deps): bump coverage
+- another try to release Stable version
+- removed daemon
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
 ## 3.1.7
