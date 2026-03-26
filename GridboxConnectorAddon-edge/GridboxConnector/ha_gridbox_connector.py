@@ -2,7 +2,6 @@ from ha_mqtt_discoverable import Settings, DeviceInfo
 from sensor_model import SensorModel, key_in_model, load_sensor_by_key, create_ha_sensor
 import logging
 from logging import Logger
-import json
 
 class HAGridboxConnector:
     battery_sensor_dict: dict
@@ -28,46 +27,29 @@ class HAGridboxConnector:
         self.device_info = DeviceInfo(name=device_name, identifiers=device_identifiers, manufacturer=device_manufacturer, model=device_model)
         self.logger.info(f"Device Info: {self.device_info}")
 
+    def _update_sensor(self, attr_name: str, type_key: str, value, sensor_type: str, last_reset: str):
+        if not key_in_model(type_key, path=self.model_path, type=sensor_type):
+            return
+        if not hasattr(self, attr_name):
+            setattr(self, attr_name, create_ha_sensor(type_key, self.device_info, self.mqtt_settings, path=self.model_path, type=sensor_type))
+        sensor_model = load_sensor_by_key(type_key, path=self.model_path, type=sensor_type)
+        if isinstance(value, str):
+            getattr(self, attr_name).set_state(value)
+        else:
+            getattr(self, attr_name).set_state(round(float(value * sensor_model.factor), 2), last_reset=last_reset)
+
     def update_sensors(self, measurement: dict, last_reset: str = ""):
-        for key in measurement.keys():
-            if key == "battery" or key == "evChargingStation":
-                type = key
-                type_json = measurement.get(key, {})
-                for type_key in type_json.keys():
-                    attr_name = f"{type}_{type_key}"
-                    if key_in_model(type_key, path=self.model_path, type=type):
-                        if not hasattr(self, attr_name):
-                            setattr(self, attr_name, create_ha_sensor(type_key, self.device_info, self.mqtt_settings, path=self.model_path, type=type))
-                        sensor_model = load_sensor_by_key(type_key, path=self.model_path, type=type)
-                        getattr(self, attr_name).set_state(round(float(type_json.get(type_key, "0") * sensor_model.factor), 2), last_reset=last_reset)
-            elif key == "heaters":
-                heaters = measurement.get(key, [])
-                heater = heaters[0]
-                for type_key in heater.keys():
-                    attr_name = f"{key}_{type_key}"
-                    if key_in_model(type_key, path=self.model_path, type=key):
-                        if not hasattr(self, attr_name):
-                            setattr(self, attr_name, create_ha_sensor(type_key, self.device_info, self.mqtt_settings, path=self.model_path, type=key))
-                        sensor_model = load_sensor_by_key(type_key, path=self.model_path, type=key)
-                        getattr(self, attr_name).set_state(round(float(heater.get(type_key, "0") * sensor_model.factor), 2), last_reset=last_reset)
-            elif key == "heatPumps":
-                heat_pumps = measurement.get(key, [])
-                if heat_pumps:
-                    heat_pump = heat_pumps[0]
-                    for type_key in heat_pump.keys():
-                        attr_name = f"{key}_{type_key}"
-                        if key_in_model(type_key, path=self.model_path, type=key):
-                            if not hasattr(self, attr_name):
-                                setattr(self, attr_name, create_ha_sensor(type_key, self.device_info, self.mqtt_settings, path=self.model_path, type=key))
-                            sensor_model = load_sensor_by_key(type_key, path=self.model_path, type=key)
-                            value = heat_pump.get(type_key, "0")
-                            if isinstance(value, str):
-                                getattr(self, attr_name).set_state(value)
-                            else:
-                                getattr(self, attr_name).set_state(round(float(value * sensor_model.factor), 2), last_reset=last_reset)
+        for key, data in measurement.items():
+            if key in ("battery", "evChargingStation"):
+                for type_key, value in data.items():
+                    self._update_sensor(f"{key}_{type_key}", type_key, value, key, last_reset)
+            elif key in ("heaters", "heatPumps"):
+                if data:
+                    for type_key, value in data[0].items():
+                        self._update_sensor(f"{key}_{type_key}", type_key, value, key, last_reset)
             else:
                 if key_in_model(key, path=self.model_path):
                     if not hasattr(self, key):
                         setattr(self, key, create_ha_sensor(key, self.device_info, self.mqtt_settings, path=self.model_path))
                     sensor_model = load_sensor_by_key(key, path=self.model_path)
-                    getattr(self, key).set_state(round(float(measurement.get(key, "0")) * sensor_model.factor, 2), last_reset=last_reset)
+                    getattr(self, key).set_state(round(float(data) * sensor_model.factor, 2), last_reset=last_reset)
