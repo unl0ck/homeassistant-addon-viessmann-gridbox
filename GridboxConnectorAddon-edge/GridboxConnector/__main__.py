@@ -89,14 +89,15 @@ def historical_data_task(gridboxConnector: GridboxConnector, ha_viessmann_histor
 
     while True:
         import time
-        from datetime import datetime, timedelta, timezone
+        from datetime import datetime, timedelta
 
-        now = datetime.now(timezone(timedelta(hours=1)))
-        now = now.replace(hour=0, minute=0, second=0, microsecond=0)
-        today = now.isoformat()
-        tomorrow = (now + timedelta(days=1)).isoformat()
-        measurement = gridboxConnector.retrieve_historical_data(today, tomorrow)
+        now = datetime.now().astimezone()
+        if one_time_print or logger.level == logging.DEBUG:
+            logger.info(f"Using local timezone for historical data: {now.tzinfo}")
         midnight_today = now.replace(hour=0, minute=0, second=0, microsecond=0)
+        today = midnight_today.isoformat()
+        tomorrow = (midnight_today + timedelta(days=1)).isoformat()
+        measurement = gridboxConnector.retrieve_historical_data(today, tomorrow)
         if len(measurement) > 0:
             result = measurement[0]
             total = result["total"]

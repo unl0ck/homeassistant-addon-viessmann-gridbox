@@ -96,7 +96,7 @@
             "device_class": "power_factor",
             "factor": 100,
             "unique_id": "direct_consumption_rate",
-            "state_class": "total",
+            "state_class": "measurement",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
         },
@@ -126,7 +126,7 @@
             "device_class": "power_factor",
             "factor": 100,
             "unique_id": "self_consumption_rate",
-            "state_class": "total",
+            "state_class": "measurement",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
         },
@@ -136,7 +136,7 @@
             "device_class": "power_factor",
             "factor": 100,
             "unique_id": "self_sufficiency_rate",
-            "state_class": "total",
+            "state_class": "measurement",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
         },
@@ -149,6 +149,26 @@
             "state_class": "total",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
+        },
+        "selfConsumption": {
+            "name": "SelfConsumption",
+            "unit": "Wh",
+            "device_class": "energy",
+            "factor": 1,
+            "unique_id": "self_consumption",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
+        },
+        "directConsumptionHeater": {
+            "name": "DirectConsumptionHeater",
+            "unit": "Wh",
+            "device_class": "energy",
+            "factor": 1,
+            "unique_id": "direct_consumption_heater",
+            "state_class": "total",
+            "last_reset_value_template": "{{ value_json.last_reset }}",
+            "value_template": "{{ value_json.state }}"
         }
     },
     "battery": {
@@ -158,7 +178,7 @@
             "device_class": "battery",
             "factor": 100,
             "unique_id": "battery_state_of_charge",
-            "state_class": "total",
+            "state_class": "measurement",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
         },
@@ -168,7 +188,7 @@
             "device_class": "energy_storage",
             "factor": 1,
             "unique_id": "battery_capacity",
-            "state_class": "total",
+            "state_class": "measurement",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
         },
@@ -178,7 +198,7 @@
             "device_class": "energy_storage",
             "factor": 1,
             "unique_id": "battery_power",
-            "state_class": "total",
+            "state_class": "measurement",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
         },
@@ -188,7 +208,7 @@
             "device_class": "energy_storage",
             "factor": 1,
             "unique_id": "battery_remaining_charge",
-            "state_class": "total",
+            "state_class": "measurement",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
         },
@@ -198,7 +218,7 @@
             "device_class": "energy_storage",
             "factor": 1,
             "unique_id": "battery_charge",
-            "state_class": "total",
+            "state_class": "measurement",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
         },
@@ -208,7 +228,7 @@
             "device_class": "energy_storage",
             "factor": 1,
             "unique_id": "battery_discharge",
-            "state_class": "total",
+            "state_class": "measurement",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
         }
@@ -230,7 +250,7 @@
             "device_class": "temperature",
             "factor": 1,
             "unique_id": "heater_temperature",
-            "state_class": "total",
+            "state_class": "measurement",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
         }
@@ -252,7 +272,7 @@
             "device_class": "battery",
             "factor": 100,
             "unique_id": "ev_charging_station_state_of_charge",
-            "state_class": "total",
+            "state_class": "measurement",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
         },
@@ -262,7 +282,7 @@
             "device_class": "current",
             "factor": 1,
             "unique_id": "ev_charging_station_current_l1",
-            "state_class": "total",
+            "state_class": "measurement",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
         },
@@ -272,7 +292,7 @@
             "device_class": "current",
             "factor": 1,
             "unique_id": "ev_charging_station_current_l2",
-            "state_class": "total",
+            "state_class": "measurement",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
         },
@@ -282,7 +302,7 @@
             "device_class": "current",
             "factor": 1,
             "unique_id": "ev_charging_station_current_l3",
-            "state_class": "total",
+            "state_class": "measurement",
             "last_reset_value_template": "{{ value_json.last_reset }}",
             "value_template": "{{ value_json.state }}"
         },

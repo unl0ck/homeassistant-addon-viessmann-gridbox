@@ -14,7 +14,6 @@ on:
           - major
           - minor
           - patch
-          - dev
       type:
         description: "Select Type"
         required: true
@@ -23,6 +22,7 @@ on:
         options:
           - dev
           - edge
+          - stable
 
 jobs:
   build:
