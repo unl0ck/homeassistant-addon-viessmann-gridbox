@@ -3,7 +3,6 @@ permissions:
   contents: read
   pull-requests: write
 env:
-  BUILD_ARGS: "--test"
   MONITORED_FILES: "build.yaml config.yaml Dockerfile rootfs GridboxConnectorAddon GridboxConnectorAddon-dev GridboxConnectorAddon-edge"
   LOGFIRE_TOKEN_EDGE: ${{ secrets.LOGFIRE_TOKEN_EDGE }}
 
@@ -47,11 +46,15 @@ jobs:
           echo "Changed add-ons: $changed";
           echo "changed=true" >> $GITHUB_OUTPUT;
           echo "addons=[$changed]" >> $GITHUB_OUTPUT;
+
   build:
     needs: init
     runs-on: ubuntu-latest
     if: needs.init.outputs.changed == 'true'
     name: Build ${{ matrix.arch }} ${{ matrix.addon }} add-on
+    permissions:
+      contents: read
+      packages: write
     strategy:
       matrix:
         addon: ${{ fromJson(needs.init.outputs.changed_addons) }}
@@ -67,39 +70,60 @@ jobs:
           path: "./${{ matrix.addon }}"
 
       - name: Check if add-on should be built
-        id: check #instead main {{github.ref_name}} [[ -z "{{github.ref_name}}" ]] &&
+        id: check
         run: |
           if [[ "${{ steps.info.outputs.architectures }}" =~ ${{ matrix.arch }} ]]; then
-             echo "build_arch=true" >> $GITHUB_OUTPUT;
-             echo "image=$(echo ${{ steps.info.outputs.image }} | cut -d'/' -f3)" >> $GITHUB_OUTPUT;
-             if [[ -z "${{ github.head_ref }}" ]] && [[ "${{ github.event_name }}" == "push" ]]; then
-                 echo "BUILD_ARGS=" >> $GITHUB_ENV;
-             fi
-           else
-             echo "${{ matrix.arch }} is not a valid arch for ${{ matrix.addon }}, skipping build";
-             echo "build_arch=false" >> $GITHUB_OUTPUT;
+            echo "build_arch=true" >> $GITHUB_OUTPUT;
+
+            # Construct full image name with arch substituted
+            IMAGE_FULL="${{ steps.info.outputs.image }}"
+            IMAGE_FULL="${IMAGE_FULL//\{arch\}/${{ matrix.arch }}}"
+            echo "image=${IMAGE_FULL}" >> $GITHUB_OUTPUT;
+
+            if [[ -z "${{ github.head_ref }}" ]] && [[ "${{ github.event_name }}" == "push" ]]; then
+              echo "push=true" >> $GITHUB_OUTPUT;
+            else
+              echo "push=false" >> $GITHUB_OUTPUT;
+            fi
+          else
+            echo "${{ matrix.arch }} is not a valid arch for ${{ matrix.addon }}, skipping build";
+            echo "build_arch=false" >> $GITHUB_OUTPUT;
+            echo "push=false" >> $GITHUB_OUTPUT;
           fi
+
+      - name: Get build configuration
+        id: config
+        if: steps.check.outputs.build_arch == 'true'
+        run: |
+          echo "version=$(yq '.version' ./${{ matrix.addon }}/config.yaml)" >> $GITHUB_OUTPUT
+          echo "build_from=$(yq '.build_from.${{ matrix.arch }}' ./${{ matrix.addon }}/build.yaml)" >> $GITHUB_OUTPUT
+          echo "tempio=$(yq '.args.TEMPIO_VERSION' ./${{ matrix.addon }}/build.yaml)" >> $GITHUB_OUTPUT
+          {
+            echo "labels<<EOF"
+            yq '.labels | to_entries[] | .key + "=" + .value' ./${{ matrix.addon }}/build.yaml
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
 
       - name: Set up Python
         uses: actions/setup-python@v6
-        if: env.BUILD_ARGS != '--test'
+        if: steps.check.outputs.push == 'true'
         with:
           python-version: "3.12"
 
       - name: Install dependencies
-        if: env.BUILD_ARGS != '--test'
+        if: steps.check.outputs.push == 'true'
         run: |
           python -m pip install --upgrade pip
           pip install -r ./${{ matrix.addon }}/GridboxConnector/requirements.txt
 
       - name: Run tests
-        if: env.BUILD_ARGS != '--test'
+        if: steps.check.outputs.push == 'true'
         run: |
           cd ./${{ matrix.addon }}/GridboxConnector
           pytest tests/ --cov=. --cov-report=xml:coverage.xml --cov-report=term-missing 2>&1 | tee pytest-output.txt
 
       - name: Write coverage summary
-        if: env.BUILD_ARGS != '--test'
+        if: steps.check.outputs.push == 'true'
         run: |
           echo "## 🧪 Test Coverage – ${{ matrix.addon }} (${{ matrix.arch }})" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
@@ -108,29 +132,33 @@ jobs:
 
       - name: Get Cover
         uses: orgoro/coverage@v3.2
-        if: env.BUILD_ARGS != '--test' && github.event_name == 'pull_request'
+        if: steps.check.outputs.push == 'true' && github.event_name == 'pull_request'
         with:
           coverageFile: ./${{ matrix.addon }}/GridboxConnector/coverage.xml
           token: ${{ secrets.TOKEN }}
 
-      - name: Login to GitHub Container Registry
-        if: env.BUILD_ARGS != '--test'
-        uses: docker/login-action@v4
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.TOKEN }}
-
       - name: Build ${{ matrix.addon }} add-on
         if: steps.check.outputs.build_arch == 'true'
-        uses: home-assistant/builder@2026.03.2
+        uses: home-assistant/builder/actions/build-image@2026.03.2
         with:
-          args: |
-            ${{ env.BUILD_ARGS }} \
-            --${{ matrix.arch }} \
-            --target /data/${{ matrix.addon }} \
-            --image "${{ steps.check.outputs.image }}" \
-            --docker-hub "ghcr.io/${{ github.repository_owner }}" \
-            --addon
+          arch: ${{ matrix.arch }}
+          image: ${{ steps.check.outputs.image }}
+          image-tags: |
+            ${{ steps.config.outputs.version }}
+            latest
+          version: ${{ steps.config.outputs.version }}
+          context: ./${{ matrix.addon }}
+          push: ${{ steps.check.outputs.push }}
+          container-registry-password: ${{ secrets.TOKEN }}
+          cosign: "false"
+          build-args: |
+            BUILD_FROM=${{ steps.config.outputs.build_from }}
+            BUILD_ARCH=${{ matrix.arch }}
+            BUILD_VERSION=${{ steps.config.outputs.version }}
+            BUILD_REPOSITORY=${{ github.repository }}
+            BUILD_REF=${{ github.sha }}
+            TEMPIO_VERSION=${{ steps.config.outputs.tempio }}
+          labels: ${{ steps.config.outputs.labels }}
         env:
           LOGFIRE_TOKEN: ${{ secrets.LOGFIRE_TOKEN }}
+
