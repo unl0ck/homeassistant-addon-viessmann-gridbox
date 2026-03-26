@@ -8,8 +8,8 @@ env:
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "v*"
 
   pull_request:
     branches:
@@ -26,33 +26,40 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v6
 
-      - name: Get changed files
-        id: changed_files
-        uses: halaslabs/get-changed-files@v2
-
-      - name: Find add-on directories
-        id: addons
-        uses: home-assistant/actions/helpers/find-addons@master
-
-      - name: Get changed add-ons
+      - name: Determine add-ons to build
         id: changed_addons
         run: |
-          declare -a changed_addons
-          for addon in ${{ steps.addons.outputs.addons }}; do
-            if [[ "${{ steps.changed_files.outputs.all }}" =~ $addon ]]; then
-              changed_addons+=("\"${addon}\"");
+          if [[ "${{ github.event_name }}" == "push" ]]; then
+            # Tag event: determine addon from tag name
+            TAG="${{ github.ref_name }}"
+            if [[ "$TAG" == *"-edge" ]]; then
+              ADDON="GridboxConnectorAddon-edge"
+            elif [[ "$TAG" == *"-dev" ]]; then
+              ADDON="GridboxConnectorAddon-dev"
+            else
+              ADDON="GridboxConnectorAddon"
             fi
-          done
-
-          if [ ${#changed_addons[@]} -eq 0 ]; then
-            echo "No add-ons changed";
-            echo "changed=false" >> $GITHUB_OUTPUT;
-            echo "addons=[]" >> $GITHUB_OUTPUT;
-          else
-            changed=$(IFS=,; echo "${changed_addons[*]}")
-            echo "Changed add-ons: $changed";
+            echo "Tag ${TAG} → building ${ADDON}";
             echo "changed=true" >> $GITHUB_OUTPUT;
-            echo "addons=[$changed]" >> $GITHUB_OUTPUT;
+            echo "addons=[\"${ADDON}\"]" >> $GITHUB_OUTPUT;
+          else
+            # PR event: detect changed addon directories
+            declare -a changed_addons
+            for addon in GridboxConnectorAddon-edge GridboxConnectorAddon-dev GridboxConnectorAddon; do
+              if git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -q "^${addon}/"; then
+                changed_addons+=("\"${addon}\"");
+              fi
+            done
+            if [ ${#changed_addons[@]} -eq 0 ]; then
+              echo "No add-on directories changed";
+              echo "changed=false" >> $GITHUB_OUTPUT;
+              echo "addons=[]" >> $GITHUB_OUTPUT;
+            else
+              changed=$(IFS=,; echo "${changed_addons[*]}")
+              echo "Changed add-ons: $changed";
+              echo "changed=true" >> $GITHUB_OUTPUT;
+              echo "addons=[$changed]" >> $GITHUB_OUTPUT;
+            fi
           fi
 
   build:
@@ -88,7 +95,7 @@ jobs:
             IMAGE_FULL="${IMAGE_FULL//\{arch\}/${{ matrix.arch }}}"
             echo "image=${IMAGE_FULL}" >> $GITHUB_OUTPUT;
 
-            if [[ -z "${{ github.head_ref }}" ]] && [[ "${{ github.event_name }}" == "push" ]]; then
+            if [[ "${{ github.event_name }}" == "push" ]] && [[ "${{ github.ref }}" == refs/tags/* ]]; then
               echo "push=true" >> $GITHUB_OUTPUT;
             else
               echo "push=false" >> $GITHUB_OUTPUT;
