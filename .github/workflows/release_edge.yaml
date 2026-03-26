@@ -1,4 +1,4 @@
-name: Release Stable
+name: Release Edge
 permissions:
   contents: read
   pull-requests: write
@@ -17,9 +17,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Copy Release
-        run: ./copy_to_release.sh
-
       - name: Set up Python
         uses: actions/setup-python@v6
 
@@ -27,19 +24,19 @@ jobs:
 
       - name: Get Current Version
         run: |
-          echo "CURRENT_VERSION=$(bump-my-version show --config-file .bumpversion-stable.toml current_version)" >> $GITHUB_ENV
+          echo "CURRENT_VERSION=$(bump-my-version show --config-file .bumpversion-edge.toml current_version)" >> $GITHUB_ENV
 
       - name: Generate Changelog
         run: |
-          LAST_TAG=$(git describe --tags --abbrev=0 --exclude "*-edge" --exclude "*-dev" 2>/dev/null || echo "")
+          LAST_TAG=$(git describe --tags --match "v*-edge" --abbrev=0 2>/dev/null || echo "")
           if [ -z "$LAST_TAG" ]; then
             COMMITS=$(git log --no-merges --format="- %s" | head -50)
           else
             COMMITS=$(git log "${LAST_TAG}..HEAD" --no-merges --format="- %s")
           fi
 
-          CHANGELOG_FILE="GridboxConnectorAddon/CHANGELOG.md"
-          NEW_ENTRY="## ${{ env.CURRENT_VERSION }}\n### 🔄 Changes\n${COMMITS}\n"
+          CHANGELOG_FILE="GridboxConnectorAddon-edge/CHANGELOG.md"
+          NEW_ENTRY="## ${{ env.CURRENT_VERSION }}-edge\n### 🔄 Changes\n${COMMITS}\n"
 
           if [ -f "$CHANGELOG_FILE" ]; then
             echo -e "${NEW_ENTRY}\n$(cat $CHANGELOG_FILE)" > "$CHANGELOG_FILE"
@@ -47,8 +44,8 @@ jobs:
             echo -e "${NEW_ENTRY}" > "$CHANGELOG_FILE"
           fi
 
-      - name: Commit Stable
+      - name: Commit Edge Release
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          tagging_message: "v${{ env.CURRENT_VERSION }}"
-          commit_message: "release: Release Stable Version v${{ env.CURRENT_VERSION }}"
+          tagging_message: "v${{ env.CURRENT_VERSION }}-edge"
+          commit_message: "release: Release Edge Version v${{ env.CURRENT_VERSION }}-edge"
