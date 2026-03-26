@@ -1,3 +1,21 @@
+## 3.1.9-edge
+### 🔄 Changes
+- fixed run tests
+- added parallel run tests
+- worked to automate create a build
+- worked on workflow
+- should fix workflow create release
+- added bump version
+- will create standalone only for stable tag
+- updated requests
+- updated workflow builder
+- refactored code
+- worked on logging
+- update s6
+- reworked on builder workflow
+- worked on workflows
+- update builder workflow
+
 ## 3.1.8-edge
 ### 🔄 Changes
 - rework on release strategy
