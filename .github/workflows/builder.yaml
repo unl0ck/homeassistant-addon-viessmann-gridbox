@@ -8,6 +8,8 @@ env:
 
 on:
   push:
+    branches:
+      - "**"
     tags:
       - "v*"
 
@@ -29,7 +31,7 @@ jobs:
       - name: Determine add-ons to build
         id: changed_addons
         run: |
-          if [[ "${{ github.event_name }}" == "push" ]]; then
+          if [[ "${{ github.ref }}" == refs/tags/* ]]; then
             # Tag event: determine addon from tag name
             TAG="${{ github.ref_name }}"
             if [[ "$TAG" == *"-edge" ]]; then
@@ -42,11 +44,29 @@ jobs:
             echo "Tag ${TAG} → building ${ADDON}";
             echo "changed=true" >> $GITHUB_OUTPUT;
             echo "addons=[\"${ADDON}\"]" >> $GITHUB_OUTPUT;
-          else
-            # PR event: detect changed addon directories
+          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            # PR event: detect changed addon directories vs base branch
             declare -a changed_addons
             for addon in GridboxConnectorAddon-edge GridboxConnectorAddon-dev GridboxConnectorAddon; do
               if git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -q "^${addon}/"; then
+                changed_addons+=("\"${addon}\"");
+              fi
+            done
+            if [ ${#changed_addons[@]} -eq 0 ]; then
+              echo "No add-on directories changed";
+              echo "changed=false" >> $GITHUB_OUTPUT;
+              echo "addons=[]" >> $GITHUB_OUTPUT;
+            else
+              changed=$(IFS=,; echo "${changed_addons[*]}")
+              echo "Changed add-ons: $changed";
+              echo "changed=true" >> $GITHUB_OUTPUT;
+              echo "addons=[$changed]" >> $GITHUB_OUTPUT;
+            fi
+          else
+            # Branch push: detect changed addon directories vs previous commit
+            declare -a changed_addons
+            for addon in GridboxConnectorAddon-edge GridboxConnectorAddon-dev GridboxConnectorAddon; do
+              if git diff --name-only HEAD~1 HEAD 2>/dev/null | grep -q "^${addon}/"; then
                 changed_addons+=("\"${addon}\"");
               fi
             done
@@ -121,24 +141,24 @@ jobs:
 
       - name: Set up Python
         uses: actions/setup-python@v6
-        if: steps.check.outputs.push == 'true'
+        if: steps.check.outputs.build_arch == 'true'
         with:
           python-version: "3.12"
 
       - name: Install dependencies
-        if: steps.check.outputs.push == 'true'
+        if: steps.check.outputs.build_arch == 'true'
         run: |
           python -m pip install --upgrade pip
           pip install -r ./${{ matrix.addon }}/GridboxConnector/requirements.txt
 
       - name: Run tests
-        if: steps.check.outputs.push == 'true'
+        if: steps.check.outputs.build_arch == 'true'
         run: |
           cd ./${{ matrix.addon }}/GridboxConnector
           pytest tests/ --cov=. --cov-report=xml:coverage.xml --cov-report=term-missing 2>&1 | tee pytest-output.txt
 
       - name: Write coverage summary
-        if: steps.check.outputs.push == 'true'
+        if: steps.check.outputs.build_arch == 'true'
         run: |
           echo "## 🧪 Test Coverage – ${{ matrix.addon }} (${{ matrix.arch }})" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
@@ -147,7 +167,7 @@ jobs:
 
       - name: Get Cover
         uses: orgoro/coverage@v3.2
-        if: steps.check.outputs.push == 'true' && github.event_name == 'pull_request'
+        if: steps.check.outputs.build_arch == 'true' && github.event_name == 'pull_request'
         with:
           coverageFile: ./${{ matrix.addon }}/GridboxConnector/coverage.xml
           token: ${{ secrets.TOKEN }}
