@@ -84,6 +84,47 @@ jobs:
             fi
           fi
 
+  test:
+    needs: init
+    runs-on: ubuntu-latest
+    if: needs.init.outputs.changed == 'true'
+    name: Test ${{ matrix.addon }}
+    strategy:
+      matrix:
+        addon: ${{ fromJson(needs.init.outputs.changed_addons) }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r ./${{ matrix.addon }}/GridboxConnector/requirements.txt
+
+      - name: Run tests
+        run: |
+          cd ./${{ matrix.addon }}/GridboxConnector
+          pytest tests/ --cov=. --cov-report=xml:coverage.xml --cov-report=term-missing 2>&1 | tee pytest-output.txt
+
+      - name: Write coverage summary
+        run: |
+          echo "## 🧪 Test Coverage – ${{ matrix.addon }}" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          awk '/^Name/{p=1} p{print} /^TOTAL/{p=0}' ./${{ matrix.addon }}/GridboxConnector/pytest-output.txt >> $GITHUB_STEP_SUMMARY || true
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: Get Cover
+        uses: orgoro/coverage@v3.2
+        if: github.event_name == 'pull_request'
+        with:
+          coverageFile: ./${{ matrix.addon }}/GridboxConnector/coverage.xml
+          token: ${{ secrets.TOKEN }}
+
   build:
     needs: init
     runs-on: ubuntu-latest
@@ -99,6 +140,9 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v6
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 
       - name: Get information
         id: info
@@ -140,39 +184,6 @@ jobs:
             yq '.labels | to_entries[] | .key + "=" + .value' ./${{ matrix.addon }}/build.yaml
             echo "EOF"
           } >> $GITHUB_OUTPUT
-
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        if: steps.check.outputs.build_arch == 'true'
-        with:
-          python-version: "3.12"
-
-      - name: Install dependencies
-        if: steps.check.outputs.build_arch == 'true'
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r ./${{ matrix.addon }}/GridboxConnector/requirements.txt
-
-      - name: Run tests
-        if: steps.check.outputs.build_arch == 'true'
-        run: |
-          cd ./${{ matrix.addon }}/GridboxConnector
-          pytest tests/ --cov=. --cov-report=xml:coverage.xml --cov-report=term-missing 2>&1 | tee pytest-output.txt
-
-      - name: Write coverage summary
-        if: steps.check.outputs.build_arch == 'true'
-        run: |
-          echo "## 🧪 Test Coverage – ${{ matrix.addon }} (${{ matrix.arch }})" >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
-          awk '/^Name/{p=1} p{print} /^TOTAL/{p=0}' ./${{ matrix.addon }}/GridboxConnector/pytest-output.txt >> $GITHUB_STEP_SUMMARY || true
-          echo '```' >> $GITHUB_STEP_SUMMARY
-
-      - name: Get Cover
-        uses: orgoro/coverage@v3.2
-        if: steps.check.outputs.build_arch == 'true' && github.event_name == 'pull_request'
-        with:
-          coverageFile: ./${{ matrix.addon }}/GridboxConnector/coverage.xml
-          token: ${{ secrets.TOKEN }}
 
       - name: Build ${{ matrix.addon }} add-on
         if: steps.check.outputs.build_arch == 'true'
