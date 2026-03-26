@@ -25,12 +25,12 @@ LABEL \
 
 ENV LOGFIRE_TOKEN=${LOGFIRE_TOKEN}
 ENV LOGFIRE_TOKEN_EDGE=${LOGFIRE_TOKEN_EDGE}
+ENV PYTHONUNBUFFERED=1
 
 RUN \
   apk add --no-cache \
   python3 py3-pip
 RUN ln -sf python3 /usr/bin/python
-COPY rootfs /
 
 
 # Execute during the build of the image
@@ -44,7 +44,7 @@ COPY GridboxConnector/ /build/GridboxConnector
 COPY cloudSettings.json /data/cloudSettings.json
 COPY cloudSettings.json /build/cloudSettings.json
 
-RUN cd /build/GridboxConnector && pip install -r requirements.txt
+RUN cd /build/GridboxConnector && pip install --no-cache-dir -r requirements.txt
 
 COPY rootfs /
 
