@@ -66,6 +66,23 @@ def test_main_heater(mock_retrieve_live_data, mock_init, mock_init_auth, mock_mq
         mock_heaters_temperature.assert_called_once_with(70.9, last_reset="")
 
 
+@patch("paho.mqtt.client.Client")
+@patch.object(GridboxConnector, "init_auth", return_value=None)
+@patch.object(GridboxConnector, "__init__", return_value=None)
+@patch.object(GridboxConnector, "retrieve_live_data_by_id")
+def test_main_heatpump(mock_retrieve_live_data, mock_init, mock_init_auth, mock_mqtt_client, mqtt_settings):
+    result = _make_connector(mock_retrieve_live_data, mock_mqtt_client, "mock_data_with_heatpump.json")
+    ha = HAGridboxConnector(mqtt_settings)
+    ha.update_sensors(result)
+    with (
+        patch.object(ha.heatPumps_power, "set_state") as mock_heatpumps_power,
+        patch.object(ha.heatPumps_sgReadyState, "set_state") as mock_heatpumps_sg_ready_state,
+    ):
+        ha.update_sensors(result)
+        mock_heatpumps_power.assert_called_once_with(1074.93, last_reset="")
+        mock_heatpumps_sg_ready_state.assert_called_once_with("AUTO")
+
+
 def test_logger():
     from utils import SensitiveDataFilter
 
