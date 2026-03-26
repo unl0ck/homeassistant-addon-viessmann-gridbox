@@ -65,5 +65,4 @@ jobs:
           git add -A
           git commit -m "release: Release Edge Version v${{ env.CURRENT_VERSION }}-edge"
           git tag -a "v${{ env.CURRENT_VERSION }}-edge" -m "v${{ env.CURRENT_VERSION }}-edge"
-          git push
-          git push --tags
+          git push --follow-tags

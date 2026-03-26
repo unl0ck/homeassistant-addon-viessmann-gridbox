@@ -72,5 +72,4 @@ jobs:
           git add -A
           git commit -m "release: Release Stable Version v${{ env.CURRENT_VERSION }}"
           git tag -a "v${{ env.CURRENT_VERSION }}" -m "v${{ env.CURRENT_VERSION }}"
-          git push
-          git push --tags
+          git push --follow-tags

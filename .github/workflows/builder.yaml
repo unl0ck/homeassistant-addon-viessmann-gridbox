@@ -10,6 +10,8 @@ on:
   push:
     branches:
       - "**"
+    tags:
+      - "v*"
 
   pull_request:
     branches:
@@ -25,6 +27,8 @@ jobs:
     steps:
       - name: Check out the repository
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 2
 
       - name: Determine add-ons to build
         id: changed_addons
