@@ -1,3 +1,7 @@
+## 3.1.11-edge
+### 🔄 Changes
+- fixed publish issue
+
 ## 3.1.10-edge
 ### 🔄 Changes
 - update builder
