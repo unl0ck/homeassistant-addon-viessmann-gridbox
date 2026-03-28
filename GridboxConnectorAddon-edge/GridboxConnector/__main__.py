@@ -12,11 +12,14 @@ import threading
 import logfire
 import configparser
 import sys
+import pathlib
+
+_BASE_DIR = pathlib.Path(__file__).parent.resolve()
 
 opens_file_path = "/data/options.json"
-setup_file_path = "setup.ini"
-historical_model_path = "./models/models_historical.json"
-live_model_path = "./models/models.json"
+setup_file_path = str(_BASE_DIR / "setup.ini")
+historical_model_path = str(_BASE_DIR / "models" / "models_historical.json")
+live_model_path = str(_BASE_DIR / "models" / "models.json")
 # Erstellen Sie eine ConfigParser-Instanz
 config = configparser.ConfigParser()
 # Lesen Sie die setup.ini-Datei
@@ -146,11 +149,13 @@ def run_addon():
             options_json = json.load(options_file)
         WAIT = int(options_json["wait_time"])
 
+    logger.info(f"Looking for historical model file at: {historical_model_path}")
     if not os.path.exists(historical_model_path):
-        logger.error("Historical model file not found")
+        logger.error(f"Historical model file not found at: {historical_model_path} (cwd={os.getcwd()})")
         exit(1)
+    logger.info(f"Looking for live model file at: {live_model_path}")
     if not os.path.exists(live_model_path):
-        logger.error("Live model file not found")
+        logger.error(f"Live model file not found at: {live_model_path} (cwd={os.getcwd()})")
         exit(1)
 
     USER = os.getenv("USERNAME", "")
