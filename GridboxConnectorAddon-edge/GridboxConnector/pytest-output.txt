@@ -1,0 +1,24 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.13, pytest-8.4.2, pluggy-1.6.0
+rootdir: /home/runner/work/homeassistant-addon-viessmann-gridbox/homeassistant-addon-viessmann-gridbox
+configfile: pyproject.toml
+plugins: cov-6.3.0, anyio-4.13.0, logfire-4.29.0
+collected 5 items
+
+tests/main_test.py .....                                                 [100%]
+
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.13-final-0 _______________
+
+Name                      Stmts   Miss  Cover   Missing
+-------------------------------------------------------
+__init__.py                   0      0   100%
+__main__.py                 146    146     0%   1-189
+ha_gridbox_connector.py      40      0   100%
+sensor_model.py              39      3    92%   30, 33, 41
+tests/conftest.py            10      0   100%
+tests/main_test.py           75      0   100%
+utils.py                     27      8    70%   31-38
+-------------------------------------------------------
+TOTAL                       337    157    53%
+============================== 5 passed in 0.41s ===============================

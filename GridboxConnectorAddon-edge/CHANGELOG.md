@@ -1,3 +1,7 @@
+## 3.1.10-edge
+### 🔄 Changes
+- update builder
+
 ## 3.1.9-edge
 ### 🔄 Changes
 - fixed run tests
