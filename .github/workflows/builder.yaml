@@ -142,6 +142,9 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Get information
         id: info
         uses: home-assistant/actions/helpers/info@master
@@ -183,20 +186,37 @@ jobs:
             echo "EOF"
           } >> $GITHUB_OUTPUT
 
+      - name: Map arch to Docker platform
+        id: platform
+        if: steps.check.outputs.build_arch == 'true'
+        run: |
+          case "${{ matrix.arch }}" in
+            aarch64) echo "platform=linux/arm64" >> $GITHUB_OUTPUT ;;
+            amd64)   echo "platform=linux/amd64" >> $GITHUB_OUTPUT ;;
+            armhf)   echo "platform=linux/arm/v6" >> $GITHUB_OUTPUT ;;
+            armv7)   echo "platform=linux/arm/v7" >> $GITHUB_OUTPUT ;;
+            i386)    echo "platform=linux/386"    >> $GITHUB_OUTPUT ;;
+          esac
+
+      - name: Login to GHCR
+        if: steps.check.outputs.push == 'true'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.TOKEN }}
+
       - name: Build ${{ matrix.addon }} add-on
         if: steps.check.outputs.build_arch == 'true'
-        uses: home-assistant/builder/actions/build-image@2026.03.2
+        uses: docker/build-push-action@v7
         with:
-          arch: ${{ matrix.arch }}
-          image: ${{ steps.check.outputs.image }}
-          image-tags: |
-            ${{ steps.config.outputs.version }}
-            latest
-          version: ${{ steps.config.outputs.version }}
           context: ./${{ matrix.addon }}
-          push: ${{ steps.check.outputs.push }}
-          container-registry-password: ${{ secrets.TOKEN }}
-          cosign: "false"
+          file: ./${{ matrix.addon }}/Dockerfile
+          platforms: ${{ steps.platform.outputs.platform }}
+          push: true
+          tags: |
+            ${{ steps.check.outputs.image }}:${{ steps.config.outputs.version }}
+            ${{ steps.check.outputs.image }}:latest
           build-args: |
             BUILD_FROM=${{ steps.config.outputs.build_from }}
             BUILD_ARCH=${{ matrix.arch }}
@@ -205,6 +225,8 @@ jobs:
             BUILD_REF=${{ github.sha }}
             TEMPIO_VERSION=${{ steps.config.outputs.tempio }}
           labels: ${{ steps.config.outputs.labels }}
+          cache-from: type=gha,scope=${{ matrix.arch }}-${{ matrix.addon }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.arch }}-${{ matrix.addon }}
         env:
           LOGFIRE_TOKEN: ${{ secrets.LOGFIRE_TOKEN }}
 

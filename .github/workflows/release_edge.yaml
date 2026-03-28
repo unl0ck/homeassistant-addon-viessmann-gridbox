@@ -30,6 +30,23 @@ jobs:
 
       - name: Set up Python
         uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r GridboxConnectorAddon-edge/GridboxConnector/requirements.txt
+
+      - name: Run tests
+        run: |
+          cd GridboxConnectorAddon-edge/GridboxConnector
+          PYTHONPATH=. pytest tests/ --cov=. --cov-report=term-missing 2>&1 | tee pytest-output.txt
+
+      - name: Write coverage summary
+        run: |
+          echo "## 🧪 Test Coverage – GridboxConnectorAddon-edge" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          awk '/^Name/{p=1} p{print} /^TOTAL/{p=0}' GridboxConnectorAddon-edge/GridboxConnector/pytest-output.txt >> $GITHUB_STEP_SUMMARY || true
+          echo '```' >> $GITHUB_STEP_SUMMARY
 
       - run: pip install bump-my-version
 

@@ -32,7 +32,7 @@ jobs:
       - name: Run tests
         run: |
           cd GridboxConnectorAddon/GridboxConnector
-          pytest tests/ --cov=. --cov-report=term-missing 2>&1 | tee pytest-output.txt
+          PYTHONPATH=. pytest tests/ --cov=. --cov-report=term-missing 2>&1 | tee pytest-output.txt
 
       - name: Write coverage summary
         run: |
