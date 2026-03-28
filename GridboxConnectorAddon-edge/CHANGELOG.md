@@ -1,3 +1,8 @@
+## 3.1.12-edge
+### 🔄 Changes
+- fixed path issue
+- removed old architerctures
+
 ## 3.1.11-edge
 ### 🔄 Changes
 - fixed publish issue
