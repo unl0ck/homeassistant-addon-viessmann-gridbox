@@ -193,9 +193,6 @@ jobs:
           case "${{ matrix.arch }}" in
             aarch64) echo "platform=linux/arm64" >> $GITHUB_OUTPUT ;;
             amd64)   echo "platform=linux/amd64" >> $GITHUB_OUTPUT ;;
-            armhf)   echo "platform=linux/arm/v6" >> $GITHUB_OUTPUT ;;
-            armv7)   echo "platform=linux/arm/v7" >> $GITHUB_OUTPUT ;;
-            i386)    echo "platform=linux/386"    >> $GITHUB_OUTPUT ;;
           esac
 
       - name: Login to GHCR
