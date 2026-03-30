@@ -7,6 +7,6 @@ ruff==0.15.7
 logfire==4.31.0
 configparser==7.2.0
 coverage==7.13.5
-pytest==8.*
+pytest==9.*
 pytest-cov==7.*
 bump-my-version==1.2.7
