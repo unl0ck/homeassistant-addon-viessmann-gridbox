@@ -8,5 +8,5 @@ logfire==4.29.0
 configparser==7.2.0
 coverage==7.13.5
 pytest==8.*
-pytest-cov==6.*
+pytest-cov==7.*
 bump-my-version==1.2.7
