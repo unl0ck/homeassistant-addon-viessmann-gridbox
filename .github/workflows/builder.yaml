@@ -117,7 +117,7 @@ jobs:
           echo '```' >> $GITHUB_STEP_SUMMARY
 
       - name: Get Cover
-        uses: orgoro/coverage@v3.2
+        uses: orgoro/coverage@v3.3
         if: github.event_name == 'pull_request'
         with:
           coverageFile: ./${{ matrix.addon }}/GridboxConnector/coverage.xml
