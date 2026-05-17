@@ -6,7 +6,7 @@ pydantic==2.*
 ruff==0.15.10
 logfire==4.32.0
 configparser==7.2.0
-coverage==7.13.5
+coverage==7.14.0
 pytest==9.*
 pytest-cov==7.*
 bump-my-version==1.3.0
