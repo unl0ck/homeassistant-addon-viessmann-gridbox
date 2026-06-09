@@ -1,4 +1,4 @@
-ha-mqtt-discoverable==0.24.2
+ha-mqtt-discoverable==0.25.2
 requests==2.34.2
 gridx-connector==3.0.3
 opentelemetry-instrumentation-requests>=0.63b1
