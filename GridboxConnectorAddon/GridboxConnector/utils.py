@@ -21,12 +21,9 @@ class SensitiveDataFilter(logging.Filter):
             # Das modifizierte Dictionary zurück in einen String konvertieren
             record.msg = str(message_dict)
         except (ValueError, SyntaxError):  # pragma: no cover
-            pass
-            # logging.error(f"Error parsing message: {message}")
             record.msg = re.sub(self.uuid_pattern, "***", message)
-        except Exception as e:  # pragma: no cover
+        except Exception:  # pragma: no cover
             pass
-            # logging.error(f"Error filtering sensitive data: {e}")
         return True
 
 
