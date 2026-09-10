@@ -1,5 +1,5 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 # Build arguments
 ARG BUILD_DATE
