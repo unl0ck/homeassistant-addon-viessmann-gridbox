@@ -1,52 +1,451 @@
+## 3.1.13-dev
+### 🔄 Changes
+- release: Release Edge Version v3.1.13-edge
+- fix: resolve edge telemetry dependencies
+- fix: update gridX authentication dependency
+- build(deps): bump coverage
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): update opentelemetry-instrumentation-requests requirement
+- build(deps): bump actions/checkout from 6 to 7
+- build(deps): bump bump-my-version
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump logfire
+- build(deps): bump coverage
+- build(deps): update opentelemetry-instrumentation-requests requirement
+- build(deps): bump ha-mqtt-discoverable
+- build(deps): bump requests
+- build(deps): update opentelemetry-instrumentation-requests requirement
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump coverage
+- build(deps): bump orgoro/coverage from 3.2 to 3.3
+- build(deps): bump logfire
+- build(deps): bump gridx-connector
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump gridx-connector
+- build(deps): bump requests
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump bump-my-version
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): update pytest requirement
+- build(deps): bump gridx-connector
+- build(deps): bump docker/setup-buildx-action from 3 to 4
+- build(deps): bump docker/setup-qemu-action from 3 to 4
+- build(deps): bump docker/login-action from 3 to 4
+- build(deps): update pytest-cov requirement
+- build(deps): bump logfire
+- release: Release Edge Version v3.1.12-edge
+- fixed path issue
+- removed old architerctures
+- release: Release Edge Version v3.1.11-edge
+- fixed publish issue
+- release: Release Edge Version v3.1.10-edge
+- update builder
+- release: Release Edge Version v3.1.9-edge
+- fixed run tests
+- added parallel run tests
+- worked to automate create a build
+- worked on workflow
+- should fix workflow create release
+- added bump version
+- will create standalone only for stable tag
+- updated requests
+- updated workflow builder
+- refactored code
+- worked on logging
+- update s6
+- reworked on builder workflow
+- worked on workflows
+- update builder workflow
+- release: Release Edge Version v3.1.8-edge
+- rework on release strategy
+- refactor: migrate tests to pytest, add conftest.py, move to tests/
+- using pytest
+- fixed duplicate code
+- build(deps): bump home-assistant/builder from 2026.02.1 to 2026.03.2
+- build(deps): bump coverage
+- build(deps): bump ha-mqtt-discoverable
+- ci: bump edge 3.1.7 -> 3.1.8
+- requirements.txt aktualisieren
+- Remove redundant type variable, use key directly
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- Revert action version changes, keep only functional improvements
+- Fix workflows and add stable versioning support
+- Initial plan
+- Use key variable instead of hardcoded strings for measurement.get()
+- Add missing live and historical sensors, fix heatPump casing
+- Use local timezone for historical statistics
+- Add heatPumps MQTT sensor support
+- Add state_class to live sensor models
+- Fix invalid state_class metadata for historical sensors
+- build(deps): bump logfire
+- build(deps): bump ha-mqtt-discoverable
+- build(deps): bump docker/setup-buildx-action from 3 to 4
+- build(deps): bump docker/login-action from 3 to 4
+- build(deps): bump docker/build-push-action from 6 to 7
+- build(deps): bump opentelemetry-instrumentation-requests
+- build(deps): bump logfire
+- build(deps): bump home-assistant/builder from 2025.11.0 to 2026.02.1
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump bump-my-version
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump coverage
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump coverage
+- build(deps): bump logfire
+- build(deps): bump logfire
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump coverage
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump bump-my-version
+- build(deps): bump coverage
+- another try to release Stable version
+- removed daemon
+- fixed changelog
+- 👌 IMPROVE: removed daemon
+- 👌 IMPROVE: fixed threading hopefully
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- 🚀 RELEASE: 3.1.5
+- build(deps): bump opentelemetry-instrumentation-requests
+- build(deps): bump logfire
+- build(deps): bump bump-my-version
+- build(deps): bump coverage
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump home-assistant/builder from 2025.09.0 to 2025.11.0
+- 🐛 FIX: remove unused code move to gridx_connector
+- requirements.txt aktualisieren
+- requirements.txt aktualisieren
+- 👌 IMPROVE: new viessmann endpoint
+- build(deps): bump coverage
+- build(deps): bump logfire
+- build(deps): bump frenck/action-addon-linter from 2.20 to 2.21
+- build(deps): bump actions/checkout from 5 to 6
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- 👌 IMPROVE: removed codenatory
+- ‼️ BREAKING: removed support armhf and armv7
+- build(deps): bump coverage
+- build(deps): bump ha-mqtt-discoverable
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump frenck/action-addon-linter from 2.18 to 2.20
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump coverage
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump opentelemetry-instrumentation-requests
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump coverage
+- build(deps): bump ha-mqtt-discoverable
+- build(deps): bump logfire
+- build(deps): bump stefanzweifel/git-auto-commit-action from 6 to 7
+- 🐛 FIX: logfire
+- fixed changelog of edge
+- 👌 IMPROVE: Logfire
+- 🐛 FIX: fixed env token name
+- added logfire to edge
+- build(deps): bump logfire
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump bump-my-version
+- 📦 NEW: Added Heat Pump
+- build(deps): bump logfire
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump coverage
+- build(deps): bump home-assistant/builder from 2025.03.0 to 2025.09.0
+- build(deps): bump bump-my-version
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump opentelemetry-instrumentation-requests
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump bump-my-version
+- build(deps): bump actions/setup-python from 5 to 6
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump coverage
+- build(deps): bump viessmann-gridbox-connector
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump coverage
+- build(deps): bump requests
+- build(deps): bump actions/checkout from 4 to 5
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump coverage
+- build(deps): bump logfire
+- 🐛 FIX: historical data device class
+- 📦 NEW:  tool for create log file
+- build(deps): bump logfire
+- build(deps): bump coverage
+- 🐛 FIX:  heaters
+- build(deps): bump coverage
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump opentelemetry-instrumentation-requests
+- build(deps): bump coverage
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump opentelemetry-instrumentation-requests
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump bump-my-version
+- build(deps): bump logfire
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump requests
+- build(deps): bump logfire
+- 🐛 FIX:  fixed main version and edge version
+- build(deps): bump logfire
+- build(deps): bump coverage
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump requests in /GridboxConnectorAddon/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump stefanzweifel/git-auto-commit-action from 5 to 6
+- build(deps): bump opentelemetry-instrumentation-requests
+- build(deps): bump coverage
+- build(deps): bump requests
+- build(deps): bump logfire
+- build(deps): bump opentelemetry-instrumentation-requests
+- build(deps): bump logfire
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump bump-my-version
+- build(deps): bump logfire
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump coverage
+- build(deps): bump opentelemetry-instrumentation-requests
+- build(deps): bump logfire
+- build(deps): bump bump-my-version
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- requirements.txt aktualisieren
+- requirements.txt aktualisieren
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- 🐛 FIX: Corrected Versionumber
+- 👌 IMPROVE: Added historical
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump opentelemetry-instrumentation-requests
+- build(deps): bump logfire
+- build(deps): bump bump-my-version
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump coverage
+- build(deps): bump logfire
+- CHANGELOG.md aktualisieren
+- ci: bump edge 3.0.7 -> 3.0.8
+- models_historical.json aktualisieren
+- builder.yaml aktualisieren
+- 👌 IMPROVE: added to historical model charge and discharge
+- build(deps): bump coverage
+- 🐛 FIX: pydantic lib version
+- 👌 IMPROVE: added missed battery charge and discharge
+- build(deps): bump pydantic
+- build(deps): bump logfire
+- 👌 IMPROVE: find file
+- 👌 IMPROVE: find why is not loading models
+- added more logs for finding issue
+- build(deps): bump home-assistant/builder from 2024.08.2 to 2025.03.0
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump opentelemetry-instrumentation-requests
+- build(deps): bump bump-my-version
+- 🐛 FIX: using pydantic version 2.7.2
+- 🐛 FIX: removed duplicate requirments
+- builder.yaml aktualisieren
+- .bumpversion-edge.toml aktualisieren
+- 🐛 FIX: coverage calc
+- 👌 IMPROVE: Fixed UnitTests
+- 🐛 FIX: push feature/*
+- 👌 IMPROVE: modified build.yaml
+- 🚀 RELEASE: 2.11.66
+- 👌 IMPROVE: build.yml
+- ‼️ BREAKING: Start with 3.x
+- 👌 IMPROVE: fixed device_class in models
+- 👌 IMPROVE: WIP battery
+- 👌 IMPROVE: format files
+- 👌 IMPROVE: using ruff as linter
+- 🐛 FIX: fixed model.json
+- 👌 IMPROVE: modified models
+- 👌 IMPROVE: fixed pydantic on version
+- 👌 IMPROVE: Modifed Models and sensor_model class
+- 👌 IMPROVE: modified GridX
+- 👌 IMPROVE: modified models and WIP models_historical.json
+- 👌 IMPROVE: read json file
+- 👌 IMPROVE: Updated tests
+- 👌 IMPROVE: added method to convert key to SensorModel
+- 👌 IMPROVE: models.json adjusted
+- 📦 NEW: Start with model
+
+## 3.1.13-edge
+### 🔄 Changes
+- fix: resolve edge telemetry dependencies
+- fix: update gridX authentication dependency
+- build(deps): bump coverage
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): update opentelemetry-instrumentation-requests requirement
+- build(deps): bump actions/checkout from 6 to 7
+- build(deps): bump bump-my-version
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump logfire
+- build(deps): bump coverage
+- build(deps): update opentelemetry-instrumentation-requests requirement
+- build(deps): bump ha-mqtt-discoverable
+- build(deps): bump requests
+- build(deps): update opentelemetry-instrumentation-requests requirement
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump coverage
+- build(deps): bump orgoro/coverage from 3.2 to 3.3
+- build(deps): bump logfire
+- build(deps): bump gridx-connector
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump gridx-connector
+- build(deps): bump requests
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump bump-my-version
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): update pytest requirement
+- build(deps): bump gridx-connector
+- build(deps): bump docker/setup-buildx-action from 3 to 4
+- build(deps): bump docker/setup-qemu-action from 3 to 4
+- build(deps): bump docker/login-action from 3 to 4
+- build(deps): update pytest-cov requirement
+- build(deps): bump logfire
+
+## 3.1.12-edge
+### 🔄 Changes
+- fixed path issue
+- removed old architerctures
+
+## 3.1.11-edge
+### 🔄 Changes
+- fixed publish issue
+
+## 3.1.10-edge
+### 🔄 Changes
+- update builder
+
+## 3.1.9-edge
+### 🔄 Changes
+- fixed run tests
+- added parallel run tests
+- worked to automate create a build
+- worked on workflow
+- should fix workflow create release
+- added bump version
+- will create standalone only for stable tag
+- updated requests
+- updated workflow builder
+- refactored code
+- worked on logging
+- update s6
+- reworked on builder workflow
+- worked on workflows
+- update builder workflow
+
+## 3.1.8-edge
+### 🔄 Changes
+- rework on release strategy
+- refactor: migrate tests to pytest, add conftest.py, move to tests/
+- using pytest
+- fixed duplicate code
+- build(deps): bump home-assistant/builder from 2026.02.1 to 2026.03.2
+- build(deps): bump coverage
+- build(deps): bump ha-mqtt-discoverable
+- ci: bump edge 3.1.7 -> 3.1.8
+- requirements.txt aktualisieren
+- Remove redundant type variable, use key directly
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- Revert action version changes, keep only functional improvements
+- Fix workflows and add stable versioning support
+- Initial plan
+- Use key variable instead of hardcoded strings for measurement.get()
+- Add missing live and historical sensors, fix heatPump casing
+- Use local timezone for historical statistics
+- Add heatPumps MQTT sensor support
+- Add state_class to live sensor models
+- Fix invalid state_class metadata for historical sensors
+- build(deps): bump logfire
+- build(deps): bump ha-mqtt-discoverable
+- build(deps): bump docker/setup-buildx-action from 3 to 4
+- build(deps): bump docker/login-action from 3 to 4
+- build(deps): bump docker/build-push-action from 6 to 7
+- build(deps): bump opentelemetry-instrumentation-requests
+- build(deps): bump logfire
+- build(deps): bump home-assistant/builder from 2025.11.0 to 2026.02.1
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump bump-my-version
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump coverage
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump coverage
+- build(deps): bump logfire
+- build(deps): bump logfire
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump coverage
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump bump-my-version
+- build(deps): bump coverage
+- another try to release Stable version
+- removed daemon
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+
 <!-- https://developers.home-assistant.io/docs/add-ons/presentation#keeping-a-changelog -->
 
 ## 3.1.7
 ### 🔨 Fixed
 
 - threading daemon removed
-## 3.1.6
+## 3.1.6-edge
 ### 🔨 Fixed
 
 - threading
 
-## 3.1.5
+## 3.1.5-edge
 
 ### 🔨 Fixed
 
 - eon-home endpoint set
 
-## 3.1.4
+## 3.1.4-edge
 
 ### 🔨 Fixed
 
 - logfire log output corrected
 
-## 3.1.3
+## 3.1.3-edge
 
 ### 🚀 Added
 
 - you can use an own logfire token to get logs
 - you can set another loglevel as normal log, to reduce traffic on logfire
 
-## 3.1.2
+## 3.1.2-edge
 
 ### 🔨 Fixed
 
 - using correct token
 
-## 3.1.1
+## 3.1.1-edge
 
 ### 🚀 Added
 
 - New Logfire token
 
-## 3.1.0
+## 3.1.0-edge
 
 ### 🚀 Added
 
 - Heatpump Sum added
 
-## 3.0.12
+## 3.0.12-edge
 
 ### 🔨 Fixed
 
@@ -56,37 +455,37 @@
 
 - tool to make it easier to get logs and screenshot of dashboard
 
-## 3.0.11
+## 3.0.11-edge
 
 ### 🔨 Fixed
 
 - Heaters changed device_class and unit of measurement
 
-## 3.0.10
+## 3.0.10-edge
 
 ### 🔨 Fixed
 
 - BatteryPower device_class to power changed
 
-## 3.0.9
+## 3.0.9-edge
 
 ### 🚀 Added
 
 - heating in historical
 
-## 3.0.7
+## 3.0.7-edge
 
 ### 🚀 Added
 
 - battery charge and discharge
 
-## 3.0.6
+## 3.0.6-edge
 
 ### 🚀 Added
 
 - battery charge and discharge
 
-## 3.0.3
+## 3.0.3-edge
 
 ### 🚀 Added
 
@@ -96,13 +495,13 @@
 
 - logs of file structure
 
-## 3.0.2
+## 3.0.2-edge
 
 ### 🚀 Added
 
 - logs of content
 
-## 3.0.0
+## 3.0.0-edge
 
 Is Currently not working correctly don't Use for Production
 will released if all Sensors integrated like 2.x
