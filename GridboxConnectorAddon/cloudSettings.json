@@ -9,7 +9,7 @@
     "grant_type": "http://auth0.com/oauth/grant-type/password-realm",
     "username": "username",
     "password": "password",
-    "audience": "my.gridx",
+    "audience": "https://api.gridx.de",
     "client_id": "oZpr934Ikn8OZOHTJEcrgXkjio0I0Q7b",
     "scope": "email openid",
     "realm": "viessmann-authentication-db"
