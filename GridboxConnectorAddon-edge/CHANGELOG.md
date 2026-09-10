@@ -1,3 +1,40 @@
+## 3.1.13-edge
+### 🔄 Changes
+- fix: resolve edge telemetry dependencies
+- fix: update gridX authentication dependency
+- build(deps): bump coverage
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): update opentelemetry-instrumentation-requests requirement
+- build(deps): bump actions/checkout from 6 to 7
+- build(deps): bump bump-my-version
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump logfire
+- build(deps): bump coverage
+- build(deps): update opentelemetry-instrumentation-requests requirement
+- build(deps): bump ha-mqtt-discoverable
+- build(deps): bump requests
+- build(deps): update opentelemetry-instrumentation-requests requirement
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump logfire
+- build(deps): bump coverage
+- build(deps): bump orgoro/coverage from 3.2 to 3.3
+- build(deps): bump logfire
+- build(deps): bump gridx-connector
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump gridx-connector
+- build(deps): bump requests
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): bump bump-my-version
+- build(deps): bump ruff in /GridboxConnectorAddon-edge/GridboxConnector
+- build(deps): update pytest requirement
+- build(deps): bump gridx-connector
+- build(deps): bump docker/setup-buildx-action from 3 to 4
+- build(deps): bump docker/setup-qemu-action from 3 to 4
+- build(deps): bump docker/login-action from 3 to 4
+- build(deps): update pytest-cov requirement
+- build(deps): bump logfire
+
 ## 3.1.12-edge
 ### 🔄 Changes
 - fixed path issue
