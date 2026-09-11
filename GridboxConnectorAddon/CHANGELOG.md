@@ -1,5 +1,17 @@
-## 3.1.14
+## 3.1.15-dev
 ### 🔄 Changes
+- fix: align dev addon version with edge release
+- fix: align dev addon version with edge release
+- fix: align dev addon version with edge release
+- release: Release Edge Version v3.1.15-edge
+- release: Release Stable Version v3.1.14
+- fix: align stable addon version with dev release
+- fix: align stable addon version with dev release
+- fix: align stable addon version with dev release
+
+## 3.1.15-edge
+### 🔄 Changes
+- release: Release Stable Version v3.1.14
 - fix: align stable addon version with dev release
 - fix: align stable addon version with dev release
 - fix: align stable addon version with dev release
@@ -7,16 +19,6 @@
 - fix: align dev addon version with edge release
 - fix: align dev addon version with edge release
 - fix: align dev addon version with edge release
-- release: Release Edge Version v3.1.14-edge
-
-## 3.1.14-dev
-### 🔄 Changes
-- fix: align dev addon version with edge release
-- fix: align dev addon version with edge release
-- fix: align dev addon version with edge release
-- release: Release Edge Version v3.1.14-edge
-- fix: use Python 3.11 for standalone images
-- release: Release Stable Version v3.1.13
 
 ## 3.1.14-edge
 ### 🔄 Changes

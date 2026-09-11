@@ -1,6 +1,6 @@
 # Home Assistant Add-on: GridboxConnector
 
-Fetch your Energy data from the EON Gridbox Cloud
+Fetch your Energy data from the Eon Gridbox Cloud
 
 ## How to use
 
