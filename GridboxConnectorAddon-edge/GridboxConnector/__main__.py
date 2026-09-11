@@ -67,8 +67,11 @@ except Exception as e:
 
 
 def load_gridbox_config():
-    config_file = files("gridx_connector").joinpath("eon-home.config.json")
-    with open(str(config_file)) as json_file:
+    config_package = files("gridx_connector")
+    config_file = config_package.joinpath("config", "eon-home.config.json")
+    if not config_file.is_file():
+        config_file = config_package.joinpath("eon-home.config.json")
+    with config_file.open(encoding="utf-8") as json_file:
         data = json.load(json_file)
     return data
 
