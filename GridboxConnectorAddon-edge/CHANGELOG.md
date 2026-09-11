@@ -1,3 +1,12 @@
+## 3.1.16-edge
+### 🔄 Changes
+- fix: correct packaged config path in all addon channels
+- release: Release Stable Version v3.1.15
+- release: Release Dev Version v3.1.15-dev
+- fix: align dev addon version with edge release
+- fix: align dev addon version with edge release
+- fix: align dev addon version with edge release
+
 ## 3.1.15-edge
 ### 🔄 Changes
 - release: Release Stable Version v3.1.14

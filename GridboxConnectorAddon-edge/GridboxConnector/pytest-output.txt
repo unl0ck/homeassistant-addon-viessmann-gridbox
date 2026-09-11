@@ -3,22 +3,24 @@ platform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
 rootdir: /home/runner/work/homeassistant-addon-viessmann-gridbox/homeassistant-addon-viessmann-gridbox
 configfile: pyproject.toml
 plugins: anyio-4.15.1, cov-7.1.0, logfire-4.37.0
-collected 5 items
+collected 6 items
 
-tests/main_test.py .....                                                 [100%]
+tests/main_test.py .....                                                 [ 83%]
+tests/test_config_loading.py .                                           [100%]
 
 ================================ tests coverage ================================
 _______________ coverage: platform linux, python 3.12.14-final-0 _______________
 
-Name                      Stmts   Miss  Cover   Missing
--------------------------------------------------------
-__init__.py                   0      0   100%
-__main__.py                 150    150     0%   1-194
-ha_gridbox_connector.py      40      0   100%
-sensor_model.py              39      3    92%   30, 33, 41
-tests/conftest.py            10      0   100%
-tests/main_test.py           75      0   100%
-utils.py                     27      8    70%   31-38
--------------------------------------------------------
-TOTAL                       341    161    53%
-============================== 5 passed in 1.67s ===============================
+Name                           Stmts   Miss  Cover   Missing
+------------------------------------------------------------
+__init__.py                        0      0   100%
+__main__.py                      153    100    35%   45, 51, 54-66, 73, 80-93, 97-117, 121-131, 135-136, 140-141, 145-193, 197
+ha_gridbox_connector.py           40      0   100%
+sensor_model.py                   39      3    92%   30, 33, 41
+tests/conftest.py                 10      0   100%
+tests/main_test.py                75      0   100%
+tests/test_config_loading.py      12      0   100%
+utils.py                          27      5    81%   33-37
+------------------------------------------------------------
+TOTAL                            356    108    70%
+============================== 6 passed in 1.95s ===============================
