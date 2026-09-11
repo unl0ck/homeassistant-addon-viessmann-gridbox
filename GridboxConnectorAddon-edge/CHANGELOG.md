@@ -1,3 +1,9 @@
+## 3.1.14-edge
+### 🔄 Changes
+- fix: use Python 3.11 for standalone images
+- release: Release Stable Version v3.1.13
+- release: Release Dev Version v3.1.13-dev
+
 ## 3.1.13-edge
 ### 🔄 Changes
 - fix: resolve edge telemetry dependencies
