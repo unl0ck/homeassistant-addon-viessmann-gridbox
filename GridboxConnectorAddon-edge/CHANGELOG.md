@@ -1,3 +1,15 @@
+## 3.1.17-edge
+### 🔄 Changes
+- chore(deps): update addon requirements
+- release: Release Stable Version v3.1.16
+- fix: align stable version for v3.1.16
+- fix: align stable version for v3.1.16
+- fix: align stable version for v3.1.16
+- release: Release Dev Version v3.1.16-dev
+- fix: sync dev version for v3.1.16
+- fix: sync dev version for v3.1.16
+- fix: sync dev version for v3.1.16
+
 ## 3.1.16-edge
 ### 🔄 Changes
 - fix: correct packaged config path in all addon channels
