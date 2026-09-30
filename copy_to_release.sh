@@ -17,4 +17,5 @@ echo "New version: $new_version"
 
 #sed -i "s/version: \"$current_version\"/version: \"$new_version\"/g" $yaml_datei
 #sed -i "" "s/version: \"$current_version\"/version: \"$new_version\"/g" $yaml_datei
-sed -i "s/^version: \".*\"/version: \"$new_version\"/" $yaml_datei
+yq -i ".version = \"$new_version\"" "$yaml_datei"
+test "$(yq -er '.version' "$yaml_datei")" = "$new_version"
